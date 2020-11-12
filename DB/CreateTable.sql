@@ -55,8 +55,8 @@ ALTER TABLE review
 CREATE TABLE bookInfo
 ( 
 	bookinfoID VARCHAR2(13)  NOT NULL ,
-	bookname    VARCHAR2(20)  NOT NULL ,
-	writer         VARCHAR2(20)  NOT NULL ,
+	bookname    VARCHAR2(80)  NOT NULL ,
+	writer         VARCHAR2(60)  NOT NULL ,
 	publisher    VARCHAR2(10)  NULL ,
 	category       VARCHAR2(10)  NOT NULL ,
 	bookImage VARCHAR2(100)  NULL ,
@@ -86,7 +86,7 @@ CREATE TABLE member
 	address        VARCHAR2(50)  NOT NULL ,
 	email        VARCHAR2(30)  NOT NULL ,
 	password   VARCHAR2(20)  NOT NULL ,
-	gender         VARCHAR2(1)  NOT NULL 
+	gender         numeric(1)  NOT NULL 
 		CHECK  ( gender BETWEEN 0 AND 3 ),
 	memberGrade    numeric(1)  NULL ,
 	point        numeric(10)  NULL ,
