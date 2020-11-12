@@ -83,14 +83,14 @@ CREATE TABLE member
 ( 
 	memberID VARCHAR2(16)  NOT NULL ,
 	name           VARCHAR2(10)  NOT NULL ,
-	address        VARCHAR2(50)  NOT NULL ,
 	email        VARCHAR2(30)  NOT NULL ,
+	phone      VARCHAR2(11)  NOT NULL ,
 	password   VARCHAR2(20)  NOT NULL ,
 	gender         numeric(1)  NOT NULL 
 		CHECK  ( gender BETWEEN 0 AND 3 ),
+	point        numeric(10)  NULL,
 	memberGrade    numeric(1)  NULL ,
-	point        numeric(10)  NULL ,
-	phone      VARCHAR2(11)  NOT NULL 
+	address        VARCHAR2(50)  NOT NULL
 );
 
 
