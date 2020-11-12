@@ -71,7 +71,7 @@ ALTER TABLE bookInfo
 CREATE TABLE seller
 ( 
 	memberID VARCHAR2(16)  NOT NULL ,
-	sellerPoint numeric(1)  NULL 
+	sellerGrade numeric(1)  NULL 
 );
 
 
