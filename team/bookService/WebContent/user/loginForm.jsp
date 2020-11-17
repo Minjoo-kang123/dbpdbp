@@ -8,25 +8,24 @@
 <title>Login?_bookService</title>
 <script type="text/javascript">
 
-	function userCreate(targetUri) {
-		form.action = targetUri;
-		f.submit();
-	}
-
 	function login() {
-		if ( f.userId.value == "" ) {
+		if ( loginForm.userId.value == "" ) {
 			alert("사용자 아이디를 입력하십시요.");
-			f.userId.focus();
+			loginForm.userId.focus();
 			return false;
 		} 
-		if ( f.password.value == "" ) {
+		if ( loginForm.password.value == "" ) {
 			alert("비밀번호를 입력하십시요.");
-			f.password.focus();
+			loginForm.password.focus();
 			return false;
 		}	
-		f.submit();
+		loginForm.submit();
 	}
-		
+	
+	function userCreate(targetUri) {
+		loginForm.action = targetUri;
+		loginForm.submit();
+	}
 </script>
 <style>
 
@@ -241,7 +240,7 @@
 					<div id="login_wrapper" class="login_content clearfix">
 						<!-- content -->
 						<div class="login_area">
-							<form name="f" method="POST" action="<c:url value='/user/login' />">
+							<form name="loginForm" method="POST" action="<c:url value='/user/login' />">
 								<fieldset>
 									<legend>로그인 폼</legend> <p>
 									아이디: <input type="text" style="width:240;" name="userId"> <p>
@@ -249,7 +248,7 @@
 									&nbsp;&nbsp; <input type="button" value="로그인" onClick="login()"><p>
 								</fieldset>
 								<div>
-									<small>아직 아이디가 없으신가요?</small> <input type="button" value="회원가입" onClick="userCreate('<c:url value='/user/register/form'/>')">
+									<small>아직 아이디가 없으신가요?</small> <input type="button" value="회원가입" onClick="userCreate('<c:url value='/user/register/form' />')">
 								</div>
 							</form>
 						</div>

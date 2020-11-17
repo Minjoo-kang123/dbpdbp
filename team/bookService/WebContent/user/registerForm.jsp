@@ -1,47 +1,42 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>È¸¿ø °¡ÀÔ </title>
-<script>
+<meta charset="UTF-8">
+<title>register</title>
+<script type="text/javascript">
 function userCreate() {
-	if (registerForm.userId.value == "") {
-		alert("»ç¿ëÀÚ ID¸¦ ÀÔ·ÂÇÏ½Ê½Ã¿À.");
+	if (form.userId.value == "") {
+		alert("ì‚¬ìš©ì IDë¥¼ ì…ë ¥í•˜ì‹­ì‹œì˜¤.");
 		form.userId.focus();
 		return false;
 	} 
-	if (registerForm.password.value == "") {
-		alert("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ½Ê½Ã¿À.");
+	if (form.password.value == "") {
+		alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì‹­ì‹œì˜¤.");
 		form.password.focus();
 		return false;
 	}
-	if (registerForm.password.value != form.password2.value) {
-		alert("ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
+	if (form.password.value != form.password2.value) {
+		alert("ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		form.name.focus();
 		return false;
 	}
-	if (registerForm.name.value == "") {
-		alert("ÀÌ¸§À» ÀÔ·ÂÇÏ½Ê½Ã¿À.");
-		form.name.focus();
-		return false;
-	}
-	if (registerForm.area.value == "") {
-		alert("Áö¿ª±¸À» ÀÔ·ÂÇÏ½Ê½Ã¿À.");
+	if (form.name.value == "") {
+		alert("ì´ë¦„ì„ ì…ë ¥í•˜ì‹­ì‹œì˜¤.");
 		form.name.focus();
 		return false;
 	}
 	var emailExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 	if(emailExp.test(form.email.value)==false) {
-		alert("ÀÌ¸ŞÀÏ Çü½ÄÀÌ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù.");
+		alert("ì´ë©”ì¼ í˜•ì‹ì´ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		form.email.focus();
 		return false;
 	}
 	var phoneExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
 	if(phoneExp.test(form.phone.value)==false) {
-		alert("ÀüÈ­¹øÈ£ Çü½ÄÀÌ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù.");
+		alert("ì „í™”ë²ˆí˜¸ í˜•ì‹ì´ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		form.phone.focus();
 		return false;
 	}
@@ -52,6 +47,7 @@ function cancel(targetUri) {
 	form.action = targetUri;
 	form.submit();
 }
+
 </script>
 <style>
 	body, div, span, p, a, font, ul, li, fieldset, form, legend, table {
@@ -177,54 +173,54 @@ function cancel(targetUri) {
 <body>
 	<div id="wrapper">
 		<header id="header">
-			<!-- topBar : ·Î±×ÀÎÀÌ¶û °øÁö»çÇ× °°Àºµ¥·Î ¹Ù·Î°¡±â µî(?) ÀÓÀÇ·Î ³ÖÀ½.  -->
+			<!-- topBar : ë¡œê·¸ì¸ì´ë‘ ê³µì§€ì‚¬í•­ ê°™ì€ë°ë¡œ ë°”ë¡œê°€ê¸° ë“±(?) ì„ì˜ë¡œ ë„£ìŒ.  -->
 			<div class="topBar_wrap">
 				<div class="topBar">
 					<div class="menu">
-						<a href=".1">°øÁö»çÇ×</a>
+						<a href=".1">ê³µì§€ì‚¬í•­</a>
 						<span> | </span>
-						<a href=".2">Áñ°ÜÃ£±â</a>
+						<a href=".2">ì¦ê²¨ì°¾ê¸°</a>
 					</div>
 				</div>
 			</div>
-			<!--  ·Î°í¶û search ¹Ù ÀÖ´Â °÷. -->
+			<!--  ë¡œê³ ë‘ search ë°” ìˆëŠ” ê³³. -->
 			<div class="header_wrap">
 				<div class="logo" style="margin-top : 25px; float : left; width : 300px">
-					<h3><a href="homePage01.jsp">·Î°íÀÚ¸®</a></h3>
+					<h3><a href="homePage01.jsp">ë¡œê³ ìë¦¬</a></h3>
 				</div>
 				<form name="main_search" class="main_searchForm">
-				<!-- form¿¡ actionÀÌ¶û method ³ªÁß¿¡ ³Ö±â -->
+				<!-- formì— actionì´ë‘ method ë‚˜ì¤‘ì— ë„£ê¸° -->
 					<fieldset>
-						<legend>ÅëÇÕ°Ë»ö</legend>
-						±¸ºĞ : 
-						<select id="stype" name="stype" title="»ó¼¼°Ë»ö" style="width:76px">
-							<option value="all1" selected >ÀüÃ¼</option>
-							<option value="subject"  >Á¦¸ñ</option>
-							<option value="intro"  >ÀÛÇ°¼Ò°³</option>
-							<option value="content"  >ÀÛÇ°³»¿ë</option>
-							<option  value="member" >ÀÛ°¡</option>
+						<legend>í†µí•©ê²€ìƒ‰</legend>
+						êµ¬ë¶„ : 
+						<select id="stype" name="stype" title="ìƒì„¸ê²€ìƒ‰" style="width:76px">
+							<option value="all1" selected >ì „ì²´</option>
+							<option value="subject"  >ì œëª©</option>
+							<option value="intro"  >ì‘í’ˆì†Œê°œ</option>
+							<option value="content"  >ì‘í’ˆë‚´ìš©</option>
+							<option  value="member" >ì‘ê°€</option>
 						</select> &nbsp;
-						Àå¸£ : 
-						<select id="stype_g" name="stype_g" title="Àå¸£°Ë»ö" style="width:76px">
-							<option value="all2" selected >ÀüÃ¼</option>
-							<option value="action"  > ¾×¼Ç</option>
-							<option value="fantasy"  > ÆÇÅ¸Áö </option>
-							<option value="romance"  > ·Î¸Ç½º </option>
-							<option  value="comic" > ÄÚ¹Í </option>
-							<option value="etc" > ±âÅ¸ µîµî </option>
+						ì¥ë¥´ : 
+						<select id="stype_g" name="stype_g" title="ì¥ë¥´ê²€ìƒ‰" style="width:76px">
+							<option value="all2" selected >ì „ì²´</option>
+							<option value="action"  > ì•¡ì…˜</option>
+							<option value="fantasy"  > íŒíƒ€ì§€ </option>
+							<option value="romance"  > ë¡œë§¨ìŠ¤ </option>
+							<option  value="comic" > ì½”ë¯¹ </option>
+							<option value="etc" > ê¸°íƒ€ ë“±ë“± </option>
 						</select>
-						<input tpye="text" id="search_text" name="search_kw" title = "°Ë»ö¾î ÀÔ·Â"
+						<input tpye="text" id="search_text" name="search_kw" title = "ê²€ìƒ‰ì–´ ì…ë ¥"
 						size="20" class="inputText">
-						<input type="button" value="°Ë»ö">
+						<input type="button" value="ê²€ìƒ‰">
 					</fieldset>
 				</form>
 				<div class = "myinfo">
 					<%if (session.getAttribute("userId") == null) { %>
-				    	<a href="loginForm.jsp" style="padding-left : 80px;">·Î±×ÀÎ </a>
+				    	<a href="loginForm.jsp" style="padding-left : 80px;">ë¡œê·¸ì¸ </a>
 				    <% } else { %>
-				    	<a href="userInfoPage.jsp" style="padding-left : 50px;"><%= session.getAttribute("userId") %> ´Ô  Á¤º¸</a>
+				    	<a href="userInfoPage.jsp" style="padding-left : 50px;"><%= session.getAttribute("userId") %> ë‹˜  ì •ë³´</a>
 				    	<span> | </span>
-				    	<a href="logoutAction.jsp"> ·Î±×¾Æ¿ô</a>
+				    	<a href="logoutAction.jsp"> ë¡œê·¸ì•„ì›ƒ</a>
 					<% } %>
 				</div>
 			</div>
@@ -233,20 +229,21 @@ function cancel(targetUri) {
 			<div class="main_content">
 				<section class="section">
 					<div id = "registerArea">
-						<form id = "registerForm" method = "POST" action="<c:url value='/user/register'/>">
-						<fieldset> <h5>È¸¿ø°¡ÀÔ</h5> <p>
-							¾ÆÀÌµğ* : <input type="text" style="width: 540; " name="userId"> <p>
-							ºñ¹Ğ¹øÈ£* : <input type="password" style="width: 540" name="password"> <p>
-							ºñ¹Ğ¹øÈ£ È®ÀÎ* : <input type="password" style="width: 540" name="password2"> <p>
-							ÀÌ¸§* : <input type="text" style="width: 540" name="name" > <p>
-							ÀÌ¸ŞÀÏ : <input type="text" style="width: 540" name="email" > <p>
-							ÀüÈ­¹øÈ£ : <input type="text" style="width: 540" name="phone" > <p>
-							Áö¿ª±¸* : <input type="text" style="width: 540" name="area" > <p>
-							<!-- Áö¿ª ±âÀÔ ºÎºĞ ÀÌÈÄ ½Ã°£ÀÌ ³²À» °æ¿ì Á» ÀÚ¼¼È÷ ³²±â°í ½ÍÀ½.-->
-							<p>
-							<input type="button" style="postion : relative;" value="È¸¿ø°¡ÀÔ" onClick="userCreate()">
-							<input type="button" style="postion : relative;" value="Ãë¼Ò" onClick="cancel('<c:url value='/home' />')">							
-						</fieldset>
+						<form name="form" method="POST" action="<c:url value='/user/register' />">
+							<fieldset> 
+								<h5>íšŒì›ê°€ì…</h5> <p>
+								ì•„ì´ë””* : <input type="text" style="width: 540; " name="userId"> <p>
+								ë¹„ë°€ë²ˆí˜¸* : <input type="password" style="width: 540" name="password"> <p>
+								ë¹„ë°€ë²ˆí˜¸ í™•ì¸* : <input type="password" style="width: 540" name="password2"> <p>
+								ì´ë¦„* : <input type="text" style="width: 540" name="name" > <p>
+								ì´ë©”ì¼ : <input type="text" style="width: 540" name="email" > <p>
+								ì „í™”ë²ˆí˜¸ : <input type="text" style="width: 540" name="phone" > <p>
+								ì§€ì—­êµ¬* : <input type="text" style="width: 540" name="area" > <p>
+								<!-- ì§€ì—­ ê¸°ì… ë¶€ë¶„ ì´í›„ ì‹œê°„ì´ ë‚¨ì„ ê²½ìš° ì¢€ ìì„¸íˆ ë‚¨ê¸°ê³  ì‹¶ìŒ.-->
+								<p>
+								<input type="button" value="íšŒì› ê°€ì…" onClick="userCreate()"> &nbsp;
+								<input type="button" value="ì·¨ì†Œ" onClick="cancel('<c:url value='/user/login/form' />')">							
+							</fieldset>
 						</form>
 					</div>
 				</section>
@@ -256,9 +253,9 @@ function cancel(targetUri) {
 			<div class="footer_area">
 				<div class="list" >
 					<ul style="width:100%" >
-						<li> DBP ÆÀ ÇÁ·ÎÁ§Æ® </li>
-						<li> µµ¼­ °ü·Ã À¥»çÀÌÆ® </li>
-						<li> ¸ñÇ¥ : ³¡³ª°í ´Ù°°ÀÌ ¸ÀÀÖ´Â Á¡½É »ç¸Ô±â </li>
+						<li> DBP íŒ€ í”„ë¡œì íŠ¸ </li>
+						<li> ë„ì„œ ê´€ë ¨ ì›¹ì‚¬ì´íŠ¸ </li>
+						<li> ëª©í‘œ : ëë‚˜ê³  ë‹¤ê°™ì´ ë§›ìˆëŠ” ì ì‹¬ ì‚¬ë¨¹ê¸° </li>
 					</ul>
 				</div>
 			</div>

@@ -1,0 +1,92 @@
+CREATE TABLE rentalBook
+( 
+	bookID    numeric(10)  NOT NULL ,
+	image       VARCHAR2(100)  NULL ,
+	memberID VARCHAR2(16)  NOT NULL ,
+	bookInfoID VARCHAR2(13)  NOT NULL ,
+	explain VARCHAR2(100)  NOT NULL ,
+	point       numeric(8)  NOT NULL ,
+	condition numeric(1)  NOT NULL CHECK  ( condition BETWEEN 0 AND 2 ),
+	state     numeric(1)  DEFAULT 0,
+
+	constraint rental_pk primary key (bookID),
+	constraint rental_fk foreign key (memberID) REFERENCES seller(memberID),
+	constraint rental_fk2 foreign key (bookInfoID) REFERENCES bookInfo(bookInfoID)
+);
+
+
+CREATE TABLE rentalInfo
+( 
+	rentalID numeric(10)  NOT NULL ,
+	rentaldate   DATE  NOT NULL ,
+	returndate   DATE  NOT NULL ,
+	sellerID VARCHAR2(16)  NOT NULL ,
+	rentalerID VARCHAR2(16)  NOT NULL ,
+	bookID    numeric(10)  NOT NULL, 
+
+	constraint rentalInfo_pk primary key (rantalID),
+	constraint rentalInfo_fk foreign key (rentalerID) REFERENCES member(memberID),
+	constraint rentalInfo_fk2 foreign key (sellerID) REFERENCES seller(memberID),
+	constraint rentalInfo_fk3 foreign key (bookID) REFERENCES rentalBook(bookID)
+);
+
+
+
+CREATE TABLE review
+( 
+	reviewcontent VARCHAR2(100)  NOT NULL ,
+	preference   numeric(1)  NOT NULL 
+		CHECK  ( preference BETWEEN 0 AND 4 ),
+	reviewdate DATE  NOT NULL ,
+	memberID VARCHAR2(16)  NOT NULL ,
+	reviewID VARCHAR2(13)  NOT NULL ,
+	bookinfoID VARCHAR2(13)  NOT NULL,
+
+	constraint review_pk primary key (reviewID), 
+	constraint review_fk foreign key (memberID) REFERENCES member(memberID),
+	constraint review_fk2 foreign key (bookInfoID) REFERENCES bookInfo(bookInfoID)
+);
+
+    
+
+CREATE TABLE bookInfo
+( 
+	bookinfoID VARCHAR2(13)  NOT NULL ,
+	bookname    VARCHAR2(80)  NOT NULL ,
+	writer         VARCHAR2(60)  NOT NULL ,
+	publisher    VARCHAR2(10)  NULL ,
+	category       VARCHAR2(10)  NOT NULL ,
+	bookImage VARCHAR2(100)  NULL ,
+	rentalCnt    numeric(5)  DEFAULT  (0),
+
+	constraint bookInfo_pk primary key (bookInfoID)
+);
+
+
+
+CREATE TABLE seller
+( 
+	memberID VARCHAR2(16)  NOT NULL ,
+	sellerGrade numeric(1)  NULL, 
+
+	constraint seller_pk primary key (memberID),
+	constraint seller_fk foreign key (memberID) REFERENCES member(memberID)
+);
+
+
+
+CREATE TABLE member
+( 
+	memberID VARCHAR2(16)  NOT NULL ,
+	name           VARCHAR2(10)  NOT NULL ,
+	email        VARCHAR2(30)  NOT NULL ,
+	phone      VARCHAR2(11)  NOT NULL ,
+	password   VARCHAR2(20)  NOT NULL ,
+	gender         numeric(1)  NOT NULL 
+		CHECK  ( gender BETWEEN 0 AND 3 ),
+	point        numeric(10)  NULL,
+	memberGrade    numeric(1)  NULL ,
+	address        VARCHAR2(50)  NOT NULL,
+
+	constraint member_pk primary key (memberID)
+);
