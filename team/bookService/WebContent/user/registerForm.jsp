@@ -69,7 +69,7 @@ function cancel(targetUri) {
 	.topBar_wrap {
 		position : relative;
 		width : 100%;
-		border-bottom : 1px solid gray;
+		border-bottom : 3px solid #bbd4b8;
 	}
 	.topBar {
 		height : 30px;
@@ -86,11 +86,16 @@ function cancel(targetUri) {
 	}
 	
 	.header_wrap {
-		width : 1100px;
+		width : 1150px;
 		margin : 0 auto;
 		overflow : hidden;
 		position : relative;
-		background-color:#FFFFE0;
+		border-radius: 10px 10px 10px 10px ;
+		margin-bottom : 10px;
+		margin-top : 10px;
+		background-color : #d5e3d5;
+		color : #FFFFFF;		
+		font-weight : bolder;
 	}
 	.main_searchForm {
 		float: left;
@@ -108,7 +113,7 @@ function cancel(targetUri) {
 		padding-top : 25px;
 		padding-bottom: 50px;
 		min-height : 600px;
-		background-color:#FFB6C1
+		background-color : #bbd4b8;
 	}
 	.main {
 	    z-index: 5;
@@ -160,8 +165,17 @@ function cancel(targetUri) {
 		margin : 0 auto;
 		width : 250px;
 	}
-	#registerForm {
-		margin : 20px;
+	#registerArea {
+		border : 0;
+		margin : 0 auto;
+		margin-right : 300px;
+		margin-top : 50px;
+		margin-left : 300px;
+		background-color : #FFFFFF;
+		border-radius: 10px 10px 10px 10px ;
+		color : #bbd4b8;
+		font-weight : bolder;
+	    overflow: hidden;
 	}
 	
 	#registerForm fieldset, p {
