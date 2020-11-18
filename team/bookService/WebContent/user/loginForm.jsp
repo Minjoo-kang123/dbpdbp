@@ -28,8 +28,7 @@
 	}
 </script>
 <style>
-
-	body, div, span, p, a, font, ul, li, fieldset, form, legend, table {
+body, div, span, p, a, font, ul, li, fieldset, form, legend, table {
 		margin : 0;
 		padding : 0;
 		line-height : 130%;
@@ -63,12 +62,18 @@
 		display : inline-block;
 	}
 	
+
+	
 	.header_wrap {
 		width : 1100px;
 		margin : 0 auto;
+		border-radius: 10px 10px 10px 10px ;
 		overflow : hidden;
 		position : relative;
-		background-color:#FFFFE0;
+		border-radius: 10px 10px 10px 10px ;
+		margin-bottom : 10px;
+		margin-top : 10px;
+		background-color : #d5e3d5;
 	}
 	.main_searchForm {
 		float: left;
@@ -87,7 +92,7 @@
 		padding-top : 25px;
 		padding-bottom: 50px;
 		min-height : 600px;
-		background-color:#FFB6C1
+		background-color: #bbd4b8
 	}
 	.main {
 		position: relative;
@@ -117,12 +122,14 @@
 	    padding: 2px;
 	    border: 1px solid #d1d1d1;
 	    background: #fff;
+	    color : #bbd0b0;
+		border-radius: 10px 10px 10px 10px ;
 	    margin-right : 10px;
 	}
 	
 	.go_category li {
 		margin : 15px 20px;
-		padding : 10;
+		text-align : center;
 	}
 	
 	.list ul {
@@ -176,7 +183,6 @@
 	.login_area fieldset {
 		padding : 20px;
 	}
-	
 </style>
 </head>
 <body>
