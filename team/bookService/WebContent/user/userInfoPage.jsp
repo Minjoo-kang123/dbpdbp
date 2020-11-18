@@ -11,6 +11,8 @@
 		padding : 0;
 		border : 0;
 		line-height : 130%;
+		
+		border-radius: 10px 10px 10px 10px ;
 	}
 	div { display : block; }
 	
@@ -41,13 +43,21 @@
 		display : inline-block;
 	}
 	
+
+	
 	.header_wrap {
 		width : 1100px;
 		margin : 0 auto;
 		overflow : hidden;
 		position : relative;
-		background-color:#FFFFE0;
+		border-radius: 10px 10px 10px 10px ;
+		margin-bottom : 10px;
+		margin-top : 10px;
+		background-color : #d5e3d5;
+		color : #FFFFFF;		
+		font-weight : bolder;
 	}
+	
 	.main_searchForm {
 		float: left;
 	    margin-top: 25px;
@@ -56,13 +66,14 @@
 	    height: 50px;
 	}
 	#container {
+		border-radius: 10px 10px 10px 10px ;
 		postion : relative;
 		width : 1100px;
 		margin: 0 auto 0;
 		padding-top : 25px;
 		padding-bottom: 50px;
 		min-height : 600px;
-		background-color:#FFB6C1;
+		background-color:#bbd4b8;
 	}
 	.main {
 		position: relative;
@@ -86,13 +97,18 @@
 	}
 	
 	#userImg {
-		background-color:#FFFFE0;
+		background-color:#d5e3d5;
 		margin : 5px;
 		position: relative;
 		float : left;
 		width : 250px;
-		min-height : 350px;
+		min-height : 400px;
 		overflow: hidden;
+		color : #FFFFFF;
+		font-weight : bolder;
+		padding : 5px;
+		padding-left : 10px;
+		padding-top : 10px;
 	}
 	#userBookList {
 		background-color:#FFFFFF;
@@ -103,16 +119,24 @@
 		overflow: hidden;
 	}
 	#lendBookList {
-		background-color: #FFB6C1;
+		background-color: #d5e3d5;
 		min-height : 175px;
+		color : #FFFFFF;
+		font-weight : bolder;
 		margin : 15px;
 		padding : 5px;
+		padding-left : 10px;
+		padding-top : 10px;
 	}
 	#borrowBookList {
-		background-color:#FFFFE0;
+		background-color:#d5e3d5;
+		color : #FFFFFF;
 		min-height : 175px;
+		font-weight : bolder;
 		margin : 15px;
 		padding : 5px;
+		padding-left : 10px;
+		padding-top : 10px;
 	}
 	#userInfo {
 		width : 1050px;
@@ -120,6 +144,8 @@
 		background-color:#FFFFFF;
 		margin-left : 20px;
 		margin-right : 10px;
+		color : #FFFFFF;
+		font-weight : bolder;
 	}
 	
 	.frame1 {
