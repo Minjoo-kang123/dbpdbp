@@ -209,9 +209,9 @@
 					<%if (session.getAttribute("userId") == null) { %>
 				    	<a href="loginForm.jsp" style="padding-left : 80px;">로그인 </a>
 				    <% } else { %>
-				    	<a href="userInfoPage.jsp" style="padding-left : 50px;"><%= session.getAttribute("userId") %> 님  정보</a>
+				    	<a href="<c:url value='/user/myPage'/>" style="padding-left : 50px;"><%= session.getAttribute("userId") %> 님  정보</a>
 				    	<span> | </span>
-				    	<a href="logoutAction.jsp"> 로그아웃</a>
+				    	<a href="<c:url value='/user/logout'/>"> 로그아웃</a>
 					<% } %>
 				</div>
 			</div>
@@ -220,9 +220,15 @@
 			<div class="main_content">
 				<section class="section">
 					<div class = "frame1">
-						<div id="userImg"> 유저 대표 이미지</div>
+						<div id="userImg">
+							 유저 대표 이미지
+							 <img src="./images/쏼라쏼라" alt="기본 이미지"> 
+						 </div>
 						<div id="userBookList">				
-							<div id="lendBookList"> 대여하는 책</div>
+							<div id="lendBookList"> 
+								대여하는 책
+								
+							</div>
 							<div id="borrowBookList">대여 중인 책</div>
 						</div>
 					</div>

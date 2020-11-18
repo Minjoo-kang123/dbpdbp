@@ -209,7 +209,9 @@
 					<%if (session.getAttribute("userId") == null) { %>
 				    	<a href="<c:url value='/user/login/form'/>" style="padding-left : 80px;">로그인 </a>
 				    <% } else { %>
-				    	<a href="userInfoPage.jsp" style="padding-left : 50px;"><%= session.getAttribute("userId") %> 님  정보</a>
+				    	<!-- 나중에 myPage?memberID 형태로 넘어가게 만들기 -->
+				    	
+				    	<a href="<c:url value='/user/myPage'/>" style="padding-left : 50px;"><%= session.getAttribute("userId") %> 님  정보</a>
 				    	<span> | </span>
 				    	<a href="<c:url value='/user/logout'/>"> 로그아웃</a>
 					<% } %>
