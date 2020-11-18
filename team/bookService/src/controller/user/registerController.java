@@ -10,6 +10,7 @@ import model.Member;
 import model.service.ExistingUserException;
 import model.service.memberManager;
 
+
 public class registerController implements Controller {
     private static final Logger log = LoggerFactory.getLogger(registerController.class);
 
@@ -18,15 +19,12 @@ public class registerController implements Controller {
 		
     	Member member = new Member(
 	    	request.getParameter("memberID"),
-	    	request.getParameter("password"),
 	    	request.getParameter("name"),
 	    	request.getParameter("email"),
 	    	request.getParameter("phone"),
+	    	request.getParameter("password"),
 	    	Integer.parseInt(request.getParameter("gender")),
-	    	Integer.parseInt(request.getParameter("memberGrade")),
-	    	Integer.parseInt(request.getParameter("sellerGrade")),
-	    	request.getParameter("address"),
-	    	Integer.parseInt(request.getParameter("point"))
+	    	request.getParameter("address")
 		);
     	
         log.debug("Create User : {}", member);

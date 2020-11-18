@@ -17,13 +17,16 @@ public class LoginController implements Controller {
 		
 		try {
 			memberManager manager = memberManager.getInstance();
-			manager.login(userId, password);
 			
-			// 세션에 사용자 이이디 저장
-			HttpSession session = request.getSession();
-            session.setAttribute(UserSessionUtils.USER_SESSION_KEY, userId);
-            
-            return "redirect:/home";	
+			// 세션에 사용자 아이디 저장			
+			if (manager.login(userId, password)) {
+				HttpSession session = request.getSession();
+				session.setAttribute(UserSessionUtils.USER_SESSION_KEY, userId);
+				return "redirect:/home";	
+			}
+			
+			request.setAttribute("loginFailed", true);
+            return "/user/loginForm.jsp";	
             
 		} catch (Exception e) {
 			/* UserNotFoundException이나 PasswordMismatchException 발생 시

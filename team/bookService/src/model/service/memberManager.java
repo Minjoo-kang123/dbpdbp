@@ -57,8 +57,12 @@ public class memberManager {
 		Member member = findMember(memberID);
 		
 		if (member.getPassword().equals(password))
+		{
+			System.out.println("True!");
 			return true;
+		}
 		
+		System.out.println("False!");
 		return false;
 	}
 

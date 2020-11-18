@@ -7,7 +7,7 @@ public class Member {
    private String email;
    private String phone;
    private int memberGrade;
-   private int sellerGrade;
+   private Integer sellerGrade;
    private String address;
    private int point;
    private int gender;
@@ -30,6 +30,23 @@ public class Member {
       this.address = address;
       this.point = point;
    }
+   
+   public Member(String memberID, String name, String email, String phone, String password, int gender, 
+	         String address) {
+	      super();
+	      this.memberID = memberID;
+	      this.password = password;
+	      this.name = name;
+	      this.email = email;
+	      this.phone = phone;
+	      this.gender = gender;
+	      this.address = address;
+	      
+	      this.memberGrade = 0;
+	      this.sellerGrade = null;
+	      this.point = 0;
+	   }
+
 
    public String getMemberID() {
       return memberID;

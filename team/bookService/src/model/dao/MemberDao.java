@@ -10,6 +10,9 @@ import model.rentalBook;
 
 public class MemberDao {
 private JDBCUtil jdbcUtil = null;
+public static final int FirstMembergrade = 0;
+public static final int FirstPoint = 0;
+
    
    public MemberDao() {         
       jdbcUtil = new JDBCUtil();   // JDBCUtil 객체 생성
@@ -17,8 +20,9 @@ private JDBCUtil jdbcUtil = null;
    
    public int register(Member member) throws SQLException{
       String query = "Insert into member(memberID, name, email, phone, password, gender, point, membergrade, address) values(?,?,?,?,?,?,?,?,?)";
-      Object[] param = new Object[] {member.getMemberID(),  member.getName(), member.getEmail(), member.getPhone(), member.getPassword(), member.getGender(), member.getPoint(), member.getMemberGrade(), member.getAddress()};
+      Object[] param = new Object[] {member.getMemberID(),  member.getName(), member.getEmail(), member.getPhone(), member.getPassword(), member.getGender(), FirstPoint, FirstMembergrade, member.getAddress()};
       jdbcUtil.setSqlAndParameters(query, param);
+      System.out.println(query + param);
       
       try {
          int result = jdbcUtil.executeUpdate();
@@ -59,33 +63,40 @@ private JDBCUtil jdbcUtil = null;
 
    /*개인 페이지에 개인 정보 출력  _ 대여해주는 책 리스트 정보, 대여 중인 책  리스트 정보  등은 각각 따로 가져오기.*/
    public Member findUser(String memberID) throws SQLException { /* memberId String 타입으로 이후 수정하기!!!!!!!!*/
-      String query = "select password, name, point, sellergrade "
+	   
+      String query = "select name, email, phone, password, gender, point, memberGrade, sellerGrade, address "
                + "from member m left outer join seller s on m.memberID = s.memberID "
                + "where m.memberID = ?";
       
       jdbcUtil.setSqlAndParameters(query, new Object[] {memberID});
       
-      try {
-         ResultSet rs = jdbcUtil.executeQuery();      // query 실행
-         if (rs.next()) {                  // 학생 정보 발견
-            Member member = new Member(      // User 객체를 생성하여 학생 정보를 저장
-               memberID,
-               rs.getString("name"),
-               rs.getString("password"),
-               rs.getString("email"),
-               rs.getString("phone"),
-               rs.getInt("gender"),
-               rs.getInt("memberGrade"),               
-               rs.getInt("sellerGrade"),
-               rs.getString("adrress"),
-               rs.getInt("point"));
-            return member;
-         }
-      } catch (Exception ex) {
-         ex.printStackTrace();
-      } finally {
-         jdbcUtil.close();      // resource 반환
-      }
+      
+      try {  	  
+    	  ResultSet rs = jdbcUtil.executeQuery();      // query 실행
+    	  System.out.println("ddd");
+    	  
+    	  if (rs.next()) {                  // 학생 정보 발견
+    		  
+    		  Member member = new Member(      // User 객체를 생성하여 학생 정보를 저장
+    				  memberID,
+    				  rs.getString("password"),
+    				  rs.getString("name"),
+    				  rs.getString("email"),
+    				  rs.getString("phone"),
+    				  rs.getInt("gender"),
+    				  rs.getInt("memberGrade"),               
+    				  rs.getInt("sellerGrade"),
+    				  rs.getString("address"),
+    				  rs.getInt("point"));
+    		  
+    		  return member;
+    	  	}
+    	  
+      	} catch (Exception ex) {
+      		ex.printStackTrace();
+      	} finally {
+      		jdbcUtil.close();      // resource 반환
+      	}
       
       return null;
       

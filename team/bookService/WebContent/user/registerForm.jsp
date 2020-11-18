@@ -28,10 +28,20 @@ function userCreate() {
 		form.name.focus();
 		return false;
 	}
+	if (form.email.value == "") {
+		alert("이메일을 입력하십시오.");
+		form.email.focus();
+		return false;
+	}
 	var emailExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 	if(emailExp.test(form.email.value)==false) {
 		alert("이메일 형식이 올바르지 않습니다.");
 		form.email.focus();
+		return false;
+	}
+	if (form.phone.value == "") {
+		alert("전화번호를 입력하십시오.");
+		form.phone.focus();
 		return false;
 	}
 	var phoneExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
@@ -251,14 +261,14 @@ function cancel(targetUri) {
 								비밀번호 확인* : <input type="password" style="width: 540" name="password2"> <p>
 								이름* : <input type="text" style="width: 540" name="name" > <p>
 								성별 : 
-								<label><input type="radio" name="gender" value="man" >남자</label>
-								<label><input type="radio" name="gender" value="woman" >여자</label>
-								<label><input type="radio" name="gender" value="else" >뭐 어쩌라고</label>
+								<label><input type="radio" name="gender" value="0" checked >남자</label>
+								<label><input type="radio" name="gender" value="1" >여자</label>
+								<label><input type="radio" name="gender" value="2" >미선택</label>
 								<p>
-								이메일 : <input type="text" style="width: 540" name="email" > <p>
-								전화번호 : <input type="text" style="width: 540" name="phone" > <p>
+								이메일* : <input type="text" style="width: 540" name="email" > <p>
+								전화번호* : <input type="text" style="width: 540" name="phone" > <p>
 								지역구* : 
-								<label><input type="radio" name="address" value="성북구" >성북구</label>
+								<label><input type="radio" name="address" value="성북구" checked >성북구</label>
 								<label><input type="radio" name="address" value="강남구" >강남구</label>
 								<label><input type="radio" name="address" value="중랑구" >중랑구</label>
 								<label><input type="radio" name="address" value="마포구" >마포구</label>
