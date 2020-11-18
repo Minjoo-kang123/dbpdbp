@@ -56,7 +56,7 @@ public class memberManager {
 	public boolean login(String memberID, String password) throws SQLException, MemberNotFoundException {
 		Member member = findMember(memberID);
 		
-		if (member.getPassword() == password)
+		if (member.getPassword().equals(password))
 			return true;
 		
 		return false;

@@ -236,9 +236,21 @@ function cancel(targetUri) {
 								비밀번호* : <input type="password" style="width: 540" name="password"> <p>
 								비밀번호 확인* : <input type="password" style="width: 540" name="password2"> <p>
 								이름* : <input type="text" style="width: 540" name="name" > <p>
+								성별 : 
+								<label><input type="radio" name="gender" value="man" >남자</label>
+								<label><input type="radio" name="gender" value="woman" >여자</label>
+								<label><input type="radio" name="gender" value="else" >뭐 어쩌라고</label>
+								<p>
 								이메일 : <input type="text" style="width: 540" name="email" > <p>
 								전화번호 : <input type="text" style="width: 540" name="phone" > <p>
-								지역구* : <input type="text" style="width: 540" name="area" > <p>
+								지역구* : 
+								<label><input type="radio" name="address" value="성북구" >성북구</label>
+								<label><input type="radio" name="address" value="강남구" >강남구</label>
+								<label><input type="radio" name="address" value="중랑구" >중랑구</label>
+								<label><input type="radio" name="address" value="마포구" >마포구</label>
+								<label><input type="radio" name="address" value="구로구" >구로구</label>
+								<label><input type="radio" name="address" value="강동구" >강동구</label>
+								<p>
 								<!-- 지역 기입 부분 이후 시간이 남을 경우 좀 자세히 남기고 싶음.-->
 								<p>
 								<input type="button" value="회원 가입" onClick="userCreate()"> &nbsp;
