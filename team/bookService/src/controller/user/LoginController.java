@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.Controller;
+import model.service.memberManager;
+
 //import model.service.UserManager;
 //db 스키마 및 레코드 존재x, 임시로 돌아가게 꾸밈.
 public class LoginController implements Controller {
@@ -14,6 +16,9 @@ public class LoginController implements Controller {
 		String password = request.getParameter("password");
 		
 		try {
+			memberManager manager = memberManager.getInstance();
+			manager.login(userId, password);
+			
 			// 세션에 사용자 이이디 저장
 			HttpSession session = request.getSession();
             session.setAttribute(UserSessionUtils.USER_SESSION_KEY, userId);

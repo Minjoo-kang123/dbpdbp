@@ -91,9 +91,9 @@ private JDBCUtil jdbcUtil = null;
       
    }
    
-   public int remove(Member member) throws SQLException {
+   public int remove(String memberID) throws SQLException {
          String sql = "DELETE FROM MEMBER WHERE memberID = ?";      
-           jdbcUtil.setSqlAndParameters(sql, new Object[] {member.getMemberID()});   // JDBCUtil에 delete문과 매개 변수 설정
+           jdbcUtil.setSqlAndParameters(sql, new Object[] {memberID});   // JDBCUtil에 delete문과 매개 변수 설정
            
             try {            
                int result = jdbcUtil.executeUpdate();   // delete 문 실행
