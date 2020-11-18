@@ -22,7 +22,7 @@ public class RequestMapping {
         mappings.put("/user/logout", new LogoutController());
         mappings.put("/user/register/form", new ForwardController("/user/registerForm.jsp"));
         mappings.put("/user/register", new registerController());
-        
+        mappings.put("/user/myPage", new ForwardController("/user/userInfoPage.jsp"));
         logger.info("Initialized Request Mapping!");
     }
 
