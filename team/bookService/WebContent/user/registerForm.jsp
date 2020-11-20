@@ -8,7 +8,7 @@
 <title>register</title>
 <script type="text/javascript">
 function userCreate() {
-	if (form.userId.value == "") {
+	if (form.memberID.value == "") {
 		alert("사용자 ID를 입력하십시오.");
 		form.userId.focus();
 		return false;
@@ -44,7 +44,7 @@ function userCreate() {
 		form.phone.focus();
 		return false;
 	}
-	var phoneExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
+	var phoneExp = /^\d{10,11}$/;
 	if(phoneExp.test(form.phone.value)==false) {
 		alert("전화번호 형식이 올바르지 않습니다.");
 		form.phone.focus();
@@ -256,7 +256,7 @@ function cancel(targetUri) {
 						<form name="form" method="POST" action="<c:url value='/user/register' />">
 							<fieldset> 
 								<h5>회원가입</h5> <p>
-								아이디* : <input type="text" style="width: 540; " name="userId"> <p>
+								아이디* : <input type="text" style="width: 540; " name="memberID"> <p>
 								비밀번호* : <input type="password" style="width: 540" name="password"> <p>
 								비밀번호 확인* : <input type="password" style="width: 540" name="password2"> <p>
 								이름* : <input type="text" style="width: 540" name="name" > <p>

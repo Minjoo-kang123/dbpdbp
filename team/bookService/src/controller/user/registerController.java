@@ -16,18 +16,25 @@ public class registerController implements Controller {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+    	
     	Member member = new Member(
 	    	request.getParameter("memberID"),
-	    	request.getParameter("name"),
+	    	new String(request.getParameter("name").getBytes("8859_1"), "UTF-8"),
 	    	request.getParameter("email"),
 	    	request.getParameter("phone"),
 	    	request.getParameter("password"),
 	    	Integer.parseInt(request.getParameter("gender")),
-	    	request.getParameter("address")
+	    	new String(request.getParameter("address").getBytes("8859_1"), "UTF-8")
 		);
     	
         log.debug("Create User : {}", member);
+        log.debug("MemberID: " + request.getParameter("memberID")+
+    	    	" name: " + request.getParameter("name")+
+    	    	" email: " + request.getParameter("email")+
+    	    	" phone: " + request.getParameter("phone")+
+    	    	" password: " + request.getParameter("password")+
+    	    	" gender: " + Integer.parseInt(request.getParameter("gender"))+
+    	    	" address: " + request.getParameter("address"));
         try {
 			memberManager manager = memberManager.getInstance();
 			manager.create(member);
