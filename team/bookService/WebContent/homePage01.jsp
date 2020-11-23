@@ -8,7 +8,6 @@
 
 <title>homePage_book service</title>
 <style>
-
 	body, div, span, p, a, font, ul, li, fieldset, form, legend, table {
 		margin : 0;
 		padding : 0;
@@ -200,7 +199,7 @@
 							<option  value="comic" > 코믹 </option>
 							<option value="etc" > 기타 등등 </option>
 						</select>
-						<input tpye="text" id="search_text" name="search_kw" title = "검색어 입력"
+						<input type="text" id="search_text" name="search_kw" title = "검색어 입력"
 						size="20" class="inputText">
 						<input type="button" value="검색">
 					</fieldset>
@@ -211,7 +210,7 @@
 				    <% } else { %>
 				    	<!-- 나중에 myPage?memberID 형태로 넘어가게 만들기 -->
 				    	
-				    	<a href="<c:url value='/user/myPage'/>" style="padding-left : 50px;"><%= session.getAttribute("userId") %> 님  정보</a>
+				    	<a href="<c:url value='/user/myPage'/>" style="padding-left : 50px;"> ${userId} 님  정보</a>
 				    	<span> | </span>
 				    	<a href="<c:url value='/user/logout'/>"> 로그아웃</a>
 					<% } %>

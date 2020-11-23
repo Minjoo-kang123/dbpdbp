@@ -7,6 +7,7 @@ import java.util.List;
 
 import model.Member;
 import model.rentalBook;
+import model.rentalInfo;
 
 public class MemberDao {
 private JDBCUtil jdbcUtil = null;
@@ -141,35 +142,68 @@ public static final int FirstPoint = 0;
       
    /* 해당 회원의 대여할려고 올려둔 책 정보 리스트 반환 */
     public List<rentalBook> getRentalBookList(String memberID) throws SQLException {
-      String query = "select bookID, bookinfoID, image, explain "
-               + "from member m join rentalBook r on m.memberID = r.memberID "
-               + "where m.memberID = ?";
-      jdbcUtil.setSqlAndParameters(query, new Object[] {memberID});
+    	String query = "select bookid, r.bookinfoid as bookinfoid, image, explain, point, "
+    			+ "condition, state, bookname " + 
+          		"from rentalBook r join bookinfo b on b.bookinfoID = r.bookinfoID " + 
+          		"where r.memberId=?";
+    	jdbcUtil.setSqlAndParameters(query, new Object[] {memberID});
       
       try {
          ResultSet rs = jdbcUtil.executeQuery();
          List<rentalBook> mRentalBookList = new ArrayList<rentalBook>();
          
          while(rs.next()) {
-            rentalBook rbook = new rentalBook(
-                  rs.getInt("bookID"),
-                  rs.getString("sellerID"),
-                  rs.getString("bookinfoID"),
-                  rs.getString("image"),
-                  rs.getString("explain"),
-                  rs.getBoolean("state"),
-                  rs.getInt("point"),
-                  rs.getInt("condition")
-                  );
+            rentalBook rbook = new rentalBook();
+            
+            rbook.setBookID(rs.getInt("bookid"));
+            rbook.setBookInfoID(rs.getString("bookinfoid"));
+            rbook.setImage(rs.getString("image"));
+            rbook.setBookname(rs.getString("bookname"));
+            rbook.setCondition(rs.getInt("condition"));
+            rbook.setExplain(rs.getString("explain"));
+            rbook.setPoint(rs.getInt("point"));
+            rbook.setState(rs.getInt("state"));
+            rbook.setSellerID(memberID);
+            
             mRentalBookList.add(rbook);
          }
          return mRentalBookList;
       }catch(Exception ex) {}
        
        return null;
-       
    }
 
+    /* 해당 회원의 대여중인 책 정보 리스트 반환 */ //여기서 memberID는 rentalerID
+    public List<rentalInfo> getRentalInfoList(String memberID) throws SQLException { 
+    	String query = "select rentalid, r.bookid as bookid, sellerid, rentalDate, returnDate, bookname, point " + 
+          		"from rentalBook r inner join bookinfo b on b.bookinfoID = r.bookinfoID " + 
+          		"inner join rentalInfo i on i.bookid = r.bookid " +
+          		"where i.rentalerID = ?";
+      jdbcUtil.setSqlAndParameters(query, new Object[] {memberID});
+      
+      try {
+         ResultSet rs = jdbcUtil.executeQuery();
+         List<rentalInfo> mRentalInfoList = new ArrayList<rentalInfo>();
+         
+         while(rs.next()) {
+            rentalInfo rbook = new rentalInfo(
+                  rs.getInt("rentalid"),
+                  rs.getInt("bookid"),
+                  rs.getString("sellerID"),
+                  memberID,
+                  rs.getDate("rentalDate"),
+                  rs.getDate("returnDate"),
+                  rs.getString("bookname"),
+                  rs.getInt("point")
+                 );
+            mRentalInfoList.add(rbook);
+         }
+         return mRentalInfoList;
+      }catch(Exception ex) {}
+       
+       return null;
+   }
+    
 	public boolean existingUser(String memberID) {
 		String sql = "SELECT count(*) FROM member WHERE memberid=?";      
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {memberID});	// JDBCUtil에 query문과 매개 변수 설정

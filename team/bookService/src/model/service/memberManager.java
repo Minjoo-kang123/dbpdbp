@@ -7,6 +7,7 @@ import java.util.List;
 
 import model.Member;
 import model.rentalBook;
+import model.rentalInfo;
 import model.dao.MemberDao;
 
 public class memberManager {
@@ -78,8 +79,13 @@ public class memberManager {
 		return memberDAO.getRentalBookList(memberID);
 	}
 	
+	public List<rentalInfo> getRentalInfoList(String memberID) throws SQLException {
+		return memberDAO.getRentalInfoList(memberID);
+	}
+	
 	public boolean existingUser(String memberID) {
 		return memberDAO.existingUser(memberID);
 	}
-  
+
+	
 }

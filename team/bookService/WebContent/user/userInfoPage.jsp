@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -247,18 +249,41 @@
 				<section class="section">
 					<div class = "frame1">
 						<div id="userImg">
-							 유저 대표 이미지
+							 유저 대표 이미지<p>
 							 <img src="./images/쏼라쏼라" alt="기본 이미지"> 
 						 </div>
 						<div id="userBookList">				
 							<div id="lendBookList"> 
 								대여하는 책
-								
+								<table>
+									 <tr>
+										<c:forEach var="rbook" items="${rBookList}">  			  	
+							  		 		<td align="center"> ${rbook.bookname} , </td>
+							  		 		<!-- bookname에 팝업 -->
+							  			</c:forEach>
+							  		</tr>
+							  	</table> 
 							</div>
-							<div id="borrowBookList">대여 중인 책</div>
+							<div id="borrowBookList">
+								대여 중인 책
+								<table>
+									 <tr>
+										<c:forEach var="ibook" items="${rInfoList}">  			  	
+							  		 		<td align="center"> ${ibook.bookname} </td>
+							  		 		<!-- bookname에 팝업 -->
+							  			</c:forEach>
+							  		</tr>
+							  	</table> 
+							</div>
 						</div>
 					</div>
-					<div id="userInfo"> 개인 정보</div>
+					<div id="userInfo" style="colocr : black;"> 
+						<p>개인 정보</p>
+						<p>
+						이름 : ${curMember.name} </br>
+						이메일 : ${curMember.email}
+						</p>
+					</div>
 				</section>
 			</div>
 		</div>

@@ -84,8 +84,8 @@ public class rentalbookDAO {
 
 	   //rentalBook에 있는 정보를 bookID로 찾아서 객체 상태로 반환.
 		public rentalBook findRentBook(int bookID) throws SQLException{
-			String query = "Select memberID, bookInfoID, image, explain, state, point, condition "
-					+	"from rentalBook where bookID = ?";
+			String query = "select r.memberID, r.bookInfoID, image, explain, state, point, condition, bookname"
+					+	"from rentalBook r join bookinfo b on r.bookinfoid = b.bookinfoid where bookID = ?";
 			
 			jdbcUtil.setSqlAndParameters(query, new Object[] {bookID});
 			
@@ -98,9 +98,10 @@ public class rentalbookDAO {
 						rs.getString("bookinfoID"),
 						rs.getString("image"),
 						rs.getString("explain"),
-						rs.getBoolean("state"),					
+						rs.getInt("state"),					
 						rs.getInt("point"),
-						rs.getInt("condition"));
+						rs.getInt("condition"),
+						rs.getString("bookname"));
 					return rtbook;
 				}
 			} catch (Exception ex) {

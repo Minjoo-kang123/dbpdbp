@@ -7,11 +7,13 @@ public class rentalBook {
 	private String bookInfoID;
 	private String image;
 	private String explain;
-	private Boolean state;
+	private int state;
 	private int point;
 	private int condition;
+	private String bookname;
 	
-	public rentalBook(int bookID, String sellerID, String bookInfoID, String image, String explain, boolean state, int point, int condition) {
+	public rentalBook(int bookID, String sellerID, String bookInfoID, String image, String explain,
+			int state, int point, int condition, String bookname) {
 		super();
 		this.bookID = bookID;
 		this.sellerID = sellerID;
@@ -21,6 +23,7 @@ public class rentalBook {
 		this.state = state;
 		this.point = point;
 		this.condition = condition;
+		this.bookname = bookname;
 	}
 	
 	public rentalBook() {
@@ -58,12 +61,19 @@ public class rentalBook {
 	public void setExplain(String explain) {
 		this.explain = explain;
 	}
+	
+	public String getBookname() {
+		return bookname;
+	}
+	public void setBookname(String bookname) {
+		this.bookname = bookname;
+	}
 
-	public Boolean getState() {
+	public int getState() {
 		return state;
 	}
 
-	public void setState(Boolean state) {
+	public void setState(int state) {
 		this.state = state;
 	}
 
@@ -82,7 +92,4 @@ public class rentalBook {
 	public void setCondition(int condition) {
 		this.condition = condition;
 	}
-	
-	
-	
 }

@@ -85,13 +85,14 @@
 	    z-index: 2;
 	    display : block;
 	}
-	
-		width : 970px;
+	.rentalBookList {
+		width : 800px;
+		float : left;
 		margin: 0 auto;
-		margin-top : 15px;
+		margin-top : 5px;
 		padding-top : 5px;
 		padding-bottom: 5px;
-		margin-left : 40px;
+		margin-left : 20px;
 		min-height : 160px;
 		background-color:#FFB6C1;
 	}
@@ -138,14 +139,16 @@
 	}
 	
 	.rentalItem {
-		width : 970px;
+		width : 770px;
 		margin: 0 auto;
 		margin-top : 15px;
 		padding-top : 5px;
 		padding-bottom: 5px;
-		margin-left : 40px;
+		margin-left : 5px;
 		min-height : 160px;
 		background-color:#FFB6C1;
+		position : relative;
+		float : left;
 	}
 	
 	.rentalForm {
@@ -158,6 +161,7 @@
 	.rentalFor fieldset{
 		 border: 1px solid #d1d1d1;
 	}
+	
 	.rentalItem .bookCover {
 		position: relative;
 	    float : left;
@@ -300,9 +304,8 @@
 		<div id="container" class="main clearfix">
 			<div class="main_content">
 				<section class="section">
-					<div>
-						<h1> 검색 결과 : </h1>
-						<div class ="rentalBookList">
+					<div class ="rentalBookList">
+						<h5> 검색 결과 : 검색어 넣어주고 싶음.</h5>
 						<!-- 아래 틀을 jstl의 반복문을 사용해서 반복해서 보여주기. ~ 리스트 목록 / 10개 이상 존재 시 다음 페이지. -->
 						<div class="rentalItem">
 							<form class = "rentalForm" name = "rForm">
@@ -322,7 +325,6 @@
 								</fieldset>
 							</form>
 						</div>
-					</div>
 					</div>
 					<div class="go_category">
 						<h3><b>&nbsp; *장르별 모아보기</b></h3>
