@@ -8,11 +8,16 @@
 
 <title>homePage_book service</title>
 <style>
+	
+	@import url('https://fonts.googleapis.com/css2?family=Gaegu&family=Noto+Sans+KR&family=Yeon+Sung&display=swap');
 	body, div, span, p, a, font, ul, li, fieldset, form, legend, table {
 		margin : 0;
 		padding : 0;
 		border : 0;
 		line-height : 130%;
+		font-family: 'Nanum Gothic', sans-serif;
+		
+		border-radius: 10px 10px 10px 10px ;
 	}
 	div { display : block; }
 	
@@ -22,6 +27,10 @@
 	    margin-inline-start: 0px;
 	    margin-inline-end: 0px;
 	    padding-inline-start: 40px;
+	}
+	
+	.a{
+		font-family: 'Gaegu', cursive;
 	}
 	
 	.topBar_wrap {
@@ -43,12 +52,17 @@
 		display : inline-block;
 	}
 	
+
+	
 	.header_wrap {
-		width : 1100px;
+		width : 1170px;
 		margin : 0 auto;
 		overflow : hidden;
 		position : relative;
-		background-color:#FFFFE0;
+		border-radius: 10px 10px 10px 10px ;
+		margin-bottom : 10px;
+		margin-top : 10px;
+		background-color : #d5e3d5;
 	}
 	.main_searchForm {
 		float: left;
@@ -59,12 +73,14 @@
 	}
 	#container {
 		postion : relative;
-		width : 1100px;
+		width : 1150px;
 		margin: 0 auto 0;
 		padding-top : 25px;
-		padding-bottom: 50px;
+		padding-bottom: 40px;
+		padding-left: 20px;
 		min-height : 600px;
-		background-color:#FFB6C1
+		border-radius: 10px 10px 10px 10px ;
+		background-color:#bbd4b8;
 	}
 	.main {
 		position: relative;
@@ -94,17 +110,20 @@
 	
 	.rec_bookCover {
 		float : left;
-		width : 50%;
+		width : 48%;
 		height : 600px;
 		background-color : white;
+		background-position: center;
 		margin-left : 10px;
-		margin-right : 10px;
 	}
 	.rec_bookDesc {
-		float : left;
-		width : 45%;
-		height : 600px;
-		background-color : #FFFFE0;
+		float : right;
+		width : 47%;
+		height : 575px;
+		background-color : #FFFFFF;
+		margin-left : 5px;
+		padding-left : 25px;
+		padding-top : 25px;
 		
 	}
 	.go_category {
@@ -114,21 +133,21 @@
 	    width: 20%;
 	    height: 600px;
 	    padding: 2px;
-	    border: 1px solid #d1d1d1;
 	    background: #fff;
-	    margin-right : 10px;
+	    margin-right : 30px;
 	}
 	
 	.go_category li {
 		margin : 15px 20px;
-		padding : 10;
+		padding-right : 40px;
+		text-align : center;
 	}
 	
 	.list ul {
 		list-style:none;
 	    margin:0;
 	    padding:0;
-	    text-align:center
+	    text-align:center;
 	    
 	}
 	.list li {
