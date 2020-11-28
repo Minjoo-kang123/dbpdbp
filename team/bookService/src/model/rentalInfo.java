@@ -9,12 +9,13 @@ public class rentalInfo {
 	private Date returnDate;
 	private String bookname;
 	private int point;
+	private int state;
 	
 	public rentalInfo() {
 		super();
 	}
 	public rentalInfo(int rentalID, int bookID, String sellerID, String rentalerID, Date rentalDate, Date returnDate,
-			String bookname, int point) {
+			String bookname, int point, int state) {
 		super();
 		this.rentalID = rentalID;
 		this.bookID = bookID;
@@ -24,6 +25,13 @@ public class rentalInfo {
 		this.returnDate = returnDate;
 		this.bookname = bookname;
 		this.point = point;
+		this.state = state;
+	}
+	public int getState() {
+		return state;
+	}
+	public void setState(int state) {
+		this.state = state;
 	}
 	
 	public int getRentalID() {

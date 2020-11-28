@@ -175,7 +175,7 @@ public static final int FirstPoint = 0;
 
     /* 해당 회원의 대여중인 책 정보 리스트 반환 */ //여기서 memberID는 rentalerID
     public List<rentalInfo> getRentalInfoList(String memberID) throws SQLException { 
-    	String query = "select rentalid, r.bookid as bookid, sellerid, rentalDate, returnDate, bookname, point " + 
+    	String query = "select rentalid, r.bookid as bookid, sellerid, rentalDate, returnDate, bookname, r.point as point, i.state as state " + 
           		"from rentalBook r inner join bookinfo b on b.bookinfoID = r.bookinfoID " + 
           		"inner join rentalInfo i on i.bookid = r.bookid " +
           		"where i.rentalerID = ?";
@@ -194,7 +194,8 @@ public static final int FirstPoint = 0;
                   rs.getDate("rentalDate"),
                   rs.getDate("returnDate"),
                   rs.getString("bookname"),
-                  rs.getInt("point")
+                  rs.getInt("point"),
+                  rs.getInt("state")
                  );
             mRentalInfoList.add(rbook);
          }

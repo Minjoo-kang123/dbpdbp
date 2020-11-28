@@ -41,10 +41,10 @@ public class rentalbookDAO {
 	   
 	   public int update(rentalBook book) throws SQLException {
 	      String sql = "UPDATE rentalBook "
-	               + "SET bookID = ?, memberID = ?, bookInfoId = ?, image = ?, explain = ?, point = ?, condition = ? "
-	               + "WHERE userid=?";
-	      Object[] param = new Object[] {book.getBookID(),book.getSellerID(), book.getBookInfoID(), 
-	            book.getImage(), book.getExplain(), book.getPoint(), book.getCondition()};   
+	               + "SET memberID = ?, bookInfoId = ?, image = ?, explain = ?, point = ?, condition = ? "
+	               + "WHERE bookID = ?";
+	      Object[] param = new Object[] {book.getSellerID(), book.getBookInfoID(), 
+	            book.getImage(), book.getExplain(), book.getPoint(), book.getCondition(), book.getBookID()};   
 	      jdbcUtil.setSqlAndParameters(sql, param);   // JDBCUtil에 update문과 매개 변수 설정
 	         
 	      try {            
@@ -84,7 +84,7 @@ public class rentalbookDAO {
 
 	   //rentalBook에 있는 정보를 bookID로 찾아서 객체 상태로 반환.
 		public rentalBook findRentBook(int bookID) throws SQLException{
-			String query = "select r.memberID, r.bookInfoID, image, explain, state, point, condition, bookname"
+			String query = "select r.memberID, r.bookInfoID, image, explain, state, point, condition, bookname "
 					+	"from rentalBook r join bookinfo b on r.bookinfoid = b.bookinfoid where bookID = ?";
 			
 			jdbcUtil.setSqlAndParameters(query, new Object[] {bookID});
@@ -125,8 +125,8 @@ public class rentalbookDAO {
 			returnD.add(Calendar.DATE, 14);
 			
 			//rentalInfo insert
-			String query1 = "Insert into rentalInfo values(seq_rentalID.NEXTVAL, ?, ?, ?, ?, ?)";
-			Object[] param1 = new Object[] { rentalD, returnD, rtBook.getSellerID(), memberID, bookID};
+			String query1 = "Insert into rentalInfo values(seq_rentalID.NEXTVAL, ?, ?, ?, ?, ?, 1)";
+			Object[] param1 = new Object[] { rentalD, returnD, rtBook.getSellerID(), memberID, bookID };
 			
 			try {	
 				jdbcUtil.setSqlAndParameters(query1, param1);
@@ -201,15 +201,29 @@ public class rentalbookDAO {
 			}
 		}
 		
-		//rentBook 반납하기. : rentalBook의 상태를 false로 바꿈.
-		public int returnBook(int bookID) throws SQLException {
-			String query = "Update rentalBook set state = 0 where bookID = ?";
-			Object[] param = new Object[] { bookID };
+		//rentBook 반납하기. : rentalBook의 상태를 false로 바꿈. + 여기에  rentalInfo도 상태 바꿔주는 작업 필요.
+		public int returnBook(rentalInfo rInfo) throws SQLException {
+			
+			String query1 = "Update rentalBook set state = 0 where bookID = ?";
+			Object[] param1 = new Object[] { rInfo.getBookID() };
+			
+			String query2 = "Update rentalInfo set state = 0 where rentalID = ?";
+			Object[] param2 = new Object[] { rInfo.getRentalID() };
 			
 			try {	
-				jdbcUtil.setSqlAndParameters(query, param);
-				int result = jdbcUtil.executeUpdate();	
-				return result;
+				jdbcUtil.setSqlAndParameters(query1, param1);
+				int result1 = jdbcUtil.executeUpdate();	
+				if(result1 != 1) {
+					throw new Exception();
+				}
+				
+				jdbcUtil.setSqlAndParameters(query2, param2);
+				int result2 = jdbcUtil.executeUpdate();	
+				if(result2 != 1) {
+					throw new Exception();
+				}
+				
+				return 1;
 			} catch (Exception ex) {
 				jdbcUtil.rollback();
 				ex.printStackTrace();
@@ -218,6 +232,69 @@ public class rentalbookDAO {
 				jdbcUtil.close();	// resource 반환
 			}		
 			return 0;
+		}
+
+		
+		public bookInfo findBookInfo(String bookInfoID)throws SQLException{
+			String query = "select bookname, writer, publisher, category, bookimage, rentalCnt "
+					+	"from bookinfo where bookinfoID = ?";
+			
+			jdbcUtil.setSqlAndParameters(query, new Object[] {bookInfoID});
+			
+			try {
+				ResultSet rs = jdbcUtil.executeQuery();		// query 실행
+				if (rs.next()) {						
+					bookInfo bInfo = new bookInfo (		
+						bookInfoID,
+						rs.getString("bookname"),
+						rs.getString("writer"),
+						rs.getString("publisher"),
+						rs.getString("category"),
+						rs.getString("bookimage"),
+						rs.getInt("rentalCnt"));
+					return bInfo;
+				}
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			} finally {
+				jdbcUtil.close();		// resource 반환
+			}
+			
+			return null;
+		}
+
+
+		public rentalInfo findRentInfo(int bookID) {
+			
+			String query = "select rentalid, sellerid, rentalerid, rentalDate, returnDate, bookname, r.point as point, i.state as state " + 
+	          		"from rentalBook r inner join bookinfo b on b.bookinfoID = r.bookinfoID " + 
+	          		"inner join rentalInfo i on i.bookid = r.bookid " +
+	          		"where i.bookid = ? ";
+			jdbcUtil.setSqlAndParameters(query, new Object[] {bookID});
+			
+			try {
+				ResultSet rs = jdbcUtil.executeQuery();		// query 실행
+				if (rs.next()) {						
+					rentalInfo rInfo = new rentalInfo (		
+						rs.getInt("rentalid"),
+						bookID,
+						rs.getString("sellerid"),
+						rs.getString("rentalerid"),
+						rs.getDate("rentalDate"),
+						rs.getDate("returnDate"),
+						rs.getString("bookname"),
+						rs.getInt("point"),
+						rs.getInt("state")
+					);
+					return rInfo;
+				}
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			} finally {
+				jdbcUtil.close();		// resource 반환
+			}
+			
+			return null;
 		}
 
 		
