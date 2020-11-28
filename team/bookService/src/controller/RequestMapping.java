@@ -5,6 +5,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import controller.book.BookSearchController;
 import controller.user.*;
 
 
@@ -22,7 +23,9 @@ public class RequestMapping {
         mappings.put("/user/logout", new LogoutController());
         mappings.put("/user/register/form", new ForwardController("/user/registerForm.jsp"));
         mappings.put("/user/register", new registerController());
-        mappings.put("/user/myPage", new LoadingMyInfoController());
+        //mappings.put("/user/myPage", new LoadingMyInfoController());
+        mappings.put("/book/search", new BookSearchController());
+        mappings.put("/book/search/form", new ForwardController("/book/bookSearch.jsp"));
         logger.info("Initialized Request Mapping!");
     }
 

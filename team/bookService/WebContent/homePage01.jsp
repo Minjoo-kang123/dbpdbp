@@ -197,7 +197,7 @@
 				<div class="logo" style="margin-top : 25px; float : left; width : 300px">
 					<h3><a href="homePage01.jsp">로고자리</a></h3>
 				</div>
-				<form name="main_search" class="main_searchForm">
+				<form name="main_search" class="main_searchForm" method="Get" action = "<c:url value='book/search'/>">
 				<!-- form에 action이랑 method 나중에 넣기 -->
 					<fieldset>
 						<legend>통합검색</legend>
@@ -220,16 +220,16 @@
 						</select>
 						<input type="text" id="search_text" name="search_kw" title = "검색어 입력"
 						size="20" class="inputText">
-						<input type="button" value="검색">
+<!-- 검색! -->
+						<input type="submit" value="검색" >
 					</fieldset>
 				</form>
 				<div class = "myinfo">
 					<%if (session.getAttribute("userId") == null) { %>
 				    	<a href="<c:url value='/user/login/form'/>" style="padding-left : 80px;">로그인 </a>
 				    <% } else { %>
-				    	<!-- 나중에 myPage?memberID 형태로 넘어가게 만들기 -->
-				    	
-				    	<a href="<c:url value='/user/myPage'/>" style="padding-left : 50px;"> ${userId} 님  정보</a>
+				    	<!-- 나중에 myPage?memberID 형태로 넘어가게 만들기 -->	
+					 	<a href="<c:url value='/user/myPage'/>" style="padding-left : 50px;"> ${userId} 님  정보</a>
 				    	<span> | </span>
 				    	<a href="<c:url value='/user/logout'/>"> 로그아웃</a>
 					<% } %>
