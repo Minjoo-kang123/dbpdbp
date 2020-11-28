@@ -36,7 +36,7 @@ public class BookInfoManager {
 
 	public bookInfo findBook(String bookinfoID)
 		throws SQLException, MemberNotFoundException {
-		bookInfo book = bookInfoDAO.findBook(bookinfoID);
+		bookInfo book = bookInfoDAO.findBookInfo(bookinfoID);
 		
 		if (book == null) {
 			throw new MemberNotFoundException(bookinfoID + "는 존재하지 않는 책입니다.");

@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import model.*;
+import model.dao.BookInfoDao;
 
 public class rentalbookDAO {
 	private JDBCUtil jdbcUtil = null;
@@ -162,34 +163,15 @@ public class rentalbookDAO {
 			return 0;
 		}
 		
-		//bookInfo에 있는 책정보에서 해당 책의 rental count를 1 더해줌.
-		public int plusRentalCnt(int bookID) throws SQLException{
-			rentalBook rtBook = findRentBook(bookID);
-			String query = "Update bookInfo set rentalCnt = rentalCnt + 1 where bookinfoID = ?";
-			Object[] param = new Object[] { rtBook.getBookInfoID() };
-			
-			try {	
-				jdbcUtil.setSqlAndParameters(query, param);
-				int result = jdbcUtil.executeUpdate();	
-				return result;
-			} catch (Exception ex) {
-				jdbcUtil.rollback();
-				ex.printStackTrace();
-			} finally {		
-				jdbcUtil.commit();
-				jdbcUtil.close();	// resource 반환
-			}		
-			return 0;
-		}
-		
 		//rentBook 대여하기. : 1.rentalInfo에 새 레코드 추가. 2. rentalBook의 상태를 true로 바꿈. 3. 책 정보의 rentalCnt를 1 추가.
 		public void rentBook(int bookID, String memberID) throws SQLException{
 			int insertR = insertRentalInfo(bookID, memberID);
+			BookInfoDao bookInfoDao = new BookInfoDao();
 			
 			if(insertR != 0) {
 				int updateStateR = updateRentalBook_state(bookID);
 				if(updateStateR != 0) {
-					int plusCntR = plusRentalCnt(bookID);
+					int plusCntR = bookInfoDao.plusRentalCnt(bookID);
 					if(plusCntR == 0) {
 						System.out.println("ERROR! update plus Bookinfo's State Fail!");
 					}
@@ -232,35 +214,6 @@ public class rentalbookDAO {
 				jdbcUtil.close();	// resource 반환
 			}		
 			return 0;
-		}
-
-		
-		public bookInfo findBookInfo(String bookInfoID)throws SQLException{
-			String query = "select bookname, writer, publisher, category, bookimage, rentalCnt "
-					+	"from bookinfo where bookinfoID = ?";
-			
-			jdbcUtil.setSqlAndParameters(query, new Object[] {bookInfoID});
-			
-			try {
-				ResultSet rs = jdbcUtil.executeQuery();		// query 실행
-				if (rs.next()) {						
-					bookInfo bInfo = new bookInfo (		
-						bookInfoID,
-						rs.getString("bookname"),
-						rs.getString("writer"),
-						rs.getString("publisher"),
-						rs.getString("category"),
-						rs.getString("bookimage"),
-						rs.getInt("rentalCnt"));
-					return bInfo;
-				}
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			} finally {
-				jdbcUtil.close();		// resource 반환
-			}
-			
-			return null;
 		}
 
 

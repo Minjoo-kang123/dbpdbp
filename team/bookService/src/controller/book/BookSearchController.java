@@ -21,7 +21,7 @@ public class BookSearchController implements Controller{
 			BookInfoManager book = BookInfoManager.getInstance();
 			book.getSearchBookList(text);
 			request.setAttribute("loginFailed", true);
-            return "/user/loginForm.jsp";	
+            return "/book/search/form";	
             
 		} catch (Exception e) {
 			/* UserNotFoundException이나 PasswordMismatchException 발생 시

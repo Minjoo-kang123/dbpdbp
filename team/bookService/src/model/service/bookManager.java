@@ -6,11 +6,13 @@ import model.bookInfo;
 import model.rentalBook;
 import model.rentalInfo;
 import model.dao.rentalbookDAO;
+import model.dao.BookInfoDao;
 
 public class bookManager {
 	
 	private static bookManager bookMan = new bookManager();
 	private rentalbookDAO rBookDAO;
+	private BookInfoDao bookInfoDAO;
 
 	private bookManager() {
 		try {
@@ -56,7 +58,7 @@ public class bookManager {
 	}
 
 	public bookInfo findBookInfo(String bookInfoID) throws SQLException, BookNotFoundException {
-		bookInfo bInfo = rBookDAO.findBookInfo(bookInfoID);
+		bookInfo bInfo = bookInfoDAO.findBookInfo(bookInfoID);
 		if(bInfo == null) {
 			throw new BookNotFoundException(bookInfoID + "는 존재하지 않는 북인포아이디입니다.");
 		}

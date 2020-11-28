@@ -8,6 +8,7 @@ import java.util.List;
 import model.bookInfo;
 import model.rentalBook;
 import model.rentalInfo;
+import model.dao.rentalbookDAO;
 
 public class BookInfoDao {
 	
@@ -63,7 +64,7 @@ public class BookInfoDao {
 	   }
 
 	   /*개인 페이지에 개인 정보 출력  _ 대여해주는 책 리스트 정보, 대여 중인 책  리스트 정보  등은 각각 따로 가져오기.*/
-	   public bookInfo findBook(String bookinfoID) throws SQLException { /* memberId String 타입으로 이후 수정하기!!!!!!!!*/
+	   public bookInfo findBookInfo(String bookinfoID) throws SQLException { /* memberId String 타입으로 이후 수정하기!!!!!!!!*/
 		   
 	      String query = "select bookinfoID, bookname, writer, publisher, category, bookimage, rentalCnt "
 	               + "from bookInfo "
@@ -74,7 +75,6 @@ public class BookInfoDao {
 	      
 	      try {  	  
 	    	  ResultSet rs = jdbcUtil.executeQuery();      // query 실행
-	    	  System.out.println("ddd");
 	    	  
 	    	  if (rs.next()) {                  // 학생 정보 발견
 	    		  
@@ -166,6 +166,27 @@ public class BookInfoDao {
 				jdbcUtil.close();		// resource 반환
 			}
 			return false;
+		}
+		
+		//bookInfo에 있는 책정보에서 해당 책의 rental count를 1 더해줌.
+		public int plusRentalCnt(int bookID) throws SQLException{
+			rentalbookDAO retalbookdao = new rentalbookDAO();
+			rentalBook rtBook = retalbookdao.findRentBook(bookID);
+			String query = "Update bookInfo set rentalCnt = rentalCnt + 1 where bookinfoID = ?";
+			Object[] param = new Object[] { rtBook.getBookInfoID() };
+					
+			try {	
+				jdbcUtil.setSqlAndParameters(query, param);
+				int result = jdbcUtil.executeUpdate();	
+				return result;
+			} catch (Exception ex) {
+				jdbcUtil.rollback();
+				ex.printStackTrace();
+			} finally {		
+				jdbcUtil.commit();
+				jdbcUtil.close();	// resource 반환
+			}		
+			return 0;
 		}
 
 }
