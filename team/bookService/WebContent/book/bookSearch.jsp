@@ -49,7 +49,12 @@
 		margin : 0 auto;
 		overflow : hidden;
 		position : relative;
-		background-color:#FFFFE0;
+		border-radius: 10px 10px 10px 10px ;
+		margin-bottom : 10px;
+		margin-top : 10px;
+		background-color : #d5e3d5;
+		color : #FFFFFF;		
+		font-weight : bolder;
 	}
 	.main_searchForm {
 		float: left;
@@ -65,7 +70,7 @@
 		padding-top : 25px;
 		padding-bottom: 50px;
 		min-height : 600px;
-		background-color:#FFB6C1
+		background-color:#bbd4b8;
 	}
 	.main {
 		position: relative;
@@ -94,7 +99,7 @@
 		padding-bottom: 5px;
 		margin-left : 20px;
 		min-height : 160px;
-		background-color:#FFB6C1;
+		background-color: #bbd4b8;
 	}
 	
 	.rentalForm {
@@ -146,13 +151,15 @@
 		padding-bottom: 5px;
 		margin-left : 5px;
 		min-height : 160px;
-		background-color:#FFB6C1;
+		background-color:#bbd4b8;
 		position : relative;
 		float : left;
 	}
 	
 	.rentalForm {
+		border-radius: 10px 10px 10px 10px;
 		margin : 0 auto;
+		padding-top : 10px;
 		background-color:#FFFFFF;
 		margin-left : 20px;
 		

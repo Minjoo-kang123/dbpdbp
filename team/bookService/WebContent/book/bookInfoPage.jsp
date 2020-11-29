@@ -12,6 +12,7 @@
 		margin : 0;
 		padding : 0;
 		line-height : 130%;
+		border-radius: 10px 10px 10px 10px;
 	}
 	
 	div { display : block; }
@@ -44,11 +45,14 @@
 	}
 	
 	.header_wrap {
-		width : 1100px;
+		width : 1170px;
 		margin : 0 auto;
 		overflow : hidden;
 		position : relative;
-		background-color:#FFFFE0;
+		border-radius: 10px 10px 10px 10px ;
+		margin-bottom : 10px;
+		margin-top : 10px;
+		background-color : #d5e3d5;
 	}
 	.main_searchForm {
 		float: left;
@@ -61,12 +65,12 @@
 		border : 0;
 	}
 	#container {
-		width : 1100px;
+		width : 1170px;
 		margin: 0 auto 0;
 		padding-top : 25px;
 		padding-bottom: 50px;
 		min-height : 600px;
-		background-color:#FFB6C1
+		background-color:#bbd4b8
 	}
 	.main {
 	    z-index: 5;
@@ -92,7 +96,7 @@
 		margin: 0 auto;
 		padding-top : 25px;
 		padding-bottom: 25px;
-		margin-left : 40px;
+		margin-left : 90px;
 		min-height : 250px;
 		background-color:#FFFFFF;
 	}
@@ -121,14 +125,13 @@
 	}
 	
 	.rentalItem {
-		width : 970px;
+		width : 1020px;
 		margin: 0 auto;
 		margin-top : 15px;
 		padding-top : 5px;
 		padding-bottom: 5px;
-		margin-left : 40px;
+		margin-left : 70px;
 		min-height : 160px;
-		background-color:#FFB6C1;
 	}
 	
 	.rentalForm {
@@ -139,7 +142,7 @@
 	}
 	
 	.rentalFor fieldset{
-		 border: 1px solid #d1d1d1;
+		 
 	}
 	.rentalItem .bookCover {
 		position: relative;
@@ -153,8 +156,10 @@
 	}
 	
 	.rentalItem .rentalInfoDesc {
+	
 		position: relative;
 	    float : left;
+		padding-top : 20px;
 		padding-bottom : 2px;
 		margin-left : 60px;
 		padding-left : 30px;

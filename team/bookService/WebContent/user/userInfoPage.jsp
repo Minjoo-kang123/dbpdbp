@@ -13,7 +13,6 @@
 		padding : 0;
 		border : 0;
 		line-height : 130%;
-		
 		border-radius: 10px 10px 10px 10px ;
 	}
 	div { display : block; }

@@ -65,6 +65,9 @@ function cancel(targetUri) {
 		padding : 0;
 		line-height : 130%;
 	}
+	h5 {
+		margin-leff : 25px;
+	}
 	
 	div { display : block; }
 	
@@ -188,7 +191,7 @@ function cancel(targetUri) {
 	    overflow: hidden;
 	}
 	
-	#registerForm fieldset, p {
+	#registerForm fieldset, p, h5 {
 		padding : 10px;
 		margin : 10px;
 	}

@@ -10,12 +10,13 @@
 <style>
 	
 	@import url('https://fonts.googleapis.com/css2?family=Gaegu&family=Noto+Sans+KR&family=Yeon+Sung&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap');
+	
 	body, div, span, p, a, font, ul, li, fieldset, form, legend, table {
 		margin : 0;
 		padding : 0;
 		border : 0;
 		line-height : 130%;
-		font-family: 'Nanum Gothic', sans-serif;
 		
 		border-radius: 10px 10px 10px 10px ;
 	}
@@ -124,7 +125,8 @@
 		margin-left : 5px;
 		padding-left : 25px;
 		padding-top : 25px;
-		
+		font-family: 'Nanum Brush Script', cursive;
+		font-size : 120%;
 	}
 	.go_category {
 		position: relative;
@@ -141,6 +143,7 @@
 		margin : 15px 20px;
 		padding-right : 40px;
 		text-align : center;
+		
 	}
 	
 	.list ul {
@@ -156,6 +159,8 @@
 	    padding: 0 0 5px 5px;
 	    border : 0;
 	    float: left;
+	    
+		font-family: 'Nanum Gothic', sans-serif;
 	}
 	.list {
 	    position: relative;
@@ -177,6 +182,11 @@
 		margin : 0 auto;
 		width : 250px;
 	}
+	.coverImage{
+		height : 500px;
+		margin : 16px;
+		margin-top : 50px;
+		}
 </style>
 </head>
 <body>
@@ -241,24 +251,24 @@
 				<section class="section">
 					<div class="recommand_book">
 						<div class="rec_bookCover">
-							<img src="./images/쏼라쏼라" alt="책 표지" class="coverImage">
+							<img src="https://pbs.twimg.com/media/EnFHZalVgAAiuJC?format=jpg&name=large" alt="책 표지" class="coverImage">
 						</div>
 						<div class="rec_bookDesc">
 							<p>책 소개 및 추천 
 								<h1> 문어의 꿈</h1>
-								<p>나는 문어 꿈을 꾸는 문어
-								꿈속에서는 무엇이든지 될 수 있어
-								나는 문어 잠을 자는 문어
-								잠에 드는 순간 여행이 시작되는 거야
-								높은 산에 올라가면 나는 초록색 문어
-								장미 꽃밭 숨어들면 나는 빨간색 문어
-								횡단보도 건너가면 나는 줄무늬 문어
-								밤하늘을 날아가면 나는
-								오색찬란한 문어가 되는 거
-								야 아아아 아아 야 아아아 아아
-								깊은 바닷속은 너무 외로워
-								춥고 어둡고 차갑고 때로는 무섭기도
-								해 애애애 애애 야 아아아 아아
+								<p>나는 문어 꿈을 꾸는 문어<br>
+								꿈속에서는 무엇이든지 될 수 있어<br>
+								나는 문어 잠을 자는 문어<br>
+								잠에 드는 순간 여행이 시작되는 거야<br>
+								높은 산에 올라가면 나는 초록색 문어<br>
+								장미 꽃밭 숨어들면 나는 빨간색 문어<br>
+								횡단보도 건너가면 나는 줄무늬 문어<br>
+								밤하늘을 날아가면 나는<br>
+								오색찬란한 문어가 되는 거<br>
+								야 아아아 아아 야 아아아 아아<br>
+								깊은 바닷속은 너무 외로워<br>
+								춥고 어둡고 차갑고 때로는 무섭기도<br>
+								해 애애애 애애 야 아아아 아아<br>
 								그래서 나는 매일 꿈을 꿔 이곳은 참 우울해</p>
 							</p>
 						</div>
