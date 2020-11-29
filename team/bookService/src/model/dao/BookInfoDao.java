@@ -123,7 +123,8 @@ public class BookInfoDao {
 	   public List<bookInfo> getSearchBookList(String text) throws SQLException {
 		   String query = "select bookinfoID, bookname, writer, publisher, category, bookimage, rentalCnt "
 	               + "from bookInfo "
-	               + "where bookinfoID like %?%";
+	               + "where bookname like ?";
+		   text = '%' + text + '%';
 		   jdbcUtil.setSqlAndParameters(query, new Object[] {text});
 		   
 		   try {

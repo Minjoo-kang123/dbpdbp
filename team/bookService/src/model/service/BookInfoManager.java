@@ -33,16 +33,15 @@ public class BookInfoManager {
 	public int remove(String bookinfoID) throws SQLException, MemberNotFoundException {
 		return bookInfoDAO.remove(bookinfoID);
 	}
+	
+	public bookInfo findBookInfo(String bookInfoID) throws SQLException, BookNotFoundException {
+		bookInfo bInfo = bookInfoDAO.findBookInfo(bookInfoID);
+		if(bInfo == null) {
+			throw new BookNotFoundException(bookInfoID + "는 존재하지 않는 북인포아이디입니다.");
+		}
+		return bInfo;
+	}
 
-	public bookInfo findBook(String bookinfoID)
-		throws SQLException, MemberNotFoundException {
-		bookInfo book = bookInfoDAO.findBookInfo(bookinfoID);
-		
-		if (book == null) {
-			throw new MemberNotFoundException(bookinfoID + "는 존재하지 않는 책입니다.");
-		}		
-		return book;
-	}	
 	
 	public List<bookInfo> getSearchBookList(String text) throws SQLException {
 		return bookInfoDAO.getSearchBookList(text);
@@ -55,5 +54,5 @@ public class BookInfoManager {
 	public boolean existingBook(String bookinfoID) {
 		return bookInfoDAO.existingBook(bookinfoID);
 	}
-
+	
 }

@@ -10,6 +10,7 @@ import model.rentalBook;
 import model.rentalInfo;
 import model.service.BookNotFoundException;
 import model.service.bookManager;
+import model.service.BookInfoManager;
 
 public class LoadingMyrBookController implements Controller {
 	 @Override
@@ -22,6 +23,7 @@ public class LoadingMyrBookController implements Controller {
 	    	int bookID = Integer.valueOf(request.getParameter("rbookID"));
 	    	
 			bookManager  bManager = bookManager.getInstance();
+			BookInfoManager biManager = BookInfoManager.getInstance();
 			
 			bookInfo bInfo = null;
 			rentalInfo rInfo = null;
@@ -30,7 +32,7 @@ public class LoadingMyrBookController implements Controller {
 	    	try {
 	    		
 	    		rBook = bManager.findRentBook(bookID);
-	    		bInfo = bManager.findBookInfo(rBook.getBookInfoID());
+	    		bInfo = biManager.findBookInfo(rBook.getBookInfoID());
 	    		if(rBook.getState() == 1)
 	    			rInfo = bManager.findRentInfo(bookID);
 				

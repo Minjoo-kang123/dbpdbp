@@ -285,7 +285,7 @@
 							<option  value="comic" > 코믹 </option>
 							<option value="etc" > 기타 등등 </option>
 						</select>
-						<input tpye="text" id="search_text" name="search_kw" title = "검색어 입력"
+						<input tpye="text" id="search_text" name="search_kw" title = "검색어 입력" value=${text}
 						size="20" class="inputText">
 						<input type="button" value="검색">
 					</fieldset>
@@ -305,24 +305,26 @@
 			<div class="main_content">
 				<section class="section">
 					<div class ="rentalBookList">
-						<h5> 검색 결과 : 검색어 넣어주고 싶음.</h5>
+						<h5> 검색 결과 : ${text} </h5>
 						<!-- 아래 틀을 jstl의 반복문을 사용해서 반복해서 보여주기. ~ 리스트 목록 / 10개 이상 존재 시 다음 페이지. -->
 						<div class="rentalItem">
-							<form class = "rentalForm" name = "rForm">
-								<fieldset>
-									<div class="bookCover">
-										<img src="./images/쏼라쏼라" alt="책 표지" class="coverImage">
-									</div>
-									<div class="rentalInfoDesc">
-									<!--<a href="<c:url value='/book/info'> <c:param name='bookID' value='${book.bookID}'/></c:url>"> 
-											${book.bookname}</a> -->
-											<a href="bookInfoPage.jsp"> 책 제목 _ 누를 경우 책 bookinfoP로</a>
-											<p> 아이디 : zai0630
-											<p> 상태 : 상
-											<p> 포인트 : 500
-											<p> 어쩌구 저쩌구 저는 재밌게 봤습니다. (rentalbook explain)
-									</div>
-								</fieldset>
+							<form class = "rentalForm" name = "rForm">							  			
+							  	<c:forEach var="bookInfo" items="${biList}">
+									<fieldset>
+										<div class="bookCover">
+											<img src="./images/쏼라쏼라" alt="책 표지" class="coverImage">
+										</div>
+										<div class="rentalInfoDesc">
+										<!--<a href="<c:url value='/book/info'> <c:param name='bookID' value='${book.bookID}'/></c:url>"> 
+												${book.bookname}</a> -->
+												<a href="bookInfoPage.jsp"> ${bookInfo.getBookname()}</a>
+												<p> 작가 : zai0630
+												<p> 출판사 : 상
+												<p> 카테고리 : 500
+												<p> 어쩌구 저쩌구 저는 재밌게 봤습니다. (rentalbook explain)
+										</div>
+									</fieldset>
+								</c:forEach>
 							</form>
 						</div>
 					</div>
