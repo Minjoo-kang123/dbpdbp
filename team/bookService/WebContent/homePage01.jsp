@@ -203,7 +203,7 @@
 						<legend>통합검색</legend>
 						구분 : 
 						<select id="stype" name="stype" title="상세검색" style="width:76px">
-							<option value="all1" selected >전체</option>
+							<option value="all" selected >전체</option>
 							<option value="subject"  >제목</option>
 							<option value="intro"  >작품소개</option>
 							<option value="content"  >작품내용</option>
@@ -211,7 +211,7 @@
 						</select> &nbsp;
 						장르 : 
 						<select id="stype_g" name="stype_g" title="장르검색" style="width:76px">
-							<option value="all2" selected >전체</option>
+							<option value="all" selected >전체</option>
 							<option value="action"  > 액션</option>
 							<option value="fantasy"  > 판타지 </option>
 							<option value="romance"  > 로맨스 </option>

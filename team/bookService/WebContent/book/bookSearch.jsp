@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
 <title> 검색 결과 : 리스트</title>
 <style>
 
@@ -264,7 +263,7 @@
 				<div class="logo" style="margin-top : 25px; float : left; width : 300px">
 					<h3><a href="homePage01.jsp">로고자리</a></h3>
 				</div>
-				<form name="main_search" class="main_searchForm">
+				<form name="main_search" class="main_searchForm" method="GET" action = "<c:url value='book/search'/>">
 				<!-- form에 action이랑 method 나중에 넣기 -->
 					<fieldset>
 						<legend>통합검색</legend>
@@ -285,9 +284,8 @@
 							<option  value="comic" > 코믹 </option>
 							<option value="etc" > 기타 등등 </option>
 						</select>
-						<input tpye="text" id="search_text" name="search_kw" title = "검색어 입력" value=${text}
-						size="20" class="inputText">
-						<input type="button" value="검색">
+						<input type="text" id="search_text" name="search_kw" title = "검색어 입력" size="20" class="inputText" value="${text}">
+						<input type="submit" value="검색" >
 					</fieldset>
 				</form>
 				<div class = "myinfo">
@@ -318,10 +316,9 @@
 										<!--<a href="<c:url value='/book/info'> <c:param name='bookID' value='${book.bookID}'/></c:url>"> 
 												${book.bookname}</a> -->
 												<a href="bookInfoPage.jsp"> ${bookInfo.getBookname()}</a>
-												<p> 작가 : zai0630
-												<p> 출판사 : 상
-												<p> 카테고리 : 500
-												<p> 어쩌구 저쩌구 저는 재밌게 봤습니다. (rentalbook explain)
+												<p> 작가 : ${bookInfo.getWriter()}
+												<p> 출판사 : ${bookInfo.getPublisher()}
+												<p> 카테고리 : ${bookInfo.getCategory()}
 										</div>
 									</fieldset>
 								</c:forEach>
