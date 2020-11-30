@@ -43,8 +43,8 @@ public class BookInfoManager {
 	}
 
 	
-	public List<bookInfo> getSearchBookList(String text) throws SQLException {
-		return bookInfoDAO.getSearchBookList(text);
+	public List<bookInfo> getSearchBookList(String text, String stype) throws SQLException {
+		return bookInfoDAO.getSearchBookList(text, stype);
 	}
 
 	public BookInfoDao getBookInfoDAO() {

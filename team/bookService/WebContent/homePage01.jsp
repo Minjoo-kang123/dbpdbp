@@ -215,8 +215,6 @@
 						<select id="stype" name="stype" title="상세검색" style="width:76px">
 							<option value="all" selected >전체</option>
 							<option value="subject"  >제목</option>
-							<option value="intro"  >작품소개</option>
-							<option value="content"  >작품내용</option>
 							<option  value="member" >작가</option>
 						</select> &nbsp;
 						장르 : 

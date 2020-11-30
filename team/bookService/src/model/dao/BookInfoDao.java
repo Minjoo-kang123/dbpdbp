@@ -120,12 +120,26 @@ public class BookInfoDao {
 	      }
 	   
 	   //제목으로 검색하기!
-	   public List<bookInfo> getSearchBookList(String text) throws SQLException {
+	   public List<bookInfo> getSearchBookList(String text, String stype) throws SQLException {
 		   String query = "select bookinfoID, bookname, writer, publisher, category, bookimage, rentalCnt "
-	               + "from bookInfo "
-	               + "where bookname like ?";
+	               + "from bookInfo ";
 		   text = '%' + text + '%';
-		   jdbcUtil.setSqlAndParameters(query, new Object[] {text});
+		   
+		   if (stype.equals("all"))
+		   {
+			   query += "where writer like ? or bookname like ? ";
+			   jdbcUtil.setSqlAndParameters(query, new Object[] {text, text});
+		   }
+		   else if (stype.equals("subject"))
+		   {
+			   query += "where bookname like ?";
+			   jdbcUtil.setSqlAndParameters(query, new Object[] {text});
+		   }
+		   else
+		   {
+			   query += "where writer like ?";
+			   jdbcUtil.setSqlAndParameters(query, new Object[] {text});
+		   }
 		   
 		   try {
 			   ResultSet rs = jdbcUtil.executeQuery();

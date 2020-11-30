@@ -5,7 +5,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import controller.book.BookSearchController;
+import controller.book.*;
 import controller.user.*;
 
 
@@ -28,6 +28,9 @@ public class RequestMapping {
 
         mappings.put("/book/search", new BookSearchController());
         mappings.put("/book/search/form", new ForwardController("/book/bookSearch.jsp"));
+        
+        mappings.put("/book/info", new BookInfoController());
+        mappings.put("/book/info/form", new ForwardController("/book/bookInfoPage.jsp"));
        
         mappings.put("/user/myPage", new LoadingMyInfoController());
         
