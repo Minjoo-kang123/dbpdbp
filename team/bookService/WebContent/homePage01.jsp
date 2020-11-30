@@ -249,22 +249,13 @@
 				<section class="section">
 					<div class="recommand_book">
 						<div class="rec_bookCover">
-<<<<<<< HEAD
 							<img src="https://pbs.twimg.com/media/EnFHZalVgAAiuJC?format=jpg&name=large" alt="책 표지" class="coverImage">
-=======
-							<img src="https://pbs.twimg.com/media/EnFHZalVgAAiuJC?format=jpg&name=small"style="width: 80%; height: auto;" alt="책 표지" class="coverImage">
->>>>>>> 8b2e5a1fd5d0192e28829657ca9edd2a9ce16f6a
 						</div>
 						<div class="rec_bookDesc">
 							<p>책 소개 및 추천 
 								<h1> 문어의 꿈</h1>
 								<p>나는 문어 꿈을 꾸는 문어<br>
-<<<<<<< HEAD
 								꿈속에서는 무엇이든지 될 수 있어<br>
-=======
-								꿈속에서는 <br>
-								무엇이든지 될 수 있어<br>
->>>>>>> 8b2e5a1fd5d0192e28829657ca9edd2a9ce16f6a
 								나는 문어 잠을 자는 문어<br>
 								잠에 드는 순간 여행이 시작되는 거야<br>
 								높은 산에 올라가면 나는 초록색 문어<br>
