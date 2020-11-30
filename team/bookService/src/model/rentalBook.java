@@ -30,7 +30,6 @@ public class rentalBook {
 		super();
 	}
 	
-
 	public int getBookID() {
 		return bookID;
 	}

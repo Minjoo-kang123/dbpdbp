@@ -7,6 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>user Info Page</title>
+<script type="text/javascript">
+	function uploadBook() {
+		var form = document.form;
+		form.submit();
+	}
+</script>
 <style>
 	body, div, span, p, a, font, ul, li, fieldset, form, legend, table {
 		margin : 0;
@@ -263,6 +269,10 @@
 							  			</c:forEach>
 							  		</tr>
 							  	</table> 
+							  <form name="form" method="POST" action="<c:url value='/user/rbook/upload/form'/>">
+									<input type="hidden" name = "memberid" value="${curMember.memberID}">
+							  		<input type="button" value="새 대여도서 올리기" onClick="uploadBook()">
+							  </form>
 							</div>
 							<div id="borrowBookList">
 								대여 중인 책
