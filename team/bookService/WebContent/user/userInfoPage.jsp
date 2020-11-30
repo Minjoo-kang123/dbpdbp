@@ -257,8 +257,9 @@
 								<table>
 									 <tr>
 										<c:forEach var="rbook" items="${rBookList}">  			  	
-							  		 		<td align="center"> ${rbook.bookname} , </td>
-							  		 		<!-- bookname에 팝업 -->
+							  		 		<td align="center"> <a href ="<c:url value='/user/rbook/info'>
+					  		 					<c:param name="rbookID" value="${rbook.bookID}" />
+					  		 				</c:url>"> ${rbook.bookname} </a> , </td>
 							  			</c:forEach>
 							  		</tr>
 							  	</table> 
@@ -267,9 +268,25 @@
 								대여 중인 책
 								<table>
 									 <tr>
-										<c:forEach var="ibook" items="${rInfoList}">  			  	
-							  		 		<td align="center"> ${ibook.bookname} </td>
-							  		 		<!-- bookname에 팝업 -->
+										<c:forEach var="ibook" items="${rInfoList}">  	
+											<c:if test="${ibook.state == 1}">		  	
+								  		 		<td align="center"> <a href ="<c:url value='/user/ibook/info'>
+						  		 					<c:param name="ibookID" value="${ibook.bookID}" />
+						  		 				</c:url>"> ${ibook.bookname} </a> , </td>
+					  		 				</c:if>
+							  			</c:forEach>
+							  		</tr>
+							  	</table> 
+							  	<br>
+							  	이전에 읽은 책 (대여 완료)
+							  	<table>
+									 <tr>
+										<c:forEach var="ibook" items="${rInfoList}">  	
+											<c:if test="${ibook.state == 0}">		  	
+								  		 		<td align="center"> <a href ="<c:url value='/user/ibook/info'>
+						  		 					<c:param name="ibookID" value="${ibook.bookID}" />
+						  		 				</c:url>"> ${ibook.bookname} </a> , </td>
+					  		 				</c:if>
 							  			</c:forEach>
 							  		</tr>
 							  	</table> 

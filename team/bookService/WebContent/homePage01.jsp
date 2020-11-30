@@ -207,13 +207,13 @@
 				<div class="logo" style="margin-top : 25px; float : left; width : 300px">
 					<h3><a href="homePage01.jsp">로고자리</a></h3>
 				</div>
-				<form name="main_search" class="main_searchForm">
+				<form name="main_search" class="main_searchForm" method="Get" action = "<c:url value='book/search'/>">
 				<!-- form에 action이랑 method 나중에 넣기 -->
 					<fieldset>
 						<legend>통합검색</legend>
 						구분 : 
 						<select id="stype" name="stype" title="상세검색" style="width:76px">
-							<option value="all1" selected >전체</option>
+							<option value="all" selected >전체</option>
 							<option value="subject"  >제목</option>
 							<option value="intro"  >작품소개</option>
 							<option value="content"  >작품내용</option>
@@ -221,7 +221,7 @@
 						</select> &nbsp;
 						장르 : 
 						<select id="stype_g" name="stype_g" title="장르검색" style="width:76px">
-							<option value="all2" selected >전체</option>
+							<option value="all" selected >전체</option>
 							<option value="action"  > 액션</option>
 							<option value="fantasy"  > 판타지 </option>
 							<option value="romance"  > 로맨스 </option>
@@ -230,16 +230,16 @@
 						</select>
 						<input type="text" id="search_text" name="search_kw" title = "검색어 입력"
 						size="20" class="inputText">
-						<input type="button" value="검색">
+<!-- 검색! -->
+						<input type="submit" value="검색" >
 					</fieldset>
 				</form>
 				<div class = "myinfo">
 					<%if (session.getAttribute("userId") == null) { %>
 				    	<a href="<c:url value='/user/login/form'/>" style="padding-left : 80px;">로그인 </a>
 				    <% } else { %>
-				    	<!-- 나중에 myPage?memberID 형태로 넘어가게 만들기 -->
-				    	
-				    	<a href="<c:url value='/user/myPage'/>" style="padding-left : 50px;"> ${userId} 님  정보</a>
+				    	<!-- 나중에 myPage?memberID 형태로 넘어가게 만들기 -->	
+					 	<a href="<c:url value='/user/myPage'/>" style="padding-left : 50px;"> ${userId} 님  정보</a>
 				    	<span> | </span>
 				    	<a href="<c:url value='/user/logout'/>"> 로그아웃</a>
 					<% } %>
@@ -251,13 +251,22 @@
 				<section class="section">
 					<div class="recommand_book">
 						<div class="rec_bookCover">
+<<<<<<< HEAD
 							<img src="https://pbs.twimg.com/media/EnFHZalVgAAiuJC?format=jpg&name=large" alt="책 표지" class="coverImage">
+=======
+							<img src="https://pbs.twimg.com/media/EnFHZalVgAAiuJC?format=jpg&name=small"style="width: 80%; height: auto;" alt="책 표지" class="coverImage">
+>>>>>>> 8b2e5a1fd5d0192e28829657ca9edd2a9ce16f6a
 						</div>
 						<div class="rec_bookDesc">
 							<p>책 소개 및 추천 
 								<h1> 문어의 꿈</h1>
 								<p>나는 문어 꿈을 꾸는 문어<br>
+<<<<<<< HEAD
 								꿈속에서는 무엇이든지 될 수 있어<br>
+=======
+								꿈속에서는 <br>
+								무엇이든지 될 수 있어<br>
+>>>>>>> 8b2e5a1fd5d0192e28829657ca9edd2a9ce16f6a
 								나는 문어 잠을 자는 문어<br>
 								잠에 드는 순간 여행이 시작되는 거야<br>
 								높은 산에 올라가면 나는 초록색 문어<br>
@@ -302,7 +311,7 @@
 					<ul style="width:100%" >
 						<li> DBP 팀 프로젝트 </li>
 						<li> 도서 관련 웹사이트 </li>
-						<li> 목표 : 끝나고 다같이 맛있는 점심 사먹기 </li>
+						<li> 3조 </li>
 					</ul>
 				</div>
 			</div>
