@@ -263,28 +263,29 @@
 				<div class="logo" style="margin-top : 25px; float : left; width : 300px">
 					<h3><a href="homePage01.jsp">로고자리</a></h3>
 				</div>
-				<form name="main_search" class="main_searchForm" method="GET" action = "<c:url value='book/search'/>">
+				<form name="main_search" class="main_searchForm" method="Get" action = "<c:url value='book/search'/>">
 				<!-- form에 action이랑 method 나중에 넣기 -->
 					<fieldset>
 						<legend>통합검색</legend>
 						구분 : 
+						
 						<select id="stype" name="stype" title="상세검색" style="width:76px">
-							<option value="all1" selected >전체</option>
-							<option value="subject"  >제목</option>
-							<option value="intro"  >작품소개</option>
-							<option value="content"  >작품내용</option>
-							<option  value="member" >작가</option>
+							<option value="all" <c:if test = "${stype=='all'}"> selected </c:if> >전체</option>
+							<option value="subject"  <c:if test = "${stype=='subject'}"> selected </c:if>>제목</option>
+							<option  value="member" <c:if test = "${stype=='member'}"> selected </c:if>>작가</option>
 						</select> &nbsp;
 						장르 : 
 						<select id="stype_g" name="stype_g" title="장르검색" style="width:76px">
-							<option value="all2" selected >전체</option>
+							<option value="all" selected >전체</option>
 							<option value="action"  > 액션</option>
 							<option value="fantasy"  > 판타지 </option>
 							<option value="romance"  > 로맨스 </option>
 							<option  value="comic" > 코믹 </option>
 							<option value="etc" > 기타 등등 </option>
 						</select>
-						<input type="text" id="search_text" name="search_kw" title = "검색어 입력" size="20" class="inputText" value="${text}">
+						<input type="text" id="search_text" name="search_kw" title = "검색어 입력"
+						size="20" class="inputText" value=${text}>
+<!-- 검색! -->
 						<input type="submit" value="검색" >
 					</fieldset>
 				</form>
@@ -315,7 +316,7 @@
 										<div class="rentalInfoDesc">
 										<!--<a href="<c:url value='/book/info'> <c:param name='bookID' value='${book.bookID}'/></c:url>"> 
 												${book.bookname}</a> -->
-												<a href="bookInfoPage.jsp"> ${bookInfo.getBookname()}</a>
+												<a href="<c:url value='/book/info'/>"> ${bookInfo.getBookname()}</a>
 												<p> 작가 : ${bookInfo.getWriter()}
 												<p> 출판사 : ${bookInfo.getPublisher()}
 												<p> 카테고리 : ${bookInfo.getCategory()}
