@@ -32,9 +32,9 @@ public class bookManager {
 	}
 	*/
 	
-	public int createRBook(rentalBook rbook)throws SQLException, NoExistingBookInfoException {
+	public int createRBook(rentalBook rbook)throws SQLException, BookNotFoundException {
 		if (rBookDAO.existingBookInfo(rbook.getBookInfoID()) != true) {
-			throw new NoExistingBookInfoException(rbook.getBookInfoID() + "는 존재하지 않는  bookInfoID(ISBN)입니다.");
+			throw new BookNotFoundException(rbook.getBookInfoID() + "는 존재하지 않는  bookInfoID(ISBN)입니다.");
 		}
 		return rBookDAO.insert(rbook);
 	}	

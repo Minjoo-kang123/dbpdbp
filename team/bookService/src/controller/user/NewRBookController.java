@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import controller.Controller;
 import model.rentalBook;
+import model.service.BookNotFoundException;
 import model.service.NoExistingBookInfoException;
 import model.service.bookManager;
 
@@ -35,7 +36,7 @@ public class NewRBookController implements Controller {
     			manager.createRBook(rbook);
     			return "redirect:/user/myPage";	
     	        
-    		} catch (NoExistingBookInfoException e) {	// 예외 발생 시 회원가입 form으로 forwarding
+    		} catch (BookNotFoundException e) {	// 예외 발생 시 회원가입 form으로 forwarding
                 request.setAttribute("uploadFailed", true);
     			request.setAttribute("exception", e);
     			
