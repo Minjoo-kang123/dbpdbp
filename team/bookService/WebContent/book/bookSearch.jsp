@@ -323,7 +323,11 @@
 										<div class="rentalInfoDesc">
 										<!--<a href="<c:url value='/book/info'> <c:param name='bookID' value='${book.bookID}'/></c:url>"> 
 												${book.bookname}</a> -->
-												<a href="<c:url value='/book/info'/>"> ${bookInfo.getBookname()}</a>
+												<a href="<c:url value='/book/info'>
+													<c:param name="bookID" value='${bookInfo.getBookinfoID()}'/>
+													<c:param name="text" value='${text}'/>
+													<c:param name="stype" value='${stype}'/>
+												</c:url>"> ${bookInfo.getBookname()}</a>
 												<p> 작가 : ${bookInfo.getWriter()}
 												<p> 출판사 : ${bookInfo.getPublisher()}
 												<p> 카테고리 : ${bookInfo.getCategory()}

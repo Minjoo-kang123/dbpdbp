@@ -1,4 +1,5 @@
 package model;
+import java.util.Date;
 
 public class bookInfo {
    private String bookinfoID;
@@ -8,12 +9,14 @@ public class bookInfo {
    private String category;
    private String bookimage;
    private int rentalCnt;
+   private Date releaseDate;
+   private String summary;
    
    public bookInfo() {
       super();
    }
    
-   public bookInfo(String bookinfoID, String bookname, String writer, String publisher, String category, String bookimage, int rentalCnt) {
+   public bookInfo(String bookinfoID, String bookname, String writer, String publisher, String category, String bookimage, int rentalCnt, Date releaseDate, String summary) {
       super();
       this.bookinfoID = bookinfoID;
       this.bookname = bookname;
@@ -22,6 +25,8 @@ public class bookInfo {
       this.category = category;
       this.bookimage = bookimage;
       this.rentalCnt = rentalCnt;
+      this.releaseDate = releaseDate;
+      this.summary = summary;
    }
    
    public String getBookinfoID() {
@@ -66,9 +71,21 @@ public class bookInfo {
    public void setRentalCnt(int rentalCnt) {
       this.rentalCnt = rentalCnt;
    }
-   
+   public Date getReleaseDate() {
+	   return releaseDate;
+   }
+   public void setReleaseDate(Date relaseDate) {
+	   this.releaseDate = relaseDate;
+   }
+   public String getSummary() {
+	   return summary;
+   }
+   public void setSummary(String summary) {
+	   this.summary = summary;
+   }
+
    public String toString() {
       return "User [bookinfoID=" + bookinfoID + ", bookname=" + bookname + ", writer=" + writer + ", publisher=" + publisher + ", category="
-            + category + ", bookimage=" + bookimage + "]";
+            + category + ", bookimage=" + bookimage + ", releasedate=" + releaseDate + ", summary=" + summary + "]";
    }   
 }

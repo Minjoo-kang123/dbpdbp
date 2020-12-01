@@ -7,7 +7,6 @@ import java.util.List;
 
 import model.bookInfo;
 import model.rentalBook;
-import model.rentalInfo;
 import model.dao.rentalbookDAO;
 
 public class BookInfoDao {
@@ -21,8 +20,8 @@ public class BookInfoDao {
 	   
 	   //book 정보 추가 함수 -> 대강 만들 것이니 나중에 수정해주세요!
 	   public int addBook(bookInfo book) throws SQLException{
-	      String query = "Insert into bookInfo(bookinfoID, bookname, writer, publisher, category, bookimage, rentalCnt) values(?,?,?,?,?,?,?)";
-	      Object[] param = new Object[] {book.getBookinfoID(),  book.getBookname(), book.getWriter(), book.getPublisher(), book.getCategory(), book.getBookimage(), book.getRentalCnt()};
+	      String query = "Insert into bookInfo(bookinfoID, bookname, writer, publisher, category, bookimage, rentalCnt, releaseDate, summary) values(?,?,?,?,?,?,?,?,?)";
+	      Object[] param = new Object[] {book.getBookinfoID(),  book.getBookname(), book.getWriter(), book.getPublisher(), book.getCategory(), book.getBookimage(), book.getRentalCnt(), book.getReleaseDate(), book.getSummary()};
 	      jdbcUtil.setSqlAndParameters(query, param);
 	      System.out.println(query + param);
 	      
@@ -66,7 +65,7 @@ public class BookInfoDao {
 	   /*개인 페이지에 개인 정보 출력  _ 대여해주는 책 리스트 정보, 대여 중인 책  리스트 정보  등은 각각 따로 가져오기.*/
 	   public bookInfo findBookInfo(String bookinfoID) throws SQLException { /* memberId String 타입으로 이후 수정하기!!!!!!!!*/
 		   
-	      String query = "select bookinfoID, bookname, writer, publisher, category, bookimage, rentalCnt "
+	      String query = "select bookinfoID, bookname, writer, publisher, category, bookimage, rentalCnt, releaseDate, summary "
 	               + "from bookInfo "
 	               + "where bookinfoID = ?";
 	      
@@ -85,7 +84,9 @@ public class BookInfoDao {
 	    				  rs.getString("publisher"),
 	    				  rs.getString("category"),
 	    				  rs.getString("bookimage"),
-	    				  rs.getInt("rentalCnt"));
+	    				  rs.getInt("rentalCnt"),
+	    				  rs.getDate("releaseDate"),
+	    				  rs.getString("summary"));
 	    		  
 	    		  return book;
 	    	  	}
@@ -121,7 +122,7 @@ public class BookInfoDao {
 	   
 	   //제목으로 검색하기!
 	   public List<bookInfo> getSearchBookList(String text, String stype) throws SQLException {
-		   String query = "select bookinfoID, bookname, writer, publisher, category, bookimage, rentalCnt "
+		   String query = "select bookinfoID, bookname, writer, publisher, category, bookimage, rentalCnt, releaseDate, summary "
 	               + "from bookInfo ";
 		   text = '%' + text + '%';
 		   
@@ -155,6 +156,8 @@ public class BookInfoDao {
 				   book.setCategory(rs.getString("category"));
 				   book.setBookimage(rs.getString("bookimage"));
 				   book.setRentalCnt(rs.getInt("rentalCnt"));
+				   book.setReleaseDate(rs.getDate("releaseDate"));
+				   book.setSummary(rs.getString("summary"));
 				   
 				   mSearchBookList.add(book);
 			   }

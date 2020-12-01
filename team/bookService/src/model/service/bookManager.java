@@ -1,6 +1,7 @@
 package model.service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import model.rentalBook;
 import model.rentalInfo;
@@ -49,6 +50,15 @@ public class bookManager {
 		}		
 		return rbook;
 	}	
+	
+	public List<rentalBook> findRentBookList(String bookInfoID) 
+			throws SQLException, BookNotFoundException{
+		List<rentalBook> rbList = rBookDAO.findRentBookList(bookInfoID);
+		if (rbList == null) {
+			throw new BookNotFoundException(bookInfoID + "는 존재하지 않는 북인포아이디입니다.");
+		}
+		return rbList;
+	}
 
 	public rentalbookDAO getrentalbookDAO() {
 		return this.rBookDAO;

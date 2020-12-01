@@ -4,8 +4,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+
 import model.*;
 import model.dao.BookInfoDao;
 
@@ -113,6 +116,42 @@ public class rentalbookDAO {
 			
 			return null;
 		}
+		
+		public List<rentalBook> findRentBookList(String bookInfoID) throws SQLException{
+			String query = "select  r.bookID, r.memberID, r.bookInfoID, r.image, r.explain, r.state, r.point, r.condition, i.bookname  "
+					+	"from rentalBook r, bookInfo i where r.bookInfoID = i.bookInfoID and r.bookInfoID = ?";
+			jdbcUtil.setSqlAndParameters(query, new Object[] {bookInfoID});
+			
+			System.out.println(query);
+			try {
+				ResultSet rs = jdbcUtil.executeQuery();		// query 실행
+				List<rentalBook> mRentalBookList = new ArrayList<rentalBook>();
+				
+				while(rs.next()) {
+					rentalBook rtbook = new rentalBook (		
+							rs.getInt("bookID"),
+							rs.getString("memberID"),
+							rs.getString("bookinfoID"),
+							rs.getString("image"),
+							rs.getString("explain"),
+							rs.getInt("state"),					
+							rs.getInt("point"),
+							rs.getInt("condition"),
+							rs.getString("bookname"));
+
+					mRentalBookList.add(rtbook);
+				   }
+				   
+				   return mRentalBookList;
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			} finally {
+				jdbcUtil.close();		// resource 반환
+			}
+			
+			return null;
+		}
+		
 		
 		//대여 정보가 들어있는 RentalInfo에 새로운 대여정보를 삽입.
 		public int insertRentalInfo(int bookID, String memberID) throws SQLException{
