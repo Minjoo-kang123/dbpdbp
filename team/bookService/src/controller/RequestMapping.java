@@ -37,6 +37,8 @@ public class RequestMapping {
         mappings.put("/user/rbook/info", new LoadingMyrBookController());
         mappings.put("/user/rbook/update", new RBookUpdateController());
         mappings.put("/user/rbook/remove", new RBookRemoveController());
+        mappings.put("/user/rbook/upload/form", new ForwardController("/user/uploadRBookForm.jsp"));
+        mappings.put("/user/rbook/upload", new NewRBookController());
         
         mappings.put("/user/ibook/info", new LoadingMyiBookController());
         mappings.put("/user/ibook/return", new ReturniBookController());
