@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="controller.user.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -166,23 +167,22 @@
 			<!--  로고랑 search 바 있는 곳. -->
 			<div class="header_wrap">
 				<div class="logo" style="margin-top : 25px; float : left; width : 300px">
-					<h3><a href="homePage01.jsp">로고자리</a></h3>
+					<h3><a href="<c:url value='/home'/>">로고자리</a></h3>
 				</div>
-				<form name="main_search" class="main_searchForm">
+				<form name="main_search" class="main_searchForm" method="Get" action = "<c:url value='/book/search'/>">
 				<!-- form에 action이랑 method 나중에 넣기 -->
 					<fieldset>
 						<legend>통합검색</legend>
 						구분 : 
+						
 						<select id="stype" name="stype" title="상세검색" style="width:76px">
-							<option value="all1" selected >전체</option>
-							<option value="subject"  >제목</option>
-							<option value="intro"  >작품소개</option>
-							<option value="content"  >작품내용</option>
-							<option  value="member" >작가</option>
+							<option value="all" <c:if test = "${stype=='all'}"> selected </c:if> >전체</option>
+							<option value="subject"  <c:if test = "${stype=='subject'}"> selected </c:if>>제목</option>
+							<option  value="member" <c:if test = "${stype=='member'}"> selected </c:if>>작가</option>
 						</select> &nbsp;
 						장르 : 
 						<select id="stype_g" name="stype_g" title="장르검색" style="width:76px">
-							<option value="all2" selected >전체</option>
+							<option value="all" selected >전체</option>
 							<option value="action"  > 액션</option>
 							<option value="fantasy"  > 판타지 </option>
 							<option value="romance"  > 로맨스 </option>
@@ -190,17 +190,17 @@
 							<option value="etc" > 기타 등등 </option>
 						</select>
 						<input type="text" id="search_text" name="search_kw" title = "검색어 입력"
-						size="20" class="inputText">
-						<input type="button" value="검색">
+						size="20" class="inputText" value=${text}>
+<!-- 검색! -->
+						<input type="submit" value="검색" >
 					</fieldset>
 				</form>
 				<div class = "myinfo">
-					<%if (session.getAttribute("userId") == null) { %>
+					<% if( UserSessionUtils.getLoginUserId(request.getSession()) == null) { %>
 				    	<a href="<c:url value='/user/login/form'/>" style="padding-left : 80px;">로그인 </a>
 				    <% } else { %>
-				    	<!-- 나중에 myPage?memberID 형태로 넘어가게 만들기 -->
-				    	
-				    	<a href="<c:url value='/user/myPage'/>" style="padding-left : 50px;"> ${userId} 님  정보</a>
+				    	<!-- 나중에 myPage?memberID 형태로 넘어가게 만들기 -->	
+					 	<a href="<c:url value='/user/myPage'/>" style="padding-left : 50px;"> ${userId} 님  정보</a>
 				    	<span> | </span>
 				    	<a href="<c:url value='/user/logout'/>"> 로그아웃</a>
 					<% } %>
