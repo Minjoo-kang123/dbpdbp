@@ -82,8 +82,8 @@ public class bookManager {
 	  }
 	 
 	
-	public int returniBook(int bookID) throws SQLException, BookNotFoundException {
-		rentalInfo rInfo = findRentInfo(bookID);
+	public int returniBook(int rentalID) throws SQLException, BookNotFoundException {
+		rentalInfo rInfo = findRentInfo(rentalID);
 		return rBookDAO.returnBook(rInfo);
 	}
 

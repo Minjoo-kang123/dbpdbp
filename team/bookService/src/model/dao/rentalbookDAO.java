@@ -164,6 +164,9 @@ public class rentalbookDAO {
 			String query2 = "Update rentalInfo set state = 0 where rentalID = ?";
 			Object[] param2 = new Object[] { rInfo.getRentalID() };
 			
+			String query3 = "Update rentalInfo set returndate = sysdate where rentalID = ?";
+			Object[] param3 = new Object[] { rInfo.getRentalID() };
+			
 			try {	
 				jdbcUtil.setSqlAndParameters(query1, param1);
 				int result1 = jdbcUtil.executeUpdate();	
@@ -174,6 +177,12 @@ public class rentalbookDAO {
 				jdbcUtil.setSqlAndParameters(query2, param2);
 				int result2 = jdbcUtil.executeUpdate();	
 				if(result2 != 1) {
+					throw new Exception();
+				}
+				
+				jdbcUtil.setSqlAndParameters(query3, param3);
+				int result3 = jdbcUtil.executeUpdate();	
+				if(result3 != 1) {
 					throw new Exception();
 				}
 				

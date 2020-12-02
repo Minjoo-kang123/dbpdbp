@@ -17,11 +17,11 @@ public class ReturniBookController implements Controller {
 	  @Override
 	  public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		  
-		   int bookID = Integer.valueOf(request.getParameter("bookID"));
-		   log.debug("Update rentalInfo (return): {}", bookID);
+		   int rentalID = Integer.valueOf(request.getParameter("rentalID"));
+		   log.debug("Update rentalInfo (return): {}", rentalID);
 
 		   bookManager manager = bookManager.getInstance();
-		   manager.returniBook(bookID);			
+		   manager.returniBook(rentalID);			
 		   return "redirect:/user/myPage";	
 	  }
 
