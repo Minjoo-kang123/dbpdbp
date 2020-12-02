@@ -31,7 +31,8 @@ public class RequestMapping {
         
         mappings.put("/book/info", new BookInfoController());
         mappings.put("/book/info/form", new ForwardController("/book/bookInfoPage.jsp"));
-       
+        mappings.put("/user/book/rental", new RentalBookController());
+        
         mappings.put("/user/myPage", new LoadingMyInfoController());
         
         mappings.put("/user/rbook/info", new LoadingMyrBookController());

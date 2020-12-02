@@ -3,6 +3,7 @@ package model.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import model.Member;
 import model.rentalBook;
 import model.rentalInfo;
 import model.dao.rentalbookDAO;
@@ -23,14 +24,7 @@ public class bookManager {
 	public static bookManager getInstance() {
 		return bookMan;
 	}
-	/*
-	public int createRBook(Member member) throws SQLException, ExistingUserException {
-		if (rBookDAO.existingUser(member.getMemberID()) == true) {
-			throw new ExistingUserException(member.getMemberID() + "는 존재하는 아이디입니다.");
-		}
-		return memberDAO.register(member);
-	}
-	*/
+
 	
 	public int createRBook(rentalBook rbook)throws SQLException, BookNotFoundException {
 		if (rBookDAO.existingBookInfo(rbook.getBookInfoID()) != true) {
@@ -82,6 +76,10 @@ public class bookManager {
 	public int returniBook(int bookID) throws SQLException, BookNotFoundException {
 		rentalInfo rInfo = findRentInfo(bookID);
 		return rBookDAO.returnBook(rInfo);
+	}
+
+	public int rental(int rBookID, String sellerID, String rentalerID) throws SQLException, MemberNotFoundException {
+		return rBookDAO.rental(rBookID, sellerID, rentalerID);
 	}
 
 	

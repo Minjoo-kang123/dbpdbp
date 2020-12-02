@@ -2,12 +2,22 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="controller.user.*" %>
+<script type="text/javascript">
+	function rental() {
+		var form = document.rForm;
+		var answer;
+		answer = confirm("해당 도서를 대여하시겠습니까?");
+		if(answer == true)
+			form.submit();
+
+	}
+</script>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <!-- 책 개인 페이지 _ 상품 상세 등. -->
-<title> bookinfo 객체에서 name 나오게 변환 예정.</title>
+<title> ${book.getBookname()} _도서페이지</title>
 <style>
 	body, div, span, p, a, font, ul, li, fieldset, form, legend, table {
 		margin : 0;
@@ -273,6 +283,9 @@
 		<div id="container" class="main clearfix">
 			<div class="main_content">
 				<section id = "section">
+					<c:if test="${LackPoint || Exception}">
+	      				<font color="red"><c:out value="${exception.getMessage()}" /></font>
+	   				 </c:if>
 					<div class="bookInfo">
 						<div class="bookCover">
 							<img src="./images/쏼라쏼라" alt="책 표지" class="coverImage">
@@ -292,7 +305,7 @@
 					<div class ="rentalBookList">
 						<!-- 아래 틀을 jstl의 반복문을 사용해서 반복해서 보여주기. ~ 리스트 목록 / 10개 이상 존재 시 다음 페이지. -->
 						<div class="rentalItem">
-							<form class = "rentalForm" name = "rForm">
+							<form class = "rentalForm" name = "rForm" method="POST" action="<c:url value='/user/book/rental'/>">
 								<c:forEach var="rentalBook" items="${rbList}">
 								<fieldset>
 									<div class="bookCover">
@@ -301,7 +314,13 @@
 									
 									<div class="rentalInfoDesc">
 											<p> 아이디: ${rentalBook.getSellerID() }
-											<p> 상태: ${rentalBook.getState() }
+											<p> 상태: 
+												<c:if test="${rentalBook.state eq 1}">
+													대여 중
+												</c:if>
+												<c:if test="${rentalBook.state eq 0}">
+													대여 가능
+												</c:if>
 											<p> 포인트: ${rentalBook.getPoint() }
 											<p> ${rentalBook.getExplain() }
 									</div>
@@ -314,7 +333,18 @@
 									</div>
 									-->
 									<div class="rButton">
-										<input type = "button" value="대여하기"> <!-- 대여 시 원할 경우 팝업창 띄우기 -->
+										<input type="hidden" name="bookinfoID" value="${rentalBook.bookInfoID}">
+										<input type="hidden" name = "rBookid" value="${rentalBook.bookID}">
+										<c:if test="${rentalBook.state eq 0}">
+											<% if( UserSessionUtils.getLoginUserId(request.getSession()) != null) { %>
+												<input type = "button" value="대여하기" onClick="rental()">
+											<%} else { %>
+												<input type = "button" value="대여하기" disabled>
+											<% } %>
+										</c:if>
+										<c:if test="${rentalBook.state eq 1}">
+											<input type = "button" value="대여 중" disabled>
+										</c:if>
 									</div>
 								</fieldset>
 								</c:forEach>

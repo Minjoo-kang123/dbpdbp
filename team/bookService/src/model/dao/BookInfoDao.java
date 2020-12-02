@@ -186,25 +186,6 @@ public class BookInfoDao {
 			return false;
 		}
 		
-		//bookInfo에 있는 책정보에서 해당 책의 rental count를 1 더해줌.
-		public int plusRentalCnt(int bookID) throws SQLException{
-			rentalbookDAO retalbookdao = new rentalbookDAO();
-			rentalBook rtBook = retalbookdao.findRentBook(bookID);
-			String query = "Update bookInfo set rentalCnt = rentalCnt + 1 where bookinfoID = ?";
-			Object[] param = new Object[] { rtBook.getBookInfoID() };
-					
-			try {	
-				jdbcUtil.setSqlAndParameters(query, param);
-				int result = jdbcUtil.executeUpdate();	
-				return result;
-			} catch (Exception ex) {
-				jdbcUtil.rollback();
-				ex.printStackTrace();
-			} finally {		
-				jdbcUtil.commit();
-				jdbcUtil.close();	// resource 반환
-			}		
-			return 0;
-		}
+		
 
 }

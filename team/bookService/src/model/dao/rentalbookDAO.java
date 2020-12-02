@@ -11,6 +11,8 @@ import java.util.List;
 
 import model.*;
 import model.dao.BookInfoDao;
+import model.service.MemberNotFoundException;
+import model.service.memberManager;
 
 public class rentalbookDAO {
 	private JDBCUtil jdbcUtil = null;
@@ -153,75 +155,6 @@ public class rentalbookDAO {
 		}
 		
 		
-		//대여 정보가 들어있는 RentalInfo에 새로운 대여정보를 삽입.
-		public int insertRentalInfo(int bookID, String memberID) throws SQLException{
-			rentalBook rtBook = findRentBook(bookID);
-			
-			Calendar rentalD = Calendar.getInstance();
-			rentalD.setTime(new Date());
-			
-			Calendar returnD = Calendar.getInstance();
-			returnD.setTime(new Date());
-			returnD.add(Calendar.DATE, 14);
-			
-			//rentalInfo insert
-			String query1 = "Insert into rentalInfo values(seq_rentalID.NEXTVAL, ?, ?, ?, ?, ?, 1)";
-			Object[] param1 = new Object[] { rentalD, returnD, rtBook.getSellerID(), memberID, bookID };
-			
-			try {	
-				jdbcUtil.setSqlAndParameters(query1, param1);
-				int result = jdbcUtil.executeUpdate();	
-				return result;
-			} catch (Exception ex) {
-				jdbcUtil.rollback();
-				ex.printStackTrace();
-			} finally {		
-				jdbcUtil.commit();
-				jdbcUtil.close();	// resource 반환
-			}		
-			return 0;
-			
-		}
-		
-		// RentalBook의 대여상태를 true로 update
-		public int updateRentalBook_state(int bookID) throws SQLException{
-			String query = "Update rentalBook set state = 1 where bookID = ?";
-			Object[] param = new Object[] { bookID };
-			
-			try {	
-				jdbcUtil.setSqlAndParameters(query, param);
-				int result = jdbcUtil.executeUpdate();	
-				return result;
-			} catch (Exception ex) {
-				jdbcUtil.rollback();
-				ex.printStackTrace();
-			} finally {		
-				jdbcUtil.commit();
-				jdbcUtil.close();	// resource 반환
-			}		
-			return 0;
-		}
-		
-		//rentBook 대여하기. : 1.rentalInfo에 새 레코드 추가. 2. rentalBook의 상태를 true로 바꿈. 3. 책 정보의 rentalCnt를 1 추가.
-		public void rentBook(int bookID, String memberID) throws SQLException{
-			int insertR = insertRentalInfo(bookID, memberID);
-			BookInfoDao bookInfoDao = new BookInfoDao();
-			
-			if(insertR != 0) {
-				int updateStateR = updateRentalBook_state(bookID);
-				if(updateStateR != 0) {
-					int plusCntR = bookInfoDao.plusRentalCnt(bookID);
-					if(plusCntR == 0) {
-						System.out.println("ERROR! update plus Bookinfo's State Fail!");
-					}
-				} else {
-					System.out.println("ERROR! update RentalBook State Fail!");
-				}
-			} else {
-				System.out.println("ERROR! insert RentalInfo Fail!");
-			}
-		}
-		
 		//rentBook 반납하기. : rentalBook의 상태를 false로 바꿈. + 여기에  rentalInfo도 상태 바꿔주는 작업 필요.
 		public int returnBook(rentalInfo rInfo) throws SQLException {
 			
@@ -306,6 +239,72 @@ public class rentalbookDAO {
 				jdbcUtil.close();		// resource 반환
 			}
 			return false;
+		}
+
+
+		public int rental(int rBookID, String sellerID, String rentalerID) throws SQLException, MemberNotFoundException {
+			
+			//bookinfoID 알아내기 위한 rentalBook 객체
+			rentalBook rtBook = findRentBook(rBookID);
+			
+			String query1 = "Update bookInfo set rentalCnt = rentalCnt + 1 where bookinfoID = ?";
+			Object[] param1 = new Object[] { rtBook.getBookInfoID() };
+			
+			String query2 = "Update rentalBook set state = 1 where bookID = ?";
+			Object[] param2 = new Object[] { rBookID };
+			
+			String query3 = "Update Member set point = point - ? where MEMBERID = ?";
+			Object[] param3 = new Object[] { rtBook.getPoint(), rentalerID };
+			
+			
+			String query4 = "Update Member set point = point + ? where MEMBERID = ?";
+			Object[] param4 = new Object[] { rtBook.getPoint(), sellerID };
+			
+			String query5 = "Insert into rentalInfo values(seq_rentalID.NEXTVAL, sysdate, sysdate + 14, ?, ?, ?, 1)";
+			Object[] param5 = new Object[] { sellerID, rentalerID, rBookID };
+			
+			try {	
+				
+				jdbcUtil.setSqlAndParameters(query1, param1);
+				int result1 = jdbcUtil.executeUpdate();	
+				if(result1 != 1) {
+					throw new Exception();
+				}
+				
+				jdbcUtil.setSqlAndParameters(query2, param2);
+				int result2 = jdbcUtil.executeUpdate();	
+				if(result2 != 1) {
+					throw new Exception();
+				}
+				
+				jdbcUtil.setSqlAndParameters(query3, param3);
+				int result3 = jdbcUtil.executeUpdate();	
+				if(result3 != 1) {
+					throw new Exception();
+				}
+				
+				jdbcUtil.setSqlAndParameters(query4, param4);
+				int result4 = jdbcUtil.executeUpdate();	
+				if(result4 != 1) {
+					throw new Exception();
+				}
+				
+				jdbcUtil.setSqlAndParameters(query5, param5);
+				int result5 = jdbcUtil.executeUpdate();	
+				if(result5 != 1) {
+					throw new Exception();
+				}
+	
+				return 1;
+			} catch (Exception ex) {
+				jdbcUtil.rollback();
+				ex.printStackTrace();
+			} finally {		
+				jdbcUtil.commit();
+				jdbcUtil.close();	// resource 반환
+			}		
+			return 0;
+			
 		}
 
 		

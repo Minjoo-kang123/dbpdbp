@@ -17,6 +17,15 @@ public class BookInfoController implements Controller{
 	@Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {	
     	String bookInfoID = request.getParameter("bookID");
+    	
+    	//검색으로 들어온게 아니라 rentalController에서 호출된 경우
+    	if(bookInfoID == null) {
+    		bookInfoID = (String) request.getAttribute("bookID"); 
+    		
+    		request.setAttribute("LackPoint", request.getAttribute("LackPoint"));
+    		request.setAttribute("Exception", request.getAttribute("Exception"));
+			request.setAttribute("exception", request.getAttribute("exception"));
+    	}
 		bookInfo book = new bookInfo();
 		List<rentalBook> rbList = null;
 		
@@ -35,6 +44,7 @@ public class BookInfoController implements Controller{
 		request.setAttribute("rbList", rbList);
 		request.setAttribute("text", request.getParameter("text"));
 		request.setAttribute("stype", request.getParameter("stype"));
+		
 		
     	return "/book/info/form";	
 		
