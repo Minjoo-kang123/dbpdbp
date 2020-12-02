@@ -283,9 +283,11 @@
 		<div id="container" class="main clearfix">
 			<div class="main_content">
 				<section id = "section">
-					<c:if test="${LackPoint || Exception}">
+					<div style = "margin-left : 100px; margin-top : 5px; margin-bottom : 5px;">
+					<c:if test="${RentalException || Exception}">
 	      				<font color="red"><c:out value="${exception.getMessage()}" /></font>
 	   				 </c:if>
+					</div>
 					<div class="bookInfo">
 						<div class="bookCover">
 							<img src="./images/쏼라쏼라" alt="책 표지" class="coverImage">

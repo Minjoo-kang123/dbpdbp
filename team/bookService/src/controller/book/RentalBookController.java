@@ -31,11 +31,11 @@ public class RentalBookController implements Controller {
 			rentaler = mManager.findMember(memberID);
     		
 			if(rentaler.getPoint() < rbook.getPoint()){
-                throw new RentalException(bookID + "책을 빌리기에 rentaler의 보유 포인트가 부족합니다.");
+                throw new RentalException("<오류> bookID : " + bookID + " _책을 빌리기에 rentaler의 보유 포인트가 부족합니다.");
             }
 			
 			if(rentaler.getMemberID().equalsIgnoreCase(seller.getMemberID())) {
-				 throw new RentalException(bookID + "자신이 올린 책은 대여하실 수 없습니다.");
+				 throw new RentalException("<오류> bookID : " + bookID + " _자신이 올린 책은 대여하실 수 없습니다.");
 			}
 			
 			if(bManager.rental(rbook.getBookID(), seller.getMemberID(), rentaler.getMemberID()) > 0) {
@@ -43,11 +43,11 @@ public class RentalBookController implements Controller {
 				request.setAttribute("bookID", rbook.getBookInfoID());
 				return "/book/info";
 			} else {
-				throw new RentalException(bookID + "대여 오류");
+				throw new RentalException("<오류> bookID : " + bookID + " _대여 오류 _ 관리자에게 문의주세요");
 			}
 			
 		} catch (RentalException e) {
-			request.setAttribute("LackPoint", true);
+			request.setAttribute("RentalException", true);
 			request.setAttribute("exception", e);
 			request.setAttribute("bookID", rbook.getBookInfoID());
             return "/book/info";	
