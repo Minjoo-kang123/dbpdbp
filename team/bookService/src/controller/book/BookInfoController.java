@@ -22,6 +22,7 @@ public class BookInfoController implements Controller{
     	if(bookInfoID == null) {
     		bookInfoID = (String) request.getAttribute("bookID"); 
     		
+    		request.setAttribute("rentalOK", request.getAttribute("rentalOK"));
     		request.setAttribute("RentalException", request.getAttribute("RentalException"));
     		request.setAttribute("Exception", request.getAttribute("Exception"));
 			request.setAttribute("exception", request.getAttribute("exception"));
