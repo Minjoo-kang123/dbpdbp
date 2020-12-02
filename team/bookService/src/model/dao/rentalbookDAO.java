@@ -242,29 +242,34 @@ public class rentalbookDAO {
 		}
 
 
+		//rentalBook 대여하기 기능 
 		public int rental(int rBookID, String sellerID, String rentalerID) throws SQLException, MemberNotFoundException {
 			
-			//bookinfoID 알아내기 위한 rentalBook 객체
+			//해당 대여 도서의 객체를 가져옴.
 			rentalBook rtBook = findRentBook(rBookID);
 			
+			//해당 대여 도서의 도서 정보(bookInfo)에서 해당 책의 대여 횟수 증가 ( 이후 인기순 정렬 등에 사용 예정)
 			String query1 = "Update bookInfo set rentalCnt = rentalCnt + 1 where bookinfoID = ?";
 			Object[] param1 = new Object[] { rtBook.getBookInfoID() };
 			
+			//해당 대여 도서의 상태를 대여 중임을 의미하는  1로 update
 			String query2 = "Update rentalBook set state = 1 where bookID = ?";
 			Object[] param2 = new Object[] { rBookID };
 			
+			//대여자의 보유 포인트 값에서 대여도서의 포인트 값 만큼을 빼줌.
 			String query3 = "Update Member set point = point - ? where MEMBERID = ?";
 			Object[] param3 = new Object[] { rtBook.getPoint(), rentalerID };
 			
-			
+			//판매자의 보유 포인트 값에 대여도서의 포인트 값 만큼을 더해줌.
 			String query4 = "Update Member set point = point + ? where MEMBERID = ?";
 			Object[] param4 = new Object[] { rtBook.getPoint(), sellerID };
 			
+			//rentalInfo 테이블에  해당 대여 도서에 대한 기록(관계)을 insert 해줌. (대여번호, 대여일, 반납일, 판매자, 대여자 등 )
 			String query5 = "Insert into rentalInfo values(seq_rentalID.NEXTVAL, sysdate, sysdate + 14, ?, ?, ?, 1)";
 			Object[] param5 = new Object[] { sellerID, rentalerID, rBookID };
 			
+			//위의 쿼리들을 차례로 실행. 예외사항 발생 시 catch 문에서 rollback 해줌.
 			try {	
-				
 				jdbcUtil.setSqlAndParameters(query1, param1);
 				int result1 = jdbcUtil.executeUpdate();	
 				if(result1 != 1) {
@@ -294,7 +299,6 @@ public class rentalbookDAO {
 				if(result5 != 1) {
 					throw new Exception();
 				}
-	
 				return 1;
 			} catch (Exception ex) {
 				jdbcUtil.rollback();

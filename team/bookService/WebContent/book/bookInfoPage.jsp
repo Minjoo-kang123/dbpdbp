@@ -284,8 +284,13 @@
 			<div class="main_content">
 				<section id = "section">
 					<div style = "margin-left : 100px; margin-top : 5px; margin-bottom : 5px;">
+					<!-- RentalBookController에서 예외가 발생되어 넘어왔다면, 이유 출력해줌. -->
 					<c:if test="${RentalException || Exception}">
 	      				<font color="red"><c:out value="${exception.getMessage()}" /></font>
+	   				 </c:if>rentalOK
+	   				 <!-- RentalBookController에서 대여 성공할 경우 메세지 출력. -->
+					<c:if test="${rentalOL}">
+	      				<<font color="blue"> [대여 성공! 반납일은  14일 후 입니다.]</font>
 	   				 </c:if>
 					</div>
 					<div class="bookInfo">

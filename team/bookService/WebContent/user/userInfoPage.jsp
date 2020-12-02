@@ -304,12 +304,14 @@
 							</div>
 						</div>
 					</div>
-					<div id="userInfo" style="colocr : black;"> 
+					<div id="userInfo"> 
 						<p>개인 정보</p>
-						<p>
+						<font color="black">
 						이름 : ${curMember.name} </br>
-						이메일 : ${curMember.email}
-						</p>
+						이메일 : ${curMember.email} </br>
+						주소 : ${curMember.address} </br>
+						포인트 : ${curMember.point} </br>
+						</font>
 					</div>
 				</section>
 			</div>
