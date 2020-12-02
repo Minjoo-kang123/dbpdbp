@@ -21,6 +21,7 @@ public class LoadingMyiBookController implements Controller {
 	        }
 	    	
 	    	int bookID = Integer.valueOf(request.getParameter("ibookID"));
+	    	int rentalID = Integer.valueOf(request.getParameter("irentalID"));
 	    	
 			bookManager  bManager = bookManager.getInstance();
 			BookInfoManager biManager = BookInfoManager.getInstance();
@@ -32,7 +33,7 @@ public class LoadingMyiBookController implements Controller {
 	    	try {
 	    		rBook = bManager.findRentBook(bookID);
 	    		bInfo = biManager.findBookInfo(rBook.getBookInfoID());
-	    		rInfo = bManager.findRentInfo(bookID);
+	    		rInfo = bManager.findRentInfo(rentalID);
 	    		
 			} catch (BookNotFoundException e) {				
 		        return "redirect:/user/myPage";

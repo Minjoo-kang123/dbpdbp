@@ -283,6 +283,7 @@
 											<c:if test="${ibook.state == 1}">		  	
 								  		 		<td align="center"> <a href ="<c:url value='/user/ibook/info'>
 						  		 					<c:param name="ibookID" value="${ibook.bookID}" />
+						  		 					<c:param name="irentalID" value="${ibook.rentalID}" />
 						  		 				</c:url>"> ${ibook.bookname} </a> , </td>
 					  		 				</c:if>
 							  			</c:forEach>
@@ -296,6 +297,7 @@
 											<c:if test="${ibook.state == 0}">		  	
 								  		 		<td align="center"> <a href ="<c:url value='/user/ibook/info'>
 						  		 					<c:param name="ibookID" value="${ibook.bookID}" />
+						  		 					<c:param name="irentalID" value="${ibook.rentalID}" />
 						  		 				</c:url>"> ${ibook.bookname} </a> , </td>
 					  		 				</c:if>
 							  			</c:forEach>

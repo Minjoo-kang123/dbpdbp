@@ -34,7 +34,7 @@ public class LoadingMyrBookController implements Controller {
 	    		rBook = bManager.findRentBook(bookID);
 	    		bInfo = biManager.findBookInfo(rBook.getBookInfoID());
 	    		if(rBook.getState() == 1)
-	    			rInfo = bManager.findRentInfo(bookID);
+	    			rInfo = bManager.findRentInfo(bookID, rBook.getState());
 				
 			} catch (BookNotFoundException e) {				
 		        return "redirect:/user/myPage";

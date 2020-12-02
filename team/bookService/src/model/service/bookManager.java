@@ -65,13 +65,22 @@ public class bookManager {
 		return this.rBookDAO;
 	}
 
-	public rentalInfo findRentInfo(int bookID) throws SQLException, BookNotFoundException {
-		rentalInfo rInfo = rBookDAO.findRentInfo(bookID);
+	public rentalInfo findRentInfo(int rentalID) throws SQLException, BookNotFoundException {
+		rentalInfo rInfo = rBookDAO.findRentInfo(rentalID);
 		if (rInfo == null) {
-			throw new BookNotFoundException(bookID + "는 존재하지 않는 북아이디입니다.");
+			throw new BookNotFoundException(rentalID + "는 존재하지 않는 렌탈ㄴ북아이디입니다.");
 		}		
 		return rInfo;
 	}
+	
+	  public rentalInfo findRentInfo(int bookID, int state) throws SQLException, BookNotFoundException {
+			rentalInfo rInfo = rBookDAO.findRentInfo(bookID, state);
+			if (rInfo == null) {
+				throw new BookNotFoundException(bookID + "는 존재하지 않는 북아이디입니다.");
+			}		
+			return rInfo;
+	  }
+	 
 	
 	public int returniBook(int bookID) throws SQLException, BookNotFoundException {
 		rentalInfo rInfo = findRentInfo(bookID);

@@ -189,20 +189,20 @@ public class rentalbookDAO {
 		}
 
 
-		public rentalInfo findRentInfo(int bookID) {
+		public rentalInfo findRentInfo(int rentalID) {
 			
-			String query = "select rentalid, sellerid, rentalerid, rentalDate, returnDate, bookname, r.point as point, i.state as state " + 
+			String query = "select i.bookid as bookid, sellerid, rentalerid, rentalDate, returnDate, bookname, r.point as point, i.state as state " + 
 	          		"from rentalBook r inner join bookinfo b on b.bookinfoID = r.bookinfoID " + 
 	          		"inner join rentalInfo i on i.bookid = r.bookid " +
-	          		"where i.bookid = ? ";
-			jdbcUtil.setSqlAndParameters(query, new Object[] {bookID});
+	          		"where i.rentalid = ? ";
+			jdbcUtil.setSqlAndParameters(query, new Object[] {rentalID});
 			
 			try {
 				ResultSet rs = jdbcUtil.executeQuery();		// query 실행
 				if (rs.next()) {						
-					rentalInfo rInfo = new rentalInfo (		
-						rs.getInt("rentalid"),
-						bookID,
+					rentalInfo rInfo = new rentalInfo (	
+						rentalID,
+						rs.getInt("bookid"),
 						rs.getString("sellerid"),
 						rs.getString("rentalerid"),
 						rs.getDate("rentalDate"),
@@ -221,6 +221,40 @@ public class rentalbookDAO {
 			
 			return null;
 		}
+		
+		public rentalInfo findRentInfo(int bookID, int state) {
+			
+			String query = "select rentalid, sellerid, rentalerid, rentalDate, returnDate, bookname, r.point as point " + 
+	          		"from rentalBook r inner join bookinfo b on b.bookinfoID = r.bookinfoID " + 
+	          		"inner join rentalInfo i on i.bookid = r.bookid " +
+	          		"where i.bookid = ? and i.state = ?";
+			jdbcUtil.setSqlAndParameters(query, new Object[] {bookID, state});
+			
+			try {
+				ResultSet rs = jdbcUtil.executeQuery();		// query 실행
+				if (rs.next()) {						
+					rentalInfo rInfo = new rentalInfo (	
+						rs.getInt("rentalid"),
+						bookID,
+						rs.getString("sellerid"),
+						rs.getString("rentalerid"),
+						rs.getDate("rentalDate"),
+						rs.getDate("returnDate"),
+						rs.getString("bookname"),
+						rs.getInt("point"),
+						state
+					);
+					return rInfo;
+				}
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			} finally {
+				jdbcUtil.close();		// resource 반환
+			}
+			
+			return null;
+		}
+
 
 
 		public boolean existingBookInfo(String bookInfoID) {
