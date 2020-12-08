@@ -15,6 +15,10 @@
 		border : 0;
 		line-height : 130%;
 	}
+	
+	h5{
+		margin-left : 5px;
+	}
 	div { display : block; }
 	
 	ul {
@@ -70,7 +74,7 @@
 		padding-top : 25px;
 		padding-bottom: 50px;
 		min-height : 600px;
-		background-color:#bbd4b8;
+		background-color:#ffffff;
 	}
 	.main {
 		position: relative;
@@ -104,7 +108,7 @@
 	
 	.rentalForm {
 		margin : 0 auto;
-		background-color:#FFFFFF;
+		background-color:#bbd4b8;
 		margin-left : 20px;
 		
 	}
@@ -147,13 +151,13 @@
 		width : 770px;
 		margin: 0 auto;
 		margin-top : 15px;
-		padding-top : 5px;
-		padding-bottom: 5px;
+		padding: 5px;
 		margin-left : 5px;
 		min-height : 160px;
 		background-color:#bbd4b8;
 		position : relative;
 		float : left;
+		border-radius: 10px 10px 10px 10px ;
 	}
 	
 	.rentalForm {
@@ -207,8 +211,9 @@
 	    width: 20%;
 	    height: 600px;
 	    padding: 2px;
+	    border-radius: 10px 10px 10px 10px ;
 	    border: 1px solid #d1d1d1;
-	    background: #fff;
+	    background: #bbd4b8;
 	    margin-right : 10px;
 	}
 	

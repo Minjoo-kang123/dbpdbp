@@ -75,6 +75,9 @@ public class memberManager {
 		return memberDAO.regiSeller(member);
 	}
 	
+	public List<Member> findMemberList() throws SQLException {
+		return memberDAO.findMemberList();
+	}
 	public List<rentalBook> getRentalBookList(String memberID) throws SQLException {
 		return memberDAO.getRentalBookList(memberID);
 	}

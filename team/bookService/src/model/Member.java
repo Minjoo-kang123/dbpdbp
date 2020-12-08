@@ -17,22 +17,7 @@ public class Member {
    }
 
    public Member(String memberID, String password, String name, String email, String phone, int gender, int memberGrade, int sellerGrade,
-         String address, int point) {
-      super();
-      this.memberID = memberID;
-      this.password = password;
-      this.name = name;
-      this.email = email;
-      this.phone = phone;
-      this.gender = gender;
-      this.memberGrade = memberGrade;
-      this.sellerGrade = sellerGrade;
-      this.address = address;
-      this.point = point;
-   }
-   
-   public Member(String memberID, String name, String email, String phone, String password, int gender, 
-	         String address) {
+	         String address, int point) {
 	      super();
 	      this.memberID = memberID;
 	      this.password = password;
@@ -40,12 +25,39 @@ public class Member {
 	      this.email = email;
 	      this.phone = phone;
 	      this.gender = gender;
+	      this.memberGrade = memberGrade;
+	      this.sellerGrade = sellerGrade;
 	      this.address = address;
-	      
-	      this.memberGrade = 0;
-	      this.sellerGrade = null;
-	      this.point = 0;
+	      this.point = point;
 	   }
+	   
+	   public Member(String memberID, String name, String email, String phone, String password, int gender, 
+		         String address) {
+		      super();
+		      this.memberID = memberID;
+		      this.password = password;
+		      this.name = name;
+		      this.email = email;
+		      this.phone = phone;
+		      this.gender = gender;
+		      this.address = address;
+		      
+		      this.memberGrade = 0;
+		      this.sellerGrade = null;
+		      this.point = 0;
+		   }
+   
+   public Member(String memberID, String name, String email, String phone,  
+	         String address) {
+	      super();
+	      this.memberID = memberID;
+	      this.name = name;
+	      this.email = email;
+	      this.phone = phone;
+	      this.address = address;
+	   } //¸â¹ö ¸®½ºÆ®¸¦ À§ÇÑ ¸â¹ö°´Ã¼
+   
+   
 
 
    public String getMemberID() {

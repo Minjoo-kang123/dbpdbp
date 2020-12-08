@@ -197,7 +197,8 @@
 			<div class="topBar_wrap">
 				<div class="topBar">
 					<div class="menu">
-						<a href=".1">공지사항</a>
+				    	<a href="<c:url value='/user/memberlist'/>" >사용자 조회 </a>
+				    <!--<% if( UserSessionUtils.getLoginUserId(request.getSession()) == "admin") { %><% }%>-->
 						<span> | </span>
 						<a href=".2">즐겨찾기</a>
 					</div>
@@ -242,7 +243,7 @@
 					 	<a href="<c:url value='/user/myPage'/>" style="padding-left : 50px;"> ${userId} 님  정보</a>
 				    	<span> | </span>
 				    	<a href="<c:url value='/user/logout'/>"> 로그아웃</a>
-					<% } %>
+					<%} %>
 				</div>
 			</div>
 		</header>

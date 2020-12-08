@@ -172,6 +172,33 @@ public static final int FirstPoint = 0;
        
        return null;
    }
+    
+    /*관리자 Member list를 위한 객체*/
+    public List<Member> findMemberList() throws SQLException {
+        String sql = "SELECT memberId, name, email, phone, address "+ "From Member ";
+		jdbcUtil.setSqlAndParameters(sql, null);		// JDBCUtil에 query문 설정
+					
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
+			List<Member> memberList = new ArrayList<Member>();	// 멤버들의 리스트 생성
+			while (rs.next()) {
+				Member member = new Member(			// Member객체를 생성하여 현재 행의 정보를 저장
+					rs.getString("memberId"),
+					rs.getString("name"),
+					rs.getString("email"),
+					rs.getString("phone"),
+					rs.getString("address"));
+				memberList.add(member);				// List에 User 객체 저장
+			}		
+			return memberList;					
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return null;
+	}
 
     /* 해당 회원의 대여중인 책 정보 리스트 반환 */ //여기서 memberID는 rentalerID
     public List<rentalInfo> getRentalInfoList(String memberID) throws SQLException { 
