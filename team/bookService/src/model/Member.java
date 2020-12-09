@@ -47,7 +47,7 @@ public class Member {
 		      this.point = 0;
 		   }
    
-   public Member(String memberID, String name, String email, String phone,  
+ public Member(String memberID, String name, String email, String phone,  
 	         String address) {
 	      super();
 	      this.memberID = memberID;
@@ -57,7 +57,7 @@ public class Member {
 	      this.address = address;
 	   } //¸â¹ö ¸®½ºÆ®¸¦ À§ÇÑ ¸â¹ö°´Ã¼
    
-   
+ 
 
 
    public String getMemberID() {

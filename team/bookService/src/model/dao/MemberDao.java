@@ -175,22 +175,23 @@ public static final int FirstPoint = 0;
     
     /*관리자 Member list를 위한 객체*/
     public List<Member> findMemberList() throws SQLException {
-        String sql = "SELECT memberId, name, email, phone, address "+ "From Member ";
+        String sql = "SELECT memberId, name, email, phone, address "+ "FROM member ";
 		jdbcUtil.setSqlAndParameters(sql, null);		// JDBCUtil에 query문 설정
 					
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
 			List<Member> memberList = new ArrayList<Member>();	// 멤버들의 리스트 생성
 			while (rs.next()) {
-				Member member = new Member(			// Member객체를 생성하여 현재 행의 정보를 저장
-					rs.getString("memberId"),
-					rs.getString("name"),
-					rs.getString("email"),
-					rs.getString("phone"),
-					rs.getString("address"));
+				Member member = new Member();			// Member객체를 생성하여 현재 행의 정보를 저장
+					member.setMemberID(rs.getString("memberId"));
+					member.setName(rs.getString("name"));
+					member.setEmail(rs.getString("email")); 
+					member.setPhone(rs.getString("phone"));
+					member.setAddress(rs.getString("address"));
+					
 				memberList.add(member);				// List에 User 객체 저장
 			}		
-			return memberList;					
+			return memberList;						
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();
