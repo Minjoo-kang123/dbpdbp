@@ -134,9 +134,12 @@
 		overflow: auto;
 		white-space:normal;
 	}
-	
+	.rentalBookList {
+		position: relative;
+		float : left;
+	}
 	.rentalItem {
-		width : 1020px;
+		width : 680px;
 		margin: 0 auto;
 		margin-top : 15px;
 		padding-top : 5px;
@@ -187,7 +190,25 @@
 	    margin-right : 30px;
 	    
 	}
-
+	
+	#reviewArea{
+		float : right;
+		width : 336px;
+		margin-top : 20px;
+		margin-left : 10px;
+		background-color:#FFFFFF;
+	}
+	#InsertReview{
+		margin-top : 10px;
+		margin-left : 5px;
+		margin-right : 3px;
+		background-color:#FFFFE0;
+	}
+	#bookReviewList{
+		margin-top : 10px;
+		margin-left : 5px;
+		margin-right : 3px;
+	}
 	.list ul {
 		list-style:none;
 	    margin:0;
@@ -356,6 +377,36 @@
 								</fieldset>
 								</c:forEach>
 							</form>
+						</div>
+					</div>
+					<!-- to. 민주님 / 여기서  reviewArea 부분 추가 되었습니다. 디자인 수정 바랍니다. 둥글게 둥글개... -->
+					<div id="reviewArea">
+						<div id="InsertReview">
+							<!-- to. 다솔님 / reviewIForm에서는 리뷰를 추가(insert)하는 작업을 진행합니다. 
+								form에 부분에 action 추가해주시고. 버튼 등의 요소에 onClick()등을 이용하여 기능 추가해 이용해주세요. . -->
+							<form class = "reviewIForm" name = "reviewForm" method="POST" >
+								<input type = "hidden" name = "bookinfoID" value="${book.bookinfoID}">
+								<textarea name = "reviewContent" cols="30" rows="4" placeholder = "해당책을 재밌게 보셨나요??&#13;&#10;리뷰를 입력해주세요."></textarea>
+								<input type="button" value = "입력" >
+							</form>
+						</div>
+						<div id="bookReviewList">
+							<table class = "reviewList">
+								<!-- to.다솔님 / 해당 페이지 bookinfoid를 기준으로 검색한 리뷰를 item를 가져와   c:forEach 이용해서  tr-td 부분 반복해 보여주면 될 듯합니다.
+									검색한 리뷰 리스트는 bookinfoController에서 미리 setAttribute해주세요. 
+								-->
+							
+								<tr>
+									<td> 
+										<div style="border:1px solid gold; width : 137%;">  <!-- 리뷰 아이템 경계선 표시&확인할려고 테두리 줬어요. 디자인시 참고하여 삭제, 바꿔주세요. -->
+											 <h5>어쩌구님 (memberid값) /  별점 : 몇점 </h5>
+											 <h4> 리뷰 내용 출력 </h4>
+										</div>
+									</td>
+								</tr>
+								
+								<!-- 여기까지를 반복문으로,,,, ( 임의로 table 형식으로 보여주게 하였는데. 이부분이나 그 외 변수명 등 편하신데로 표시해주시면 될 듯합니다. -->
+							</table>
 						</div>
 					</div>
 				</section>

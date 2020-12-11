@@ -113,8 +113,17 @@
 	    display : block;
 	}
 	
-	***
-	
+
+	.fInput {
+		width: 300px;
+		height : 25px;
+		font-size : 15px;
+	}
+	.fradio {
+		width: 80px;
+		height : 25px;
+		font-size : 15px;
+	}
 	.list ul {
 		list-style:none;
 	    margin:0;
@@ -214,60 +223,60 @@
 						<%//필요한 정보, rentalBook(bookId) : rBook 얘랑 연계된 rentalInfo rInfo, rentalBook이랑 연계된 bookinfo : bInfo%>
 						<p>* 해당 도서가 대여 중일 경우 포인트, 상태, 책 소개를 수정하실 수 없으며, 글을 내리실 수 없습니다.</p>
 						<form name="form" method="POST" action="<c:url value='/user/rbook/update'/>">
-							<input type="hidden" name = "bookid" value ="${rBook.bookID}">
+							<input type="hidden" name = "bookid" value ="${rBook.bookID}" >
 							<input type="hidden" name = "sellerid" value = "${rBook.sellerID}">
 							<input type="hidden" name = "bookinfoid" value = "${rBook.bookInfoID}">
 							<input type="hidden" name = "image" value = "${rBook.image}">
 							<input type="hidden" name = "state" value = "${rBook.state}">
-							 제목 : <input type="text" name="bookname" value = "${rBook.bookname}" readonly> <br>
-							 출판사 : <input type="text" value = "${bInfo.publisher}" readonly> <br>
-							 작가 : <input type="text" value = " ${bInfo.writer} 저" readonly> <br>
-							 장르 : <input type="text" value = "${bInfo.category}" readonly> <br>
+							 제목 : <input type="text" name="bookname" value = "${rBook.bookname}" class = "fInput" readonly> <br>
+							 출판사 : <input type="text" value = "${bInfo.publisher}" class = "fInput" readonly> <br>
+							 작가 : <input type="text" value = " ${bInfo.writer} 저" class = "fInput" readonly> <br>
+							 장르 : <input type="text" value = "${bInfo.category}" class = "fInput" readonly> <br>
 							<c:if test="${rBook.state ==  1}"> <!-- 대여 중일 경우 -->
-								대여 상태 : <input type="text" name = "rstate" value = "O "  readonly><br>
-								포인트 : <input type="text" name = "rpoint" value = "${rBook.point}" readonly> <br>
-								책 소개 : <input type="text" name = "rexplain" value = "${rBook.explain}" readonly> <br>
+								대여 상태 : <input type="text" name = "rstate" value = "O " class = "fInput" readonly><br>
+								포인트 : <input type="text" name = "rpoint" value = "${rBook.point}" class = "fInput" readonly> <br>
+								책 소개 : <input type="text" name = "rexplain" value = "${rBook.explain}"  class = "fInput" readonly> <br>
 								책 상태 :
 								 	<c:if test="${rBook.condition ==  0}">
-										<input type="radio" name = "condition" value="0" checked disabled"> 상 
-										<input type="radio" name = "condition" value="1" onClick="return(false);"> 중 
-										<input type="radio" name = "condition" value="2" onClick="return(false);"> 하 
+										<label><input type="radio" name = "condition" value="0" class = "fradio" checked disabled"> 상  </label>
+										<label><input type="radio" name = "condition" value="1" class = "fradio" onClick="return(false);"> 중  </label>
+										<label><input type="radio" name = "condition" value="2" class = "fradio" onClick="return(false);"> 하  </label>
 									</c:if>
 									<c:if test="${rBook.condition ==  1}">
-										<input type="radio" name = "condition" value="0" onClick="return(false);"> 상 
-										<input type="radio" name = "condition" value="1" checked disabled"> 중 
-										<input type="radio" name = "condition" value="2" onClick="return(false);"> 하 
+										<label><input type="radio" name = "condition" value="0" class = "fradio" onClick="return(false);"> 상 </label>
+										<label><input type="radio" name = "condition" value="1" class = "fradio" checked disabled"> 중  </label>
+										<label><input type="radio" name = "condition" value="2" class = "fradio" onClick="return(false);"> 하  </label>
 									</c:if>
 									<c:if test="${rBook.condition ==  2}">
-										<input type="radio" name = "condition" value="0" onClick="return(false);"> 상 
-										<input type="radio" name = "condition" value="1" onClick="return(false);"> 중 
-										<input type="radio" name = "condition" value="2" checked disabled"> 하 
+										<label><input type="radio" name = "condition" value="0" class = "fradio" onClick="return(false);"> 상 </label>
+										<label><input type="radio" name = "condition" value="1" class = "fradio" onClick="return(false);"> 중  </label>
+										<label><input type="radio" name = "condition" value="2" class = "fradio" checked disabled"> 하  </label>
 									</c:if> <br>
 								*대여자 정보 : 
-									대여자 아이디 : <input type="text" value="${rInfo.rentalerID }" readonly><br>
-									대여일 : <input type="text" value="${rInfo.rentalDate }" readonly><br>
-									반납일 :<input type="text" value="${rInfo.returnDate }" readonly><br>
+									대여자 아이디 : <input type="text" value="${rInfo.rentalerID }" class = "fInput" readonly><br>
+									대여일 : <input type="text" value="${rInfo.rentalDate }" class = "fInput" readonly><br>
+									반납일 :<input type="text" value="${rInfo.returnDate }" class = "fInput" readonly><br>
 								<input type="button" value = "확인" onClick="update()"> 
 							</c:if>
 							<c:if test="${rBook.state ==  0}"> <!-- 대여 중일 아닐 경우 -->
-								대여 상태 : <input type="text" name = "rstate" value = "X " readonly> <br>
-								포인트 : <input type="text" name = "rpoint" value = "${rBook.point}" > <br>
-								책 소개 : <input type="text" name = "rexplain" value = "${rBook.explain}"> <br>
+								대여 상태 : <input type="text" name = "rstate" value = "X " class = "fInput" readonly> <br>
+								포인트 : <input type="text" name = "rpoint" value = "${rBook.point}" class = "fInput" > <br>
+								책 소개 : <input type="text" name = "rexplain" value = "${rBook.explain}" class = "fInput"> <br>
 								책 상태 :
 								 	<c:if test="${rBook.condition ==  0}">
-										<input type="radio" name = "condition" value="0" checked> 상 
-										<input type="radio" name = "condition" value="1" > 중 
-										<input type="radio" name = "condition" value="2" > 하 
+										<label><input type="radio" name = "condition" value="0" class = "fradio" checked> 상   </label>
+										<label><input type="radio" name = "condition" value="1" class = "fradio" > 중  </label>
+										<label><input type="radio" name = "condition" value="2" class = "fradio" > 하  </label>
 									</c:if>
 									<c:if test="${rBook.condition ==  1}">
-										<input type="radio" name = "condition" value="0" > 상 
-										<input type="radio" name = "condition" value="1" checked > 중 
-										<input type="radio" name = "condition" value="2" > 하 
+										<label><input type="radio" name = "condition" value="0" class = "fradio" > 상  </label>
+										<label><input type="radio" name = "condition" value="1" class = "fradio" checked > 중  </label>
+										<label><input type="radio" name = "condition" value="2" class = "fradio" > 하  </label>
 									</c:if>
 									<c:if test="${rBook.condition ==  2}">
-										<input type="radio" name = "condition" value="0" > 상 
-										<input type="radio" name = "condition" value="1"> 중 
-										<input type="radio" name = "condition" value="2" checked> 하 
+										<label><input type="radio" name = "condition" value="0" class = "fradio" > 상  </label>
+										<label><input type="radio" name = "condition" value="1" class = "fradio"> 중  </label>
+										<label><input type="radio" name = "condition" value="2" class = "fradio" checked> 하 </label>
 									</c:if> <br>
 								<input type="button" value = "수정/확인" onClick="update()">
 								<input type="button" value = "도서 내리기" onClick="remove('<c:url value='/user/rbook/remove' />')">  
@@ -291,4 +300,4 @@
 		
 	</div>
 </body>
-</html>	
+</html>

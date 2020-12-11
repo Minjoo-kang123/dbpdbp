@@ -19,12 +19,17 @@ public class RequestMapping {
     	// �� uri�� �����Ǵ� controller ��ü�� ���� �� ����
         mappings.put("/home", new ForwardController("homePage01.jsp"));
         
+        mappings.put("/user/update", new UpdateUserController());
+        mappings.put("/user/remove", new RemoveUserController());
+        
         mappings.put("/user/login/form", new ForwardController("/user/loginForm.jsp"));
         mappings.put("/user/login", new LoginController());
         mappings.put("/user/logout", new LogoutController());
        
         mappings.put("/user/register/form", new ForwardController("/user/registerForm.jsp"));
         mappings.put("/user/register", new registerController());
+        
+        mappings.put("/user/register/seller", new regiSellerController());
         
         mappings.put("/user/memberlist", new ListUserController());
         mappings.put("/user/booklist", new ListBookController());

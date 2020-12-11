@@ -102,7 +102,12 @@
 	    display : block;
 	}
 	
-	***
+
+	.fInput {
+		width: 300px;
+		height : 25px;
+		font-size : 15px;
+	}
 	
 	.list ul {
 		list-style:none;
@@ -204,15 +209,15 @@
 						<form name="form" method="POST" action="<c:url value='/user/myPage'/>">
 							<input type="hidden" name="rentalID" value = "${rInfo.rentalID}">
 							 <input type="hidden" name="bookID" value = "${rInfo.bookID}">
-							 제목 : <input type="text" name="bookname" value = "${rBook.bookname}" readonly> <br>
-							 출판사 : <input type="text" value = "${bInfo.publisher}" readonly> <br>
-							 작가 : <input type="text" value = " ${bInfo.writer} 저" readonly> <br>
-							 장르 : <input type="text" value = "${bInfo.category}" readonly> <br>
+							 제목 : <input type="text" name="bookname" value = "${rBook.bookname}" class = "fInput" readonly> <br>
+							 출판사 : <input type="text" value = "${bInfo.publisher}" class = "fInput" readonly> <br>
+							 작가 : <input type="text" value = " ${bInfo.writer} 저" class = "fInput" readonly> <br>
+							 장르 : <input type="text" value = "${bInfo.category}" class = "fInput" readonly> <br>
 							 * 판매자 정보 : <br>
-							 판매자 아이디 : <input type="text" value = "${rInfo.sellerID}" readonly> <br>
-							 대여일 : <input type="text" value = "${rInfo.rentalDate}" readonly> <br>
-							 반납일 : <input type="text" value = "${rInfo.returnDate}" readonly> <br>
-							 포인트 : <input type="text" value = "${rInfo.point}" readonly> <br>
+							 판매자 아이디 : <input type="text" value = "${rInfo.sellerID}" class = "fInput" readonly> <br>
+							 대여일 : <input type="text" value = "${rInfo.rentalDate}" class = "fInput" readonly> <br>
+							 반납일 : <input type="text" value = "${rInfo.returnDate}" class = "fInput" readonly> <br>
+							 포인트 : <input type="text" value = "${rInfo.point}" class = "fInput" readonly> <br>
 							 <br>
 							 <input type="button" value = "확인" onClick="check()">
 							<c:if test="${rInfo.state eq 1}">	

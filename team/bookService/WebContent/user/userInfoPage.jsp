@@ -12,6 +12,33 @@
 		var form = document.form;
 		form.submit();
 	}
+	function checkSeller(){
+		alert("먼저 판매자 등록부터 해주세요.")
+	}
+	function regiSeller(targetUri){
+		var con = confirm("판매자로 등록하시겠습니까? \n 대여도서를 올릴 수 있게 됩니다.")
+		if(con == true){
+			var form = document.form;
+			form.action = targetUri;
+			form.submit();
+		}
+	}
+	function updateInfo(){
+		var form2 = document.form2;
+		form2.submit();
+	}
+	function remove(targetUri) {
+		var con = confirm("정말 탈퇴하시겠습니까? \n 올리신 대여도서 글을 내려갑니다.")
+		if(con == true){
+			var form2 = document.form2;
+			form2.action = targetUri;
+			form2.submit();
+		}
+	}
+	function warning() {
+		alert("거래 중인 도서가 있어 탈퇴할 수 없습니다.\n 거래 중 혹은 대여 중인 도서가 반납처리된 후 다시 시도해주세요.")
+		
+	}
 </script>
 <style>
 	body, div, span, p, a, font, ul, li, fieldset, form, legend, table {
@@ -50,7 +77,6 @@
 		display : inline-block;
 	}
 	
-
 	
 	.header_wrap {
 		width : 1100px;
@@ -125,6 +151,11 @@
 		min-height : 350px;
 		overflow: hidden;
 	}
+	.fButton {
+		float : right;
+		margin-right : 20px;
+		margin-top : 2px;
+	}
 	#lendBookList {
 		background-color: #d5e3d5;
 		min-height : 175px;
@@ -153,6 +184,7 @@
 		margin-right : 10px;
 		color : #FFFFFF;
 		font-weight : bolder;
+		padding-left : 20px;
 	}
 	
 	.frame1 {
@@ -258,29 +290,59 @@
 							 유저 대표 이미지<p>
 							 <img src="./images/쏼라쏼라" alt="기본 이미지"> 
 						 </div>
-						<div id="userBookList">				
+						<div id="userBookList">	<%! Boolean myDeal = false;%>		
 							<div id="lendBookList"> 
-								대여하는 책
+								내가 올린 대여 도서 
+								  <form name="form" class ="fButton" method="POST" action="<c:url value='/user/rbook/upload/form'/>">
+									<input type="hidden" name = "memberid" value="${curMember.memberID}">
+									<c:if test="${seller eq 1 }"> 
+										<input type="button" value="새 대여도서 올리기" onClick="uploadBook()"> &nbsp; | &nbsp;
+										<input type="button" value="판매자 등록" onClick="regiSeller()" disabled>
+									</c:if>
+									<c:if test="${seller eq 0}">
+							  			<input type="button" value="새 대여도서 올리기" onClick="checkSeller()"> &nbsp; | &nbsp;
+							  			<input type="button" value="판매자 등록" onClick="regiSeller('<c:url value='/user/register/seller'/>')">
+							  		</c:if>
+							 	 </form>
 								<table>
+									<!--  도서 목록이 많을 경우 짤릴 것을 대비해 ... 생략 기호 포함, 목록 보여줄 때 까지 늘리는 법 생각. -->
 									 <tr>
-										<c:forEach var="rbook" items="${rBookList}">  			  	
-							  		 		<td align="center"> <a href ="<c:url value='/user/rbook/info'>
-					  		 					<c:param name="rbookID" value="${rbook.bookID}" />
-					  		 				</c:url>"> ${rbook.bookname} </a> , </td>
+										<c:forEach var="rbook" items="${rBookList}">  
+											<c:if test="${rbook.state == 0}">			  	
+								  		 		<td align="center"> <a href ="<c:url value='/user/rbook/info'>
+						  		 					<c:param name="rbookID" value="${rbook.bookID}" />
+						  		 				</c:url>"> ${rbook.bookname} </a> &nbsp; | &nbsp; </td>
+					  		 				</c:if>
 							  			</c:forEach>
 							  		</tr>
 							  	</table> 
-							  <form name="form" method="POST" action="<c:url value='/user/rbook/upload/form'/>">
-									<input type="hidden" name = "memberid" value="${curMember.memberID}">
-							  		<input type="button" value="새 대여도서 올리기" onClick="uploadBook()">
-							  </form>
+							  	</br>
+							  	거래 중인 대여 도서 
+							  	<table>
+									 <tr>
+										<c:forEach var="rbook" items="${rBookList}">  
+											<c:if test="${rbook.state == 1}">			 
+												<% myDeal = true; %>	 	
+								  		 		<td align="center"> <a href ="<c:url value='/user/rbook/info'>
+						  		 					<c:param name="rbookID" value="${rbook.bookID}" />
+						  		 				</c:url>"> ${rbook.bookname} </a> &nbsp; | &nbsp; </td>
+					  		 				</c:if>
+							  			</c:forEach>
+							  		</tr>
+							  	</table> 
 							</div>
 							<div id="borrowBookList">
 								대여 중인 책
+								<!-- 리뷰 관리할 버튼 위치 : form에  action 추가. button에 onClick 추가해서 사용하세요. -->
+								<form name="reviewForm" class = "fButton" method="POST" >
+									<input type="hidden" name = "memberid" value="${curMember.memberID}">
+							  		<input type="button" value="내 리뷰 관리">
+							 	 </form>
 								<table>
 									 <tr>
 										<c:forEach var="ibook" items="${rInfoList}">  	
-											<c:if test="${ibook.state == 1}">		  	
+											<c:if test="${ibook.state == 1}">	
+												<% myDeal = true; %>	  	
 								  		 		<td align="center"> <a href ="<c:url value='/user/ibook/info'>
 						  		 					<c:param name="ibookID" value="${ibook.bookID}" />
 						  		 					<c:param name="irentalID" value="${ibook.rentalID}" />
@@ -289,7 +351,7 @@
 							  			</c:forEach>
 							  		</tr>
 							  	</table> 
-							  	<br>
+							  	</br>
 							  	이전에 읽은 책 (대여 완료)
 							  	<table>
 									 <tr>
@@ -313,7 +375,18 @@
 						이메일 : ${curMember.email} </br>
 						주소 : ${curMember.address} </br>
 						포인트 : ${curMember.point} </br>
+						등급 (멤버 / 판매자) : ${curMember.memberGrade} /  ${curMember.sellerGrade} <br>
 						</font>
+						&nbsp;&nbsp;
+						<form name="form2" method="GET" action="<c:url value='/user/update'/>">
+							<input type="button" value="수정하기" onClick="updateInfo()"> &nbsp; | &nbsp;
+							<%if(myDeal == false){ %>
+				  				<input type="button" value="탈퇴하기" onClick="remove('<c:url value='/user/remove'/>')">
+				  			<%} else { %>
+				  				<input type="button" value="탈퇴하기" onClick="warning()">
+				  			<%} %>
+				  			
+						</form>
 					</div>
 				</section>
 			</div>
@@ -332,4 +405,4 @@
 		
 	</div>
 </body>
-</html>	
+</html>							  	

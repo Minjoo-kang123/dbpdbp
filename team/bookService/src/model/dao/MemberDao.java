@@ -40,10 +40,10 @@ public static final int FirstPoint = 0;
    
    /*나중에 나머지 필드도 포함하는 insert, update문 올릴 예정.*/
    public int update(Member member) throws SQLException {
-      String query = "update member set password=?, name=?, address=? "
+      String query = "update member set password=?, name=?, address=?, phone=?, email = ?"
                   + "where memberID=?";
       
-      Object[] param = new Object[] {member.getPassword(), member.getName(), member.getAddress(), member.getMemberID()};
+      Object[] param = new Object[] {member.getPassword(), member.getName(), member.getAddress(), member.getPhone(), member.getEmail(), member.getMemberID()};
       jdbcUtil.setSqlAndParameters(query, param);
       
       try {            
@@ -104,12 +104,25 @@ public static final int FirstPoint = 0;
    }
    
    public int remove(String memberID) throws SQLException {
-         String sql = "DELETE FROM MEMBER WHERE memberID = ?";      
-           jdbcUtil.setSqlAndParameters(sql, new Object[] {memberID});   // JDBCUtil에 delete문과 매개 변수 설정
+	   		String sql1 = "DELETE FROM MEMBER WHERE memberID = ?";   
+	   		Object[] param1 = new Object[] {memberID};
+	   		
+            String sql2 = "DELETE FROM SELLER WHERE memberID = ?";   
+            Object[] param2 = new Object[] {memberID};  // JDBCUtil에 delete문과 매개 변수 설정
            
             try {            
-               int result = jdbcUtil.executeUpdate();   // delete 문 실행
-               return result;
+            	jdbcUtil.setSqlAndParameters(sql2, param2);
+				int result1 = jdbcUtil.executeUpdate();	
+				if(result1 != 1) {
+					throw new Exception();
+				}
+				
+				jdbcUtil.setSqlAndParameters(sql1, param1);
+				int result2 = jdbcUtil.executeUpdate();	
+				if(result2 != 1) {
+					throw new Exception();
+				}
+				
             } catch (Exception ex) {
                jdbcUtil.rollback();
                ex.printStackTrace();
@@ -122,9 +135,9 @@ public static final int FirstPoint = 0;
          
       }
    /* 해당 회원을 SELLER로 등록*/   
-      public int regiSeller(Member member) throws SQLException{
+      public int regiSeller(String memberID) throws SQLException{
          String query = "Insert into seller(memberid, sellergrade)VALUES (?, ?)";
-         Object[] param = new Object[] {member.getMemberID(), member.getSellerGrade()};
+         Object[] param = new Object[] {memberID, 0};
          jdbcUtil.setSqlAndParameters(query, param);
          
          try {
@@ -168,7 +181,11 @@ public static final int FirstPoint = 0;
             mRentalBookList.add(rbook);
          }
          return mRentalBookList;
-      }catch(Exception ex) {}
+      }catch(Exception ex) {
+    	  ex.printStackTrace();
+      } finally {
+			jdbcUtil.close();		// resource 반환
+		}
        
        return null;
    }
@@ -249,6 +266,25 @@ public static final int FirstPoint = 0;
 			jdbcUtil.close();		// resource 반환
 		}
 		return false;
+	}
+
+	public int checkSeller(String memberID) {
+		String sql = "SELECT count(*) from seller where memberid = ? ";
+		
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {memberID});	// JDBCUtil에 query문과 매개 변수 설정
+
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
+			if (rs.next()) {
+				int count = rs.getInt(1);
+				return (count == 1 ? 1 : 0);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return 0;
 	}
    
 }

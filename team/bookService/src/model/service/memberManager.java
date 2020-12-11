@@ -71,8 +71,8 @@ public class memberManager {
 		return this.memberDAO;
 	}
 	
-	public int regiseller(Member member) throws SQLException {
-		return memberDAO.regiSeller(member);
+	public int regiseller(String memberID) throws SQLException {
+		return memberDAO.regiSeller(memberID);
 	}
 	
 	public List<Member> findMemberList() throws SQLException {
@@ -88,6 +88,11 @@ public class memberManager {
 	
 	public boolean existingUser(String memberID) {
 		return memberDAO.existingUser(memberID);
+	}
+
+	public int checkSeller(String memberID) {
+		// TODO Auto-generated method stub
+		return memberDAO.checkSeller(memberID);
 	}
 
 	
