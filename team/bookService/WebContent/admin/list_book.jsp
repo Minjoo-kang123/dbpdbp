@@ -9,10 +9,10 @@
 --%>
 <html>
 <head>
-<title>사용자 조회</title>
+<title>책 리스트 조회</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style>
-		
+	
 	@import url('https://fonts.googleapis.com/css2?family=Gaegu&family=Noto+Sans+KR&family=Yeon+Sung&display=swap');
 	@import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap');
 	
@@ -263,17 +263,17 @@
 	<td>
 	  <table>
 		<tr>
-		  <td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>사용자 조회 - 리스트</b>&nbsp;&nbsp;</td>
+		  <td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>책 목록 조회 - 리스트</b>&nbsp;&nbsp;</td>
 		</tr>
 	  </table>  
 	  <br>		  
 	  <table style="background-color: YellowGreen">
 		<tr>
-		  <td width="190" align="center" bgcolor="E6ECDE" height="22">사용자 ID</td>
-		  <td width="200" align="center" bgcolor="E6ECDE">이름</td>
-		  <td width="200" align="center" bgcolor="E6ECDE">이메일</td>
-		  <td width="200" align="center" bgcolor="E6ECDE">핸드폰</td>
-		  <td width="200" align="center" bgcolor="E6ECDE">주소</td>
+		  <td width="190" align="center" bgcolor="E6ECDE" height="22">책 이름</td>
+		  <td width="200" align="center" bgcolor="E6ECDE">isbn</td>
+		  <td width="200" align="center" bgcolor="E6ECDE">작가</td>
+		  <td width="200" align="center" bgcolor="E6ECDE">출판사</td>
+		  <td width="200" align="center" bgcolor="E6ECDE">장르</td>
 		</tr>
 <%-- 
 	if (userList != null) {	
@@ -283,23 +283,23 @@
 	  while ( userIter.hasNext() ) {
 		User user = (User)userIter.next();
 --%>	  	
-	  <c:forEach var="member" items="${memberList}">  			  	
+	  <c:forEach var="book" items="${bookList}">  			  	
   		<tr>
   		<td width="200" bgcolor="ffffff" style="padding-left: 10">
-			  ${member.memberID}
+			  ${book.bookname}
 		  </td>
   		<td width="200" bgcolor="ffffff" style="padding-left: 10">
-			  ${member.name}
+			  ${book.bookinfoID}
 		  </td>
 		 
 			<td width="200" bgcolor="ffffff" style="padding-left: 10">
-			  ${member.email}
+			  ${book.writer}
 		  </td>
 		  <td width="200" align="center" bgcolor="ffffff" height="20">
-		    ${member.phone} 
+		    ${book.publisher} 
 		  </td>
 		  <td width="200" align="center" bgcolor="ffffff" height="20">
-		    ${member.address} 
+		    ${book.category} 
 		  </td>
 		</tr>
 	  </c:forEach> 
@@ -309,7 +309,6 @@
 --%>	 
 	  </table>	  	 
 	  <br>   
-	  <a href="<c:url value='/user/register/form' />">사용자 추가</a>
 	</td>
   </tr>
 </table>  

@@ -27,6 +27,7 @@ public class RequestMapping {
         mappings.put("/user/register", new registerController());
         
         mappings.put("/user/memberlist", new ListUserController());
+        mappings.put("/user/booklist", new ListBookController());
 
         mappings.put("/book/search", new BookSearchController());
         mappings.put("/book/search/form", new ForwardController("/book/bookSearch.jsp"));

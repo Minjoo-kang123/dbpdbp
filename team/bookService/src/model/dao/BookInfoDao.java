@@ -75,9 +75,9 @@ public class BookInfoDao {
 	      try {  	  
 	    	  ResultSet rs = jdbcUtil.executeQuery();      // query 실행
 	    	  
-	    	  if (rs.next()) {                  // 학생 정보 발견
+	    	  if (rs.next()) {                  
 	    		  
-	    		  bookInfo book = new bookInfo(      // User 객체를 생성하여 학생 정보를 저장
+	    		  bookInfo book = new bookInfo(      
 	    				  bookinfoID,
 	    				  rs.getString("bookname"),
 	    				  rs.getString("writer"),
@@ -119,6 +119,40 @@ public class BookInfoDao {
 	            return 0;
 	         
 	      }
+	   
+	   //책 리스트 관리를 위한 함수
+	   public List<bookInfo> getAllBookList() throws SQLException {
+		   String query = "select bookinfoID, bookname, writer, publisher, category, bookimage, rentalCnt, releaseDate, summary "
+	               + "from bookInfo ";
+		   jdbcUtil.setSqlAndParameters(query, null);
+		  
+		   
+		   try {
+			   ResultSet rs = jdbcUtil.executeQuery();
+			   List<bookInfo> allBookList = new ArrayList<bookInfo>();
+			   
+			   while(rs.next()) {
+				   bookInfo book = new bookInfo();
+				   
+				   book.setBookinfoID(rs.getString("bookinfoID"));
+				   book.setBookname(rs.getString("bookname"));
+				   book.setWriter(rs.getString("writer"));
+				   book.setPublisher(rs.getString("publisher"));
+				   book.setCategory(rs.getString("category"));
+				   book.setBookimage(rs.getString("bookimage"));
+				   book.setRentalCnt(rs.getInt("rentalCnt"));
+				   book.setReleaseDate(rs.getDate("releaseDate"));
+				   book.setSummary(rs.getString("summary"));
+				   
+				   allBookList.add(book);
+			   }
+			   
+			   return allBookList;
+		   	}catch(Exception ex) {}
+	       
+	       return null;
+	   }
+	   
 	   
 	   //제목으로 검색하기!
 	   public List<bookInfo> getSearchBookList(String text, String stype) throws SQLException {
@@ -173,7 +207,7 @@ public class BookInfoDao {
 			jdbcUtil.setSqlAndParameters(sql, new Object[] {memberID});	// JDBCUtil에 query문과 매개 변수 설정
 
 			try {
-				ResultSet rs = jdbcUtil.executeQuery();		// query 실행
+				ResultSet rs = jdbcUtil.executeQuery();		
 				if (rs.next()) {
 					int count = rs.getInt(1);
 					return (count == 1 ? true : false);
@@ -181,7 +215,7 @@ public class BookInfoDao {
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			} finally {
-				jdbcUtil.close();		// resource 반환
+				jdbcUtil.close();
 			}
 			return false;
 		}
