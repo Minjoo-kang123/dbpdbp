@@ -333,7 +333,10 @@
 							</div>
 							<div id="borrowBookList">
 								대여 중인 책
-								<!-- 리뷰 관리할 버튼 위치 : form에  action 추가. button에 onClick 추가해서 사용하세요. -->
+								<!-- 리뷰 관리할 버튼 위치 : form에  action 추가. button에 onClick 추가해서 사용하세요.
+									(버튼 클릭 시 review 관련 페이지로 이동하는 느낌으로... ) 
+									여기서는 memberID를 이용하여 review를 검색하여 내 리뷰를 볼 수 있고, 수정. 삭제가 가능하게 하면 됩니다.
+								 -->
 								<form name="reviewForm" class = "fButton" method="POST" >
 									<input type="hidden" name = "memberid" value="${curMember.memberID}">
 							  		<input type="button" value="내 리뷰 관리">
