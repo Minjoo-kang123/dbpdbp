@@ -205,9 +205,11 @@ function cancel(targetUri) {
 			<div class="topBar_wrap">
 				<div class="topBar">
 					<div class="menu">
-						<a href=".1">공지사항</a>
+					<% if( UserSessionUtils.isLoginUser("admin", request.getSession())) { %>
+				    	<a href="<c:url value='/user/memberlist'/>" >사용자 조회 </a>
 						<span> | </span>
-						<a href=".2">즐겨찾기</a>
+						<a href="<c:url value='/user/booklist'/>">책 리스트 관리</a>
+					<% } %>
 					</div>
 				</div>
 			</div>

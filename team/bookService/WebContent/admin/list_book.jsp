@@ -200,10 +200,11 @@
 			<div class="topBar_wrap">
 				<div class="topBar">
 					<div class="menu">
+					<% if( UserSessionUtils.isLoginUser("admin", request.getSession())) { %>
 				    	<a href="<c:url value='/user/memberlist'/>" >사용자 조회 </a>
-				    <!--<% if( UserSessionUtils.getLoginUserId(request.getSession()) == "admin") { %><% }%>-->
 						<span> | </span>
-						<a href=".2">즐겨찾기</a>
+						<a href="<c:url value='/user/booklist'/>">책 리스트 관리</a>
+					<% } %>
 					</div>
 				</div>
 			</div>
