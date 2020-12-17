@@ -275,9 +275,9 @@
 				    	<a href="<c:url value='/user/login/form'/>" style="padding-left : 80px;">로그인 </a>
 				    <% } else { %>
 				    	<!-- 나중에 myPage?memberID 형태로 넘어가게 만들기 -->	
-					 	<a href="<c:url value='/user/myPage'/>" style="padding-left : 50px;"> ${userId} 님  정보</a>
+					 	<a href="<c:url value='/user/myPage'/>"> ${userId} 님  정보</a>
 				    	<span> | </span>
-				    	<a href="<c:url value='/user/logout'/>"> 로그아웃</a>
+				    	<a href="<c:url value='/user/logout'/>" style="padding-right : 10px;"> 로그아웃</a>
 					<% } %>
 				</div>
 			</div>

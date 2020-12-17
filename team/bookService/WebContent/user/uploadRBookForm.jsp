@@ -12,6 +12,11 @@
 		var form = document.form;
 		form.submit();
 	}
+	function cancel(targetUri){
+		var form = document.form;
+		form.action = targetUri;
+		form.submit();
+	}
 </script>
 <style>
 	body, div, span, p, a, font, ul, li, fieldset, form, legend, table {
@@ -178,9 +183,9 @@
 				    	<a href="<c:url value='/user/login/form'/>" style="padding-left : 80px;">로그인 </a>
 				    <% } else { %>
 				    	<!-- 나중에 myPage?memberID 형태로 넘어가게 만들기 -->	
-					 	<a href="<c:url value='/user/myPage'/>" style="padding-left : 50px;"> ${userId} 님  정보</a>
+					 	<a href="<c:url value='/user/myPage'/>"> ${userId} 님  정보</a>
 				    	<span> | </span>
-				    	<a href="<c:url value='/user/logout'/>"> 로그아웃</a>
+				    	<a href="<c:url value='/user/logout'/>" style="padding-right : 10px;"> 로그아웃</a>
 					<% } %>
 				</div>
 			</div>
@@ -190,7 +195,28 @@
 				<section class="section">
 					<div id ="rbookForm">
 						<!-- 새 rentalBook 레코드 insert -->
-						<form name="form" method="POST" action="<c:url value='/user/rbook/upload'/>">
+						<c:if test="${uploadFailed eq true}">
+							<script> alert('<c:out value="${exception.getMessage()}" /> \n다시 확인해주시거나 관리자에게 도서정보 추가를 문의해주세요.');</script>
+							<form name="form" method="POST" action="<c:url value='/user/rbook/upload'/>">
+							 게시자 아이디 : <input type="text" name="sellerID" value = "${rbook.sellerID }" readonly> <br>
+							 *책 정보 : <br>
+							 책 제목  : <input type="text" name="bookname" value = "${rbook.bookname}"> <br>
+							 책 ISBN :  <input type="text" name="bookInfoID"  value = "${rbook.bookInfoID}" placeholder="abcd0000000XX"> <br>
+							 책 이미지 : <!-- 현재는 링크를 그냥 적지만, 나중에는 파일 업로드 식으로 링크 올리고 싶다 -->
+							 <input type="text" name="image" placeholder="imagesrc=XX"  value = "${rbook.image}"> <br>
+							 책 상태  : <input type="radio" name="condition" value="0" checked> 상 | &nbsp;
+							 <input type="radio" name="condition" value="1"> 중 | &nbsp;
+							 <input type="radio" name="condition" value="2"> 하 | &nbsp;
+							 <br>
+							 등록 포인트 :  <input type="text" name="point"  value = "${rbook.point}" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"> <br>
+							 책 소개 :  <input type="text" name="explain"  value = "${rbook.explain}"> <br>
+							 <input type="hidden" name="state" value = "0">
+							 <input type="button" value = "등록" onClick="upload()">
+							 <input type="button" value = "취소" onClick="cancel('<c:url value='/user/myPage'/>')">
+						</form>
+						</c:if>
+						<c:if test="${uploadFailed != true}">
+						<form name="form" method="POST" action="<c:url value='/user/rbook/upload'/>" >
 							 게시자 아이디 : <input type="text" name="sellerID" value = "<%= request.getParameter("memberid") %>" readonly> <br>
 							 *책 정보 : <br>
 							<!-- 책 정보의 경우 _ 팝업으로 책제목 띄운 다음 거기서 고르면 촤라락 입력되는 그런거 했으면 좋겠다._ 시간 날 경우 구현. -->
@@ -202,11 +228,13 @@
 							 <input type="radio" name="condition" value="1"> 중 | &nbsp;
 							 <input type="radio" name="condition" value="2"> 하 | &nbsp;
 							 <br>
-							 등록 포인트 :  <input type="text" name="point"> <br>
+							 등록 포인트 :  <input type="text" name="point" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"> <br>
 							 책 소개 :  <input type="text" name="explain"> <br>
 							 <input type="hidden" name="state" value = "0">
 							 <input type="button" value = "등록" onClick="upload()">
+							 <input type="button" value = "취소" onClick="cancel('<c:url value='/user/myPage'/>')">
 						</form>
+						</c:if>
 					</div>
 				</section>
 			</div>

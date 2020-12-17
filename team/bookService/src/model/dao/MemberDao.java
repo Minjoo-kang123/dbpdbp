@@ -287,4 +287,45 @@ public static final int FirstPoint = 0;
 		return 0;
 	}
    
+	//sellerGrade : 누가 대여도서를 빌릴 때 해당 책의 판매자의 대여도서 갯수랑 대여 중인 책 갯수로 sellerGrade 조정. 
+	public int updateSellerGrade (String memberID) {
+		int count = 0;
+		int update = 0;
+		String sql = "selet count(*) from rentalbook where memberid = ? and state = 1";
+		String sql2 = "selet count(*) from rentalbook where memberid = ? and state = 0";
+		
+		String sql3 = "update seller set sellergrade = sellergrade + ? where memberid = ?";
+		   
+	    try {            
+	       jdbcUtil.setSqlAndParameters(sql, new Object[] {memberID});
+	       ResultSet rs = jdbcUtil.executeQuery();		// query 실행
+		   if (rs.next()) {
+				count = rs.getInt(1); //사용자의 현재 거래중인 대여도서
+		   } 
+		   jdbcUtil.setSqlAndParameters(sql2, new Object[] {memberID});
+	       rs = jdbcUtil.executeQuery();		// query 실행
+		   if (rs.next()) {
+				update = (int) Math.floor(rs.getInt(1) * 0.1 + count * 0.3); 
+		   } 
+		   
+	       Object[] param = new Object[] {update, memberID};
+		   jdbcUtil.setSqlAndParameters(sql3, param);
+		   
+		   int result = jdbcUtil.executeUpdate();
+	       if(result != 1) {
+	    	   throw new Exception();
+	       }
+	       return result;
+	    } catch (Exception ex) {
+	       jdbcUtil.rollback();
+	       ex.printStackTrace();
+	    }
+	    finally {
+	       jdbcUtil.commit();
+	       jdbcUtil.close();   // resource 반환
+	    }      
+	      
+		return 0;
+		
+	}
 }

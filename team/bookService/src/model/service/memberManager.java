@@ -95,5 +95,8 @@ public class memberManager {
 		return memberDAO.checkSeller(memberID);
 	}
 
+	public int updateSellerGrade(String memberID) {
+		return memberDAO.updateSellerGrade(memberID);
+	}
 	
 }

@@ -25,16 +25,27 @@ public class rentalbookDAO {
 	/*rentalBook ÀÚÃ¼ÀÇ DAO _ retalBook insert, update, remove*/
 	public int insert(rentalBook book) throws SQLException { 
 		String sql = "Insert into rentalbook(bookID, memberID, bookInfoId, image, explain, point, condition, state)" + 
-		 		"values(seq_bookID.NEXTVAL,?,?,?,?,?,?,?)";      
-	      
+	 		"values(seq_bookID.NEXTVAL,?,?,?,?,?,?,?)";      
+			
 		Object[] param = new Object[] {book.getSellerID(), book.getBookInfoID(),book.getImage(), 
-	                       book.getExplain(), book.getPoint(), book.getCondition(), book.getState()};            
-	       
-		 jdbcUtil.setSqlAndParameters(sql, param);
-	 
-	      try {    
+			book.getExplain(), book.getPoint(), book.getCondition(), book.getState()};            
+	   
+		String sql2 = "Update member set point = point + 50 where memberid = ?";
+		Object[] param2 = new Object[] { book.getSellerID() };
+	      try {  
+	    	 jdbcUtil.setSqlAndParameters(sql, param);
 	         int result = jdbcUtil.executeUpdate(); 
-	         return result;
+	         if(result != 1) {
+	        	 throw new Exception();
+	         }
+	         
+	         jdbcUtil.setSqlAndParameters(sql2, param2);
+	         int result2 = jdbcUtil.executeUpdate(); 
+	         if(result2 != 1) {
+	        	 throw new Exception();
+	         }
+	         
+	         return 1;
 	      } catch (Exception ex) {
 	         jdbcUtil.rollback();
 	         ex.printStackTrace();

@@ -18,7 +18,7 @@ public class NewRBookController implements Controller {
 	
 	@Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-    	rentalBook rbook = new rentalBook(
+		rentalBook rbook = new rentalBook(
     	    	0, request.getParameter("sellerID"),
     	    	request.getParameter("bookInfoID"),
     	    	request.getParameter("image"),
@@ -29,19 +29,19 @@ public class NewRBookController implements Controller {
     	    	new String(request.getParameter("bookname").getBytes("8859_1"), "UTF-8")
     		);
         	
-            log.debug("Create rBook : {}", rbook);
-            
-            try {
-    			bookManager manager = bookManager.getInstance();
-    			manager.createRBook(rbook);
-    			return "redirect:/user/myPage";	
-    	        
-    		} catch (BookNotFoundException e) {	// 예외 발생 시 회원가입 form으로 forwarding
-                request.setAttribute("uploadFailed", true);
-    			request.setAttribute("exception", e);
-    			
-    			return "/user/uploadRBookForm.jsp";
-    		}
+        log.debug("Create rBook : {}", rbook);
+        
+        try {
+			bookManager manager = bookManager.getInstance();
+			manager.createRBook(rbook);
+			return "redirect:/user/myPage";	
+	        
+		} catch (BookNotFoundException e) {	// 예외 발생 시 회원가입 form으로 forwarding
+            request.setAttribute("uploadFailed", true);
+			request.setAttribute("exception", e);
+			request.setAttribute("rbook", rbook); // 이전 책 내용 저장해서 넘김.
+			return "/user/uploadRBookForm.jsp";
+		}
     		
     }
 }

@@ -34,23 +34,27 @@ public class RentalBookController implements Controller {
     		
 			//만약 대여자의 보유 포인트가 대여 도서의 포인트 보다 적다면 오류 발생.
 			if(rentaler.getPoint() < rbook.getPoint()){
-                throw new RentalException("<오류> bookID : " + bookID + " _책을 빌리기에 rentaler의 보유 포인트가 부족합니다.");
+                throw new RentalException("bookID : " + bookID + " _책을 빌리기에 rentaler의 보유 포인트가 부족합니다.");
             }
 			
 			//만약 대여자가 자신이 올린 대여 도서를 대여하려한다면 오류 발생
 			if(rentaler.getMemberID().equalsIgnoreCase(seller.getMemberID())) {
-				 throw new RentalException("<오류> bookID : " + bookID + " _자신이 올린 책은 대여하실 수 없습니다.");
+				 throw new RentalException("bookID : " + bookID + " _자신이 올린 책은 대여하실 수 없습니다.");
 			}
 			
 			//bookManager를 통해 대여 관련 DAO 호출.
 			if(bManager.rental(rbook.getBookID(), seller.getMemberID(), rentaler.getMemberID()) > 0) {
 				request.setAttribute("rentalOK", true);
 				request.setAttribute("bookID", rbook.getBookInfoID());
+				
+				if(mManager.updateSellerGrade(seller.getMemberID()) != 1) {
+					throw new Exception();
+				}
 				return "/book/info";
+			
 			} else {
 				throw new RentalException("<오류> bookID : " + bookID + " _대여 오류 _ 관리자에게 문의주세요");
 			}
-			
 		} catch (RentalException e) {
 			request.setAttribute("RentalException", true);
 			request.setAttribute("exception", e);
