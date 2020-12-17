@@ -227,6 +227,7 @@
 </style>
 </head>
 <body>
+	<c:if test="${updateRBookFailed eq true}"> <script> alert('대여도서 수정에 실패하였습니다. 다시 시도해주세요.')</script></c:if>
 	<div id="wrapper">
 		<header id="header">
 			<!-- topBar : 로그인이랑 공지사항 같은데로 바로가기 등(?) 임의로 넣음.  -->

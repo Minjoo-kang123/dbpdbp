@@ -197,13 +197,13 @@
 						<!-- 새 rentalBook 레코드 insert -->
 						<c:if test="${uploadFailed eq true}">
 							<script> alert('<c:out value="${exception.getMessage()}" /> \n다시 확인해주시거나 관리자에게 도서정보 추가를 문의해주세요.');</script>
-							<form name="form" method="POST" action="<c:url value='/user/rbook/upload'/>">
+							<form name="form" method="POST" action="<c:url value='/user/rbook/upload'/>" enctype="multipart/form-data">
 							 게시자 아이디 : <input type="text" name="sellerID" value = "${rbook.sellerID }" readonly> <br>
 							 *책 정보 : <br>
 							 책 제목  : <input type="text" name="bookname" value = "${rbook.bookname}"> <br>
 							 책 ISBN :  <input type="text" name="bookInfoID"  value = "${rbook.bookInfoID}" placeholder="abcd0000000XX"> <br>
 							 책 이미지 : <!-- 현재는 링크를 그냥 적지만, 나중에는 파일 업로드 식으로 링크 올리고 싶다 -->
-							 <input type="text" name="image" placeholder="imagesrc=XX"  value = "${rbook.image}"> <br>
+							 <input type="file" name="image"> <br>
 							 책 상태  : <input type="radio" name="condition" value="0" checked> 상 | &nbsp;
 							 <input type="radio" name="condition" value="1"> 중 | &nbsp;
 							 <input type="radio" name="condition" value="2"> 하 | &nbsp;
@@ -213,17 +213,15 @@
 							 <input type="hidden" name="state" value = "0">
 							 <input type="button" value = "등록" onClick="upload()">
 							 <input type="button" value = "취소" onClick="cancel('<c:url value='/user/myPage'/>')">
-						</form>
+							</form>
 						</c:if>
 						<c:if test="${uploadFailed != true}">
-						<form name="form" method="POST" action="<c:url value='/user/rbook/upload'/>" >
+						<form name="form" method="POST" action="<c:url value='/user/rbook/upload'/>" enctype="multipart/form-data">
 							 게시자 아이디 : <input type="text" name="sellerID" value = "<%= request.getParameter("memberid") %>" readonly> <br>
 							 *책 정보 : <br>
-							<!-- 책 정보의 경우 _ 팝업으로 책제목 띄운 다음 거기서 고르면 촤라락 입력되는 그런거 했으면 좋겠다._ 시간 날 경우 구현. -->
 							 책 제목  : <input type="text" name="bookname"> <br>
 							 책 ISBN :  <input type="text" name="bookInfoID" placeholder="abcd0000000XX"> <br>
-							 책 이미지 : <!-- 현재는 링크를 그냥 적지만, 나중에는 파일 업로드 식으로 링크 올리고 싶다 -->
-							 <input type="text" name="image" placeholder="imagesrc=XX"> <br>
+							 책 이미지 : <input type="file" name="image"> <br>
 							 책 상태  : <input type="radio" name="condition" value="0" checked> 상 | &nbsp;
 							 <input type="radio" name="condition" value="1"> 중 | &nbsp;
 							 <input type="radio" name="condition" value="2"> 하 | &nbsp;

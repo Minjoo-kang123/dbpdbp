@@ -337,7 +337,7 @@
 								<c:forEach var="rentalBook" items="${rbList}">
 								<fieldset>
 									<div class="bookCover">
-										<img src="./images/쏼라쏼라" alt="책 표지" class="coverImage">
+										<img src="${rentalBook.getImage()}" alt="책 표지" width="100" height="120" class="coverImage">
 									</div>
 									
 									<div class="rentalInfoDesc">
@@ -352,14 +352,6 @@
 											<p> 포인트: ${rentalBook.getPoint() }
 											<p> ${rentalBook.getExplain() }
 									</div>
-									<!-- 머지... 렌탈 북 아닌가여...
-									<div class="rentalInfoDesc">
-											<p> 아이디 : zai0630
-											<p> 상태 : 상
-											<p> 포인트 : 500
-											<p> 어쩌구 저쩌구 저는 재밌게 봤습니다. (rentalbook explain)
-									</div>
-									-->
 									<div class="rButton">
 										<input type="hidden" name="bookinfoID" value="${rentalBook.bookInfoID}">
 										<input type="hidden" name = "rBookid" value="${rentalBook.bookID}">

@@ -222,7 +222,7 @@
 					<div id ="myRBook">
 						<%//필요한 정보, rentalBook(bookId) : rBook 얘랑 연계된 rentalInfo rInfo, rentalBook이랑 연계된 bookinfo : bInfo%>
 						<p>* 해당 도서가 대여 중일 경우 포인트, 상태, 책 소개를 수정하실 수 없으며, 글을 내리실 수 없습니다.</p>
-						<form name="form" method="POST" action="<c:url value='/user/rbook/update'/>">
+						<form name="form" method="POST" action="<c:url value='/user/rbook/update'/>" enctype="multipart/form-data">
 							<input type="hidden" name = "bookid" value ="${rBook.bookID}" >
 							<input type="hidden" name = "sellerid" value = "${rBook.sellerID}">
 							<input type="hidden" name = "bookinfoid" value = "${rBook.bookInfoID}">
@@ -260,7 +260,8 @@
 							</c:if>
 							<c:if test="${rBook.state ==  0}"> <!-- 대여 중일 아닐 경우 -->
 								대여 상태 : <input type="text" name = "rstate" value = "X " class = "fInput" readonly> <br>
-								포인트 : <input type="text" name = "rpoint" value = "${rBook.point}" class = "fInput" > <br>
+								책 이미지 : <img src="${rBook.getImage()}" alt="책 표지" width="100" height="120"> <input type="file" name="image"> <br>
+								포인트 : <input type="text" name = "rpoint" value = "${rBook.point}" class = "fInput" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" > <br>
 								책 소개 : <input type="text" name = "rexplain" value = "${rBook.explain}" class = "fInput"> <br>
 								책 상태 :
 								 	<c:if test="${rBook.condition ==  0}">
@@ -277,9 +278,10 @@
 										<label><input type="radio" name = "condition" value="0" class = "fradio" > 상  </label>
 										<label><input type="radio" name = "condition" value="1" class = "fradio"> 중  </label>
 										<label><input type="radio" name = "condition" value="2" class = "fradio" checked> 하 </label>
-									</c:if> <br>
+									</c:if>
+									<br>
 								<input type="button" value = "수정/확인" onClick="update()">
-								<input type="button" value = "도서 내리기" onClick="remove('<c:url value='/user/rbook/remove' />')">  
+								<input type="button" value = "도서 내리기" onClick="remove('<c:url value='/user/rbook/remove'/>')">  
 							</c:if>
 						</form>
 					</div>
