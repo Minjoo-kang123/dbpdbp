@@ -16,6 +16,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
 <!-- 책 개인 페이지 _ 상품 상세 등. -->
 <title> ${book.getBookname()} _도서페이지</title>
 <style>
@@ -257,6 +259,10 @@
 						<span> | </span>
 						<a href="<c:url value='/user/booklist'/>">책 리스트 관리</a>
 					<% } %>
+					<% if( UserSessionUtils.hasLogined(request.getSession())) { %>
+						<span> | </span>
+						<a href="<c:url value='/user/booklist'/>">출석 포인트</a>
+					<% } %>
 					</div>
 				</div>
 			</div>
@@ -289,6 +295,27 @@
 						size="20" class="inputText" value=${text}>
 <!-- 검색! -->
 						<input type="submit" value="검색" >
+	 <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
+						 </script>
+    <script>
+        $(document).ready(function () {
+            $("#search").click(function () {
+                $.ajax({
+                    method: "GET",
+                    url: "https://dapi.kakao.com/v3/search/book?target=title",
+                    data: { query: $("#bookInfo").val() },
+                    headers: { Authorization: "KakaoAK 22cc2bbeb4cf08cc61305b7cbe2b3abf" }
+                })
+                    .done(function (msg) {
+                        console.log(msg.documents[0].title);
+                        console.log(msg.documents[0].thumbnail);
+                        $("p").append("<strong>" + msg.documents[0].title + "</strong>");
+                        $("p").append("<img src='" + msg.documents[0].thumbnail + "'/>");
+                    });
+            });
+        });
+    </script>
 					</fieldset>
 				</form>
 				<div class = "myinfo">
@@ -339,7 +366,7 @@
 								<c:forEach var="rentalBook" items="${rbList}">
 								<fieldset>
 									<div class="bookCover">
-										<img src="${rentalBook.getImage()}" alt="책 표지" width="100" height="120" class="coverImage">
+										<img src="/bookService/upload/${rentalBook.image}" alt="책 표지" width="100" height="120" class="coverImage">
 									</div>
 									
 									<div class="rentalInfoDesc">

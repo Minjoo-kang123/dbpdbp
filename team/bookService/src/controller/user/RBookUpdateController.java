@@ -40,13 +40,15 @@ public class RBookUpdateController implements Controller {
 			String condition = null;
 			String bookname = null;
 			String filename = null;
-			
+			int flag = 1;
 			if(check) {//파일 전송이 포함된 상태가 맞다면
 				
 				// 아래와 같이 하면 Tomcat 내부에 복사된 프로젝트의 폴더 밑에 upload 폴더가 생성됨 
-				ServletContext context = request.getServletContext();
-				String path = context.getRealPath("/upload");
-				File dir = new File(path);
+			/*
+			 * ServletContext context = request.getServletContext(); String path =
+			 * context.getRealPath("/upload");
+			 */
+				File dir = new File("C:/upload");
 				
 				if(!dir.exists()) dir.mkdir();
 			
@@ -81,7 +83,7 @@ public class RBookUpdateController implements Controller {
 			        		if(item.getFieldName().equals("image")) {
 			        		//key 값이 picture이면 파일 저장을 한다.
 			        			filename = item.getName();//파일 이름 획득 (자동 한글 처리 됨)
-			        			if(filename == null || filename.trim().length() == 0) continue;
+			        			if(filename == null || filename.trim().length() == 0) { flag = 0; continue;}
 			        			//파일이 전송되어 오지 않았다면 건너 뛴다.
 			        			filename = filename.substring(filename.lastIndexOf("\\") + 1);
 			        			//파일 이름이 파일의 전체 경로까지 포함하기 때문에 이름 부분만 추출해야 한다.
@@ -111,12 +113,19 @@ public class RBookUpdateController implements Controller {
 				updateRBook.setState(Integer.parseInt(state));
 				updateRBook.setCondition(Integer.parseInt(condition));
 				updateRBook.setBookname(bookname);
-				updateRBook.setImage(dir + "\\" + filename);
+				if(flag == 1)
+					updateRBook.setImage(filename);
+				
 		   }
 			
 		   log.debug("Update User : {}", updateRBook);
 		   try {
 			   bookManager manager = bookManager.getInstance();
+			   
+			   if(flag == 0) {
+				   rentalBook temp = manager.findRentBook(Integer.valueOf(bookID));
+				   updateRBook.setImage(temp.getImage());
+			   }
 			   manager.updateRBook(updateRBook);			
 			   return "redirect:/user/myPage";	
 		   }catch (Exception e) {

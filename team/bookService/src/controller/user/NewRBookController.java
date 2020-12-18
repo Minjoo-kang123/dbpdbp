@@ -44,9 +44,11 @@ public class NewRBookController implements Controller {
 		if(check) {//파일 전송이 포함된 상태가 맞다면
 			
 			// 아래와 같이 하면 Tomcat 내부에 복사된 프로젝트의 폴더 밑에 upload 폴더가 생성됨 
-			ServletContext context = request.getServletContext();
-			String path = context.getRealPath("/upload");
-			File dir = new File(path);
+			/*
+			 * ServletContext context = request.getServletContext(); String path =
+			 * context.getRealPath("/upload");
+			 */
+			File dir = new File("C:/upload");
 			
 			if(!dir.exists()) dir.mkdir();
 		
@@ -111,7 +113,8 @@ public class NewRBookController implements Controller {
 			rbook.setCondition(Integer.parseInt(condition));
 			rbook.setPoint(Integer.parseInt(point));
 			rbook.setBookname(bookname);
-			rbook.setImage(dir + "\\" + filename);
+			rbook.setImage(filename);
+			
 		}
         
         try {
@@ -129,4 +132,3 @@ public class NewRBookController implements Controller {
     		
 	}
 }
-
