@@ -65,7 +65,12 @@
 		margin : 0 auto;
 		overflow : hidden;
 		position : relative;
-		background-color:#FFFFE0;
+		border-radius: 10px 10px 10px 10px ;
+		margin-bottom : 10px;
+		margin-top : 10px;
+		background-color : #d5e3d5;
+		color : #FFFFFF;		
+		font-weight : bolder;
 	}
 	.main_searchForm {
 		float: left;
@@ -81,7 +86,8 @@
 		padding-top : 25px;
 		padding-bottom: 50px;
 		min-height : 600px;
-		background-color:#FFB6C1
+		background-color:#bbd4b8;
+		border-radius: 10px 10px 10px 10px ;
 	}
 	.main {
 		position: relative;
@@ -96,6 +102,10 @@
 	
 	.section {
 		margin-bottom: 9px;
+		width : 700px;
+		padding-top: 50px;
+		margin : 0 auto;
+		backgroud-color : #ffffff;
 	    zoom: 1;
 	    position: relative;
 	    z-index: 2;
@@ -196,7 +206,7 @@
 				    	<a href="<c:url value='/user/login/form'/>" style="padding-left : 80px;">로그인 </a>
 				    <% } else { %>
 				    	<!-- 나중에 myPage?memberID 형태로 넘어가게 만들기 -->	
-					 	<a href="<c:url value='/user/myPage'/>" > ${userId} 님  정보</a>
+					 	<a href="<c:url value='/user/myPage'/>"> ${userId} 님  정보</a>
 				    	<span> | </span>
 				    	<a href="<c:url value='/user/logout'/>" style="padding-right : 10px;"> 로그아웃</a>
 					<% } %>

@@ -59,8 +59,14 @@
 		margin : 0 auto;
 		overflow : hidden;
 		position : relative;
-		background-color:#FFFFE0;
+		border-radius: 10px 10px 10px 10px ;
+		margin-bottom : 10px;
+		margin-top : 10px;
+		background-color : #d5e3d5;
+		color : #FFFFFF;		
+		font-weight : bolder;
 	}
+	
 	.main_searchForm {
 		float: left;
 	    margin-top: 25px;
@@ -75,7 +81,8 @@
 		padding-top : 25px;
 		padding-bottom: 50px;
 		min-height : 600px;
-		background-color:#FFB6C1
+		background-color:#bbd4b8;
+		border-radius: 10px 10px 10px 10px ;
 	}
 	.main {
 		position: relative;
@@ -90,6 +97,10 @@
 	
 	.section {
 		margin-bottom: 9px;
+		width : 700px;
+		padding-top: 50px;
+		margin : 0 auto;
+		backgroud-color : #ffffff;
 	    zoom: 1;
 	    position: relative;
 	    z-index: 2;
@@ -131,6 +142,10 @@
 		padding-top : 50px;
 		margin : 0 auto;
 		width : 250px;
+	}
+	
+	#rbookform{
+		
 	}
 </style>
 </head>
