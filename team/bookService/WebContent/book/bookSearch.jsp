@@ -6,8 +6,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title> 검색 결과 : 리스트</title>
 <style>
 
@@ -333,26 +331,7 @@
 							  	<c:forEach var="bookInfo" items="${biList}">
 									<fieldset>
 										<div class="bookCover">
-											<img src="${bookInfo.image}" alt="책 표지" class="coverImage">
-											<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
-											</script>
-											
-											<script>
-												$(document).ready(function () {
-												    $("#search").click(function () {
-													$.ajax({
-													    method: "GET",
-													    url: "https://dapi.kakao.com/v3/search/book?target=title",
-													    data: { query: $("#bookInfo").val() },
-													    headers: { Authorization: "KakaoAK 22cc2bbeb4cf08cc61305b7cbe2b3abf" }
-													})
-													    .done(function (msg) {
-														console.log(msg.documents[0].thumbnail);
-														$("p").append("<img src='" + msg.documents[0].thumbnail + "'/>");
-													    });
-												    });
-												});
-											   </script>
+											<img src="./images/쏼라쏼라" alt="책 표지" class="coverImage">
 										</div>
 										<div class="rentalInfoDesc">
 										<!--<a href="<c:url value='/book/info'> <c:param name='bookID' value='${book.bookID}'/></c:url>"> 
