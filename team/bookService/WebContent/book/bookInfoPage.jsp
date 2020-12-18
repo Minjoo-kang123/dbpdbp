@@ -308,9 +308,7 @@
                     headers: { Authorization: "KakaoAK 22cc2bbeb4cf08cc61305b7cbe2b3abf" }
                 })
                     .done(function (msg) {
-                        console.log(msg.documents[0].title);
                         console.log(msg.documents[0].thumbnail);
-                        $("p").append("<strong>" + msg.documents[0].title + "</strong>");
                         $("p").append("<img src='" + msg.documents[0].thumbnail + "'/>");
                     });
             });
