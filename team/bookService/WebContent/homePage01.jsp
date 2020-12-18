@@ -202,6 +202,10 @@
 						<span> | </span>
 						<a href="<c:url value='/user/booklist'/>">책 리스트 관리</a>
 					<% } %>
+					<% if( UserSessionUtils.hasLogined(request.getSession())) { %>
+						<span> | </span>
+						<a href="<c:url value='/user/booklist'/>">출석 포인트</a>
+					<% } %>
 					</div>
 				</div>
 			</div>
