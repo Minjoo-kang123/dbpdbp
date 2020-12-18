@@ -76,7 +76,12 @@
 		margin : 0 auto;
 		overflow : hidden;
 		position : relative;
-		background-color:#FFFFE0;
+		border-radius: 10px 10px 10px 10px ;
+		margin-bottom : 10px;
+		margin-top : 10px;
+		background-color : #d5e3d5;
+		color : #FFFFFF;		
+		font-weight : bolder;
 	}
 	.main_searchForm {
 		float: left;
@@ -92,7 +97,8 @@
 		padding-top : 25px;
 		padding-bottom: 50px;
 		min-height : 600px;
-		background-color:#FFB6C1
+		background-color:#bbd4b8;
+		border-radius: 10px 10px 10px 10px ;
 	}
 	.main {
 		position: relative;
@@ -107,6 +113,10 @@
 	
 	.section {
 		margin-bottom: 9px;
+		width : 700px;
+		padding-top: 50px;
+		margin : 0 auto;
+		backgroud-color : #ffffff;
 	    zoom: 1;
 	    position: relative;
 	    z-index: 2;
@@ -172,6 +182,10 @@
 						<span> | </span>
 						<a href="<c:url value='/user/booklist'/>">책 리스트 관리</a>
 					<% } %>
+					<% if( UserSessionUtils.hasLogined(request.getSession())) { %>
+						<span> | </span>
+						<a href="<c:url value='/user/booklist'/>">출석 포인트</a>
+					<% } %>ㄴ
 					</div>
 				</div>
 			</div>
