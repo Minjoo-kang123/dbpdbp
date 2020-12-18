@@ -45,6 +45,7 @@ public class BookInfoController implements Controller{
 		request.setAttribute("rbList", rbList);
 		request.setAttribute("text", request.getParameter("text"));
 		request.setAttribute("stype", request.getParameter("stype"));
+		request.setAttribute("stype_g", request.getParameter("stype_g"));
 		
 		
     	return "/book/info/form";	

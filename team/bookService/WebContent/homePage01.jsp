@@ -230,11 +230,24 @@
 						장르 : 
 						<select id="stype_g" name="stype_g" title="장르검색" style="width:76px">
 							<option value="all" selected >전체</option>
-							<option value="action"  > 액션</option>
-							<option value="fantasy"  > 판타지 </option>
-							<option value="romance"  > 로맨스 </option>
-							<option  value="comic" > 코믹 </option>
-							<option value="etc" > 기타 등등 </option>
+							<option value="00"  > 총류</option>
+							<option value="10"  > 철학 </option>
+							<option value="20"  > 종교 </option>
+							<option  value="30" > 사회과학 </option>
+							<option value="40" > 순수과학 </option>
+							<option value="50"  > 기술과학</option>
+							<option value="60"  > 예술 </option>
+							<option value="70"  > 어학 </option>
+							<option  value="81" > 에세이 </option>
+							<option value="82" > 로맨스 </option>
+							<option value="83"  > 판타지</option>
+							<option value="84"  > 무협/액션 </option>
+							<option value="85"  > SF </option>
+							<option  value="86" > 추리 </option>
+							<option value="87" > 공포 </option>
+							<option value="88"  > 만화</option>
+							<option value="90"  > 역사 </option>
+							<option value="89"  > 기타 </option>
 						</select>
 						<input type="text" id="search_text" name="search_kw" title = "검색어 입력"
 						size="20" class="inputText" value=${text}>
@@ -285,20 +298,96 @@
 						<h3><b>&nbsp; *장르별 모아보기</b></h3>
 						<!-- 리스트 내 장르별로 링크 걸어둘 예정 -->
 						<ul style="list-style: none;">
-							<li><a href=".">로맨스</a> </li>
-							<li><a href="."> 판타지</a> </li>
-							<li><a href="."> 액션</a> </li>
-							<li><a href="."> 코믹 </a></li>
-							<li><a href="."> 드라마</a> </li>
-							<li><a href="."> 문학 </a></li>
-							<li><a href="."> 스포츠 </a> </li>
-							<li><a href="."> 공포</a> </li>
-							<li><a href="."> 추리</a> </li>
-							<li><a href="."> 아동</a> </li>
-							<li><a href="."> 게임 </a></li>
-							<li><a href="."> 무협</a> </li>
-							<li><a href="."> 역사 </a></li>
-							<li><a href="."> 라이트노벨 </a> </li>
+							<li><a href="<c:url value='/book/search'> 
+									<c:param name="search_kw" value=""/>
+									<c:param name="stype" value="all"/>
+									<c:param name="stype_g" value="00"/>
+								</c:url>"> 총류</a> </li>	
+							<li><a href="<c:url value='/book/search'> 
+									<c:param name="search_kw" value=""/>
+									<c:param name="stype" value="all"/>
+									<c:param name="stype_g" value="10"/>
+								</c:url>"> 철학</a> </li>
+							<li><a href="<c:url value='/book/search'> 
+									<c:param name="search_kw" value=""/>
+									<c:param name="stype" value="all"/>
+									<c:param name="stype_g" value="20"/>
+								</c:url>"> 종교</a> </li>
+							<li><a href="<c:url value='/book/search'> 
+									<c:param name="search_kw" value=""/>
+									<c:param name="stype" value="all"/>
+									<c:param name="stype_g" value="30"/>
+								</c:url>"> 사회과학 </a></li>
+							<li><a href="<c:url value='/book/search'> 
+									<c:param name="search_kw" value=""/>
+									<c:param name="stype" value="all"/>
+									<c:param name="stype_g" value="40"/>
+								</c:url>"> 순수과학</a> </li>
+							<li><a href="<c:url value='/book/search'> 
+									<c:param name="search_kw" value=""/>
+									<c:param name="stype" value="all"/>
+									<c:param name="stype_g" value="50"/>
+								</c:url>"> 기술과학</a></li>
+							<li><a href="<c:url value='/book/search'> 
+									<c:param name="search_kw" value=""/>
+									<c:param name="stype" value="all"/>
+									<c:param name="stype_g" value="60"/>
+								</c:url>"> 예술</a> </li>
+							<li><a href="<c:url value='/book/search'> 
+									<c:param name="search_kw" value=""/>
+									<c:param name="stype" value="all"/>
+									<c:param name="stype_g" value="70"/>
+								</c:url>"> 어학</a> </li>
+							<li><a href="<c:url value='/book/search'> 
+									<c:param name="search_kw" value=""/>
+									<c:param name="stype" value="all"/>
+									<c:param name="stype_g" value="81"/>
+								</c:url>"> 에세이</a> </li>
+							<li><a href="<c:url value='/book/search'> 
+									<c:param name="search_kw" value=""/>
+									<c:param name="stype" value="all"/>
+									<c:param name="stype_g" value="82"/>
+								</c:url>"> 로맨스</a> </li>
+							<li><a href="<c:url value='/book/search'> 
+									<c:param name="search_kw" value=""/>
+									<c:param name="stype" value="all"/>
+									<c:param name="stype_g" value="83"/>
+								</c:url>"> 판타지</a></li>
+							<li><a href="<c:url value='/book/search'> 
+									<c:param name="search_kw" value=""/>
+									<c:param name="stype" value="all"/>
+									<c:param name="stype_g" value="84"/>
+								</c:url>"> 무협/액션</a> </li>
+							<li><a href="<c:url value='/book/search'> 
+									<c:param name="search_kw" value=""/>
+									<c:param name="stype" value="all"/>
+									<c:param name="stype_g" value="85"/>
+								</c:url>"> SF</a> </li>
+							<li><a href="<c:url value='/book/search'> 
+									<c:param name="search_kw" value=""/>
+									<c:param name="stype" value="all"/>
+									<c:param name="stype_g" value="86"/>
+								</c:url>"> 추리</a> </li>
+							<li><a href="<c:url value='/book/search'> 
+									<c:param name="search_kw" value=""/>
+									<c:param name="stype" value="all"/>
+									<c:param name="stype_g" value="87"/>
+								</c:url>"> 공포</a> </li>
+							<li><a href="<c:url value='/book/search'> 
+									<c:param name="search_kw" value=""/>
+									<c:param name="stype" value="all"/>
+									<c:param name="stype_g" value="88"/>
+								</c:url>"> 만화</a> </li>
+							<li><a href="<c:url value='/book/search'> 
+									<c:param name="search_kw" value=""/>
+									<c:param name="stype" value="all"/>
+									<c:param name="stype_g" value="90"/>
+								</c:url>"> 역사 </a></li>
+							<li><a href="<c:url value='/book/search'> 
+									<c:param name="search_kw" value=""/>
+									<c:param name="stype" value="all"/>
+									<c:param name="stype_g" value="89"/>
+								</c:url>"> 기타</a> </li>
 						</ul>
 					</div>
 				</section>

@@ -22,7 +22,7 @@ public class BookSearchController implements Controller{
 		
 		try {
 			BookInfoManager book = BookInfoManager.getInstance();
-    		biList = book.getSearchBookList(text, stype);
+    		biList = book.getSearchBookList(text, stype, stype_g);
 		} catch (Exception e) {				
 	        return "redirect:/home";
 		}	
@@ -31,6 +31,7 @@ public class BookSearchController implements Controller{
     	request.setAttribute("biList", biList);
     	request.setAttribute("text", text);
     	request.setAttribute("stype", stype);
+    	request.setAttribute("stype_g", stype_g);
 		
 
 		// 사용자 리스트 화면으로 이동(forwarding)

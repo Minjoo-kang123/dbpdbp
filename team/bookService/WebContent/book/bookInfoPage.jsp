@@ -282,18 +282,30 @@
 						</select> &nbsp;
 						장르 : 
 						<select id="stype_g" name="stype_g" title="장르검색" style="width:76px">
-							<option value="all" selected >전체</option>
-							<option value="action"  > 액션</option>
-							<option value="fantasy"  > 판타지 </option>
-							<option value="romance"  > 로맨스 </option>
-							<option  value="comic" > 코믹 </option>
-							<option value="etc" > 기타 등등 </option>
+							<option value="all" <c:if test = "${stype_g=='all'}"> selected </c:if> >전체</option>
+							<option value="00"  <c:if test = "${stype_g=='00'}"> selected </c:if> > 총류</option>
+							<option value="10"  <c:if test = "${stype_g=='10'}"> selected </c:if> > 철학 </option>
+							<option value="20"  <c:if test = "${stype_g=='20'}"> selected </c:if> > 종교 </option>
+							<option value="30" <c:if test = "${stype_g=='30'}"> selected </c:if> > 사회과학 </option>
+							<option value="40" <c:if test = "${stype_g=='40'}"> selected </c:if> > 순수과학 </option>
+							<option value="50"  <c:if test = "${stype_g=='50'}"> selected </c:if> > 기술과학</option>
+							<option value="60" <c:if test = "${stype_g=='60'}"> selected </c:if> > 예술 </option>
+							<option value="70" <c:if test = "${stype_g=='70'}"> selected </c:if>  > 어학 </option>
+							<option value="81" <c:if test = "${stype_g=='81'}"> selected </c:if> > 에세이 </option>
+							<option value="82" <c:if test = "${stype_g=='82'}"> selected </c:if> > 로맨스 </option>
+							<option value="83" <c:if test = "${stype_g=='83'}"> selected </c:if> > 판타지</option>
+							<option value="84" <c:if test = "${stype_g=='84'}"> selected </c:if> > 무협/액션 </option>
+							<option value="85"  <c:if test = "${stype_g=='85'}"> selected </c:if> > SF </option>
+							<option value="86" <c:if test = "${stype_g=='86'}"> selected </c:if> > 추리 </option>
+							<option value="87" <c:if test = "${stype_g=='87'}"> selected </c:if>> 공포 </option>
+							<option value="88"  <c:if test = "${stype_g=='88'}"> selected </c:if>> 만화</option>
+							<option value="90"  <c:if test = "${stype_g=='90'}"> selected </c:if>> 역사 </option>
+							<option value="89"  <c:if test = "${stype_g=='89'}"> selected </c:if>> 기타 </option>
 						</select>
 						<input type="text" id="search_text" name="search_kw" title = "검색어 입력"
 						size="20" class="inputText" value=${text}>
 <!-- 검색! -->
 						<input type="submit" value="검색" >
-	 
 					</fieldset>
 				</form>
 				<div class = "myinfo">
@@ -323,7 +335,7 @@
 					</div>
 					<div class="bookInfo">
 						<div class="bookCover">
-							<img src="./images/쏼라쏼라" alt="책 표지" class="coverImage">
+							<img src="${book.getBookimage()}" alt="책 표지" class="coverImage">
 						</div>
 						<div class="bookInfoDesc">
 							<div style="width:100%; word-break:break-all;word-wrap:break-word;">
