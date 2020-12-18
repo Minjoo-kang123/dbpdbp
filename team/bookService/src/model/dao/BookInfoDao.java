@@ -167,17 +167,17 @@ public class BookInfoDao {
 		   
 		   if (stype.equals("all"))
 		   {
-			   query += "where category = ? and (writer like ? or bookname like ?) ";
+			   query += "where category = ? and (writer like ? or bookname like ?) order by rentalCnt DESC ";
 			   jdbcUtil.setSqlAndParameters(query, new Object[] {stype_g, text, text});
 		   }
 		   else if (stype.equals("subject"))
 		   {
-			   query += "where category = ? and bookname like ?";
+			   query += "where category = ? and bookname like ? order by rentalCnt DESC ";
 			   jdbcUtil.setSqlAndParameters(query, new Object[] {stype_g, text});
 		   }
 		   else
 		   {
-			   query += "where category = ? and writer like ?";
+			   query += "where category = ? and writer like ? order by rentalCnt DESC ";
 			   jdbcUtil.setSqlAndParameters(query, new Object[] {stype_g, text});
 		   }
 		   
