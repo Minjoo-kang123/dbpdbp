@@ -362,7 +362,7 @@
 								<c:forEach var="rentalBook" items="${rbList}">
 								<fieldset>
 									<div class="bookCover">
-										<img src="${rentalBook.getImage()}" alt="책 표지" width="100" height="120" class="coverImage">
+										<img src="/bookService/upload/${rentalBook.image}" alt="책 표지" width="100" height="120" class="coverImage">
 									</div>
 									
 									<div class="rentalInfoDesc">

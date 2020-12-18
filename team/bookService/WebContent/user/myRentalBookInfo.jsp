@@ -262,7 +262,7 @@
 							</c:if>
 							<c:if test="${rBook.state ==  0}"> <!-- 대여 중일 아닐 경우 -->
 								대여 상태 : <input type="text" name = "rstate" value = "X " class = "fInput" readonly> <br>
-								책 이미지 : <img src="${rBook.getImage()}" alt="책 표지" width="100" height="120"> <input type="file" name="image"> <br>
+								책 이미지 : <img src="/bookService/upload/${rBook.getImage()}" alt="책 표지" width="100" height="120"> <input type="file" name="image"> <br>
 								포인트 : <input type="text" name = "rpoint" value = "${rBook.point}" class = "fInput" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" > <br>
 								책 소개 : <input type="text" name = "rexplain" value = "${rBook.explain}" class = "fInput"> <br>
 								책 상태 :
