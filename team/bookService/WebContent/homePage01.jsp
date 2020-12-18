@@ -197,7 +197,9 @@
 			<div class="topBar_wrap">
 				<div class="topBar">
 					<div class="menu">
+						<a href="<c:url value='/book/recommand/form'/>">추천 받기</a>
 					<% if( UserSessionUtils.isLoginUser("admin", request.getSession())) { %>
+						<span> | </span>
 				    	<a href="<c:url value='/user/memberlist'/>" >사용자 조회 </a>
 						<span> | </span>
 						<a href="<c:url value='/user/booklist'/>">책 리스트 관리</a>

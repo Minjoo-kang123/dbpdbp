@@ -52,6 +52,9 @@ public class RequestMapping {
         
         mappings.put("/user/ibook/info", new LoadingMyiBookController());
         mappings.put("/user/ibook/return", new ReturniBookController());
+        
+        mappings.put("/book/recommand", new BookRecommandController());
+        mappings.put("/book/recommand/form", new ForwardController("/book/bookrecommand.jsp"));
      
         logger.info("Initialized Request Mapping!");
     }
