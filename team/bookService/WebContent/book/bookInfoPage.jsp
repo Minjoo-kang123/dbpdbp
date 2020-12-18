@@ -383,10 +383,10 @@
 						<div id="InsertReview">
 							<!-- to. 다솔님 / reviewIForm에서는 리뷰를 추가(insert)하는 작업을 진행합니다. 
 								form에 부분에 action 추가해주시고. 버튼 등의 요소에 onClick()등을 이용하여 기능 추가해 이용해주세요. . -->
-							<form class = "reviewIForm" name = "reviewForm" method="POST" >
+							<form class = "reviewIForm" name = "reviewForm" method="POST" action="reviewInsert" >
 								<input type = "hidden" name = "bookinfoID" value="${book.bookinfoID}">
 								<textarea name = "reviewContent" cols="30" rows="4" placeholder = "해당책을 재밌게 보셨나요??&#13;&#10;리뷰를 입력해주세요."></textarea>
-								<input type="button" value = "입력" >
+								<input type="button" value = "입력" onclick="this.form.action='${book.getBookname()} _도서페이지'">
 							</form>
 						</div>
 						<div id="bookReviewList">
