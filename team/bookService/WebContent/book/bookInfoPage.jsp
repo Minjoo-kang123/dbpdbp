@@ -323,7 +323,7 @@
 					</div>
 					<div class="bookInfo">
 						<div class="bookCover">
-							<img src="${bookInfo.image}" alt="책 표지" class="coverImage">
+							<img src="./image/쏼라쏼라" alt="책 표지" class="coverImage">
 						</div>
 						<div class="bookInfoDesc">
 							<div style="width:100%; word-break:break-all;word-wrap:break-word;">
