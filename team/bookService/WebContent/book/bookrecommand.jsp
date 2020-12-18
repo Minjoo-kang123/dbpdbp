@@ -354,7 +354,7 @@
 							가장 좋아하는 책의 제목을 입력하세요: <br>
 							<input type="text" id="recommandBook" name="re_title" title = "책 제목 입력 " size="50" class="inputText"><br>
 							<input type="submit" value="추천 시작" > <br><br>
-							결과: ${result}
+							<!-- 결과: ${result} -->
 						</form>
 					</div>
 					<div class ="rentalBookList">

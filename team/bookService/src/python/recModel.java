@@ -8,7 +8,6 @@ import jep.SharedInterpreter;
 public class recModel {
 	
 	public int recommandBook(String title) throws JepException {
-		System.out.println("¾Æ¾Æ¾Æ");
 		//File modelFile = new File("src/python/decisionModel.pkl");
 		//File tokenFile = new File("src/python/token.pkl");
 		Integer result;
