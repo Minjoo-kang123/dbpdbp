@@ -119,7 +119,7 @@ body, div, span, p, a, font, ul, li, fieldset, form, legend, table {
 	    z-index: 200;
 	    float: right;
 	    width: 20%;
-	    height: 600px;
+	    height: 700px;
 	    padding: 2px;
 	    border: 1px solid #d1d1d1;
 	    background: #fff;

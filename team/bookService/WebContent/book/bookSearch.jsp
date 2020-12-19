@@ -181,7 +181,7 @@
 	    margin-left : 10px;
 	    background-color:#FFFFE0;
 	    min-height : 120px;
-	    min-width : 100px;
+	    width : 200px;
 	}
 	
 	.rentalItem .rentalInfoDesc {
@@ -209,7 +209,7 @@
 	    z-index: 200;
 	    float: right;
 	    width: 20%;
-	    height: 600px;
+	    height: 700px;
 	    padding: 2px;
 	    border-radius: 10px 10px 10px 10px ;
 	    border: 1px solid #d1d1d1;
@@ -255,6 +255,9 @@
 		padding-top : 50px;
 		margin : 0 auto;
 		width : 250px;
+	}
+	.coverImage{
+	    width : 90px;
 	}
 </style>
 </head>

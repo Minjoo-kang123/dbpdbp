@@ -75,7 +75,8 @@
 		padding-top : 25px;
 		padding-bottom: 50px;
 		min-height : 600px;
-		background-color:#ffffff;
+		background-color:#bbd4b8;
+		border-radius: 10px 10px 10px 10px ;
 	}
 	.main {
 		position: relative;
@@ -114,6 +115,7 @@
 		padding-bottom: 10px;
 		margin-left : 20px;
 		min-height : 160px;
+		width : 860px;
 		background-color: #bbd4b8;
 	}
 	
@@ -220,7 +222,7 @@
 	    z-index: 200;
 	    float: right;
 	    width: 20%;
-	    height: 600px;
+	    height: 700px;
 	    padding: 2px;
 	    border-radius: 10px 10px 10px 10px ;
 	    border: 1px solid #d1d1d1;
@@ -365,7 +367,7 @@
 							  	<c:forEach var="bookInfo" items="${biList}">
 									<fieldset>
 										<div class="bookCover">
-											<img src="${bookInfo.getBookimage()}" alt="책 표지" class="coverImage">
+											<img src="${bookInfo.getBookimage()}" alt="책 표지" class="coverImage" width = "90px">
 										</div>
 										<div class="rentalInfoDesc">
 										<!--<a href="<c:url value='/book/info'> <c:param name='bookID' value='${book.bookID}'/></c:url>"> 
