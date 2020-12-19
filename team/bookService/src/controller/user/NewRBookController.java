@@ -82,7 +82,10 @@ public class NewRBookController implements Controller {
 		        		if(item.getFieldName().equals("image")) {
 		        		//key 값이 picture이면 파일 저장을 한다.
 		        			filename = item.getName();//파일 이름 획득 (자동 한글 처리 됨)
-		        			if(filename == null || filename.trim().length() == 0) continue;
+		        			if(filename == null || filename.trim().length() == 0) { 
+		        				filename = "noImage.PNG";
+		        				continue;
+		        			}
 		        			//파일이 전송되어 오지 않았다면 건너 뛴다.
 		        			filename = filename.substring(filename.lastIndexOf("\\") + 1);
 		        			//파일 이름이 파일의 전체 경로까지 포함하기 때문에 이름 부분만 추출해야 한다.
@@ -104,6 +107,7 @@ public class NewRBookController implements Controller {
 		    }catch(Exception e) {            
 		        e.printStackTrace();
 		    }
+			
 			
 			rbook.setBookID(0);
 			rbook.setSellerID(sellerID);
