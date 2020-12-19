@@ -344,7 +344,6 @@
 								 -->
 								<form name="reviewForm" class = "fButton" method="POST" >
 									<input type="hidden" name = "memberid" value="${curMember.memberID}">
-							  		<input type="button" value="내 리뷰 관리">
 							 	 </form>
 								<table>
 									 <tr>
