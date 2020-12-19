@@ -57,12 +57,18 @@
 	}
 	
 	.header_wrap {
-		width : 1100px;
+		width : 1170px;
 		margin : 0 auto;
 		overflow : hidden;
 		position : relative;
-		background-color:#FFFFE0;
+		border-radius: 10px 10px 10px 10px ;
+		margin-bottom : 10px;
+		margin-top : 10px;
+		padding : 5px;
+		background-color : #d5e3d5;
+		font-weight : bolder;
 	}
+
 	.main_searchForm {
 		float: left;
 	    margin-top: 25px;
@@ -72,12 +78,13 @@
 	}
 	#container {
 		postion : relative;
-		width : 1100px;
+		width : 1200px;
 		margin: 0 auto 0;
 		padding-top : 25px;
 		padding-bottom: 50px;
 		min-height : 600px;
-		background-color:#FFB6C1
+		background-color:#bbd4b8;
+		border-radius: 10px 10px 10px 10px ;
 	}
 	.main {
 		position: relative;
@@ -92,6 +99,10 @@
 	
 	.section {
 		margin-bottom: 9px;
+		width : 400px;
+		padding-top: 50px;
+		margin : 0 auto;
+		backgroud-color : #ffffff;
 	    zoom: 1;
 	    position: relative;
 	    z-index: 2;
@@ -148,18 +159,14 @@
 						<span> | </span>
 						<a href="<c:url value='/user/booklist'/>">책 리스트 관리</a>
 					<% } %>
-					<% if( UserSessionUtils.hasLogined(request.getSession())) { %>
-						<span> | </span>
-						<a href="<c:url value='/user/booklist'/>">출석 포인트</a>
-					<% } %>
 					</div>
 				</div>
 			</div>
 			<!--  로고랑 search 바 있는 곳. -->
 			<div class="header_wrap">
-					<div class="logo" style="margin-top : 25px; float : left; width : 300px">
-						<h3><a href="<c:url value='/home'/>">로고자리</a></h3>
-					</div>
+				<div class="logo" style=" float : left; width : 300px">
+					<a href="<c:url value='/home'/>"><img src = "https://pbs.twimg.com/media/EplKy2FUYAEDjYq?format=png&name=360x360" width = "75px"></a>
+				</div>
 					<form name="main_search" class="main_searchForm" method="Get" action = "<c:url value='/book/search'/>">
 					<!-- form에 action이랑 method 나중에 넣기 -->
 						<fieldset>
