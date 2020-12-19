@@ -128,6 +128,7 @@
 	
 	.bookInfo .bookInfoDesc {
 	    float : left;
+	    width : 600px;
 		padding-bottom : 2px;
 		margin-left : 60px;
 		padding-left : 30px;
@@ -182,6 +183,7 @@
 		padding-left : 30px;
 		text-align : justify;
 		word-break: break-all;
+		width : 350px;
 		display : block;
 	}
 	
@@ -334,7 +336,7 @@
 					</div>
 					<div class="bookInfo">
 						<div class="bookCover">
-							<img src="${book.getBookimage()}" alt="책 표지" class="coverImage">
+							<img src="${book.getBookimage()}" alt="책 표지" class="coverImage" height = "250px">
 						</div>
 						<div class="bookInfoDesc">
 							<div style="width:100%; word-break:break-all;word-wrap:break-word;">
