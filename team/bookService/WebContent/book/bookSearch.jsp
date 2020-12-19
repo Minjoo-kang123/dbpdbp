@@ -179,9 +179,6 @@
 	    margin-top : 5px;
 	    margin-bottom : 5px;
 	    margin-left : 10px;
-	    background-color:#FFFFE0;
-	    min-height : 120px;
-	    width : 200px;
 	}
 	
 	.rentalItem .rentalInfoDesc {

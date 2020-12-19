@@ -75,7 +75,7 @@
 		padding-top : 25px;
 		padding-bottom: 50px;
 		min-height : 600px;
-		background-color:#bbd4b8;
+		background-color:#ffffff;
 		border-radius: 10px 10px 10px 10px ;
 	}
 	.main {
@@ -106,6 +106,7 @@
 		margin-left : 20px;
 		min-height : 160px;
 		background-color: #bbd4b8;
+		border-radius: 10px 10px 10px 10px ;
 	}
 	.recommandBook {
 		float : left;
@@ -113,10 +114,11 @@
 		margin-top : 5px;
 		padding-top : 5px;
 		padding-bottom: 10px;
-		margin-left : 20px;
+		padding-left : 50px;
 		min-height : 160px;
-		width : 860px;
+		width : 750px;
 		background-color: #bbd4b8;
+		border-radius: 10px 10px 10px 10px ;
 	}
 	
 	.rentalForm {
@@ -350,19 +352,20 @@
 		
 		<div id="container" class="main clearfix">
 			<div class="main_content">
-				<section class="section">
-					<div class ="recommandBook">
-						<form name="main_search" class="main_searchForm" method="Get" action = "<c:url value='/book/recommand'/>">
-							가장 좋아하는 책의 제목을 입력하세요: <br>
-							<input type="text" id="recommandBook" name="re_title" title = "책 제목 입력 " size="50" class="inputText"><br>
-							<input type="submit" value="추천 시작" > <br><br>
-							<!-- 결과: ${result} -->
-						</form>
-					</div>
+				<section class="section">					
 					<div class ="rentalBookList">
-						<h5> 추천 결과 : </h5>
+						<div class ="recommandBook" >
+							<form name="main_search" class="main_searchForm" method="Get" action = "<c:url value='/book/recommand'/>">
+								가장 좋아하는 책의 제목을 입력하세요: <br>
+								<input type="text" id="recommandBook" name="re_title" title = "책 제목 입력 " size="50" class="inputText"><br>
+								<input type="submit" value="추천 시작" > <br><br>
+								<!-- 결과: ${result} -->
+							</form>
+						</div>
+						
 						<!-- 아래 틀을 jstl의 반복문을 사용해서 반복해서 보여주기. ~ 리스트 목록 / 10개 이상 존재 시 다음 페이지. -->
 						<div class="rentalItem">
+						<h5> 추천 결과 : </h5>
 							<form class = "rentalForm" name = "rForm">							  			
 							  	<c:forEach var="bookInfo" items="${biList}">
 									<fieldset>

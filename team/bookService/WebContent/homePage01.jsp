@@ -80,7 +80,7 @@
 		padding-top : 25px;
 		padding-bottom: 40px;
 		padding-left: 20px;
-		min-height : 600px;
+		min-height : 700px;
 		border-radius: 10px 10px 10px 10px ;
 		background-color:#bbd4b8;
 	}
@@ -134,7 +134,7 @@
 	    z-index: 200;
 	    float: right;
 	    width: 20%;
-	    height: 600px;
+	    height: 700px;
 	    padding: 2px;
 	    background: #fff;
 	    margin-right : 30px;
