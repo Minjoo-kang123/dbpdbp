@@ -2,7 +2,7 @@ package model;
 import java.util.Date;
 public class review {
 	private String reviewContent;
-	private int prefernce;
+	private int preference;
 	private Date reviewDate;
 	private String memberID;
 	private int reviewID;
@@ -12,14 +12,25 @@ public class review {
 		super();
 	}
 	
-	public review(String reviewContent, int prefernce, Date reviewDate, String memberID, int reviewID, String bookInfoID) {
+	public review(String reviewContent, int preference, Date reviewDate, String memberID, int reviewID, String bookInfoID) {
 		super();
 		
 		this.reviewContent = reviewContent;
-		this.prefernce = prefernce;
+		this.preference = preference;
 		this.reviewDate = reviewDate;
 		this.memberID = memberID;
 		this.reviewID = reviewID;
+		this.bookInfoID = bookInfoID;
+	}
+	
+	public review(String reviewContent, int preference, Date reviewDate, String memberID, String bookInfoID) {
+		super();
+		
+		this.reviewContent = reviewContent;
+		this.preference = preference;
+		this.reviewDate = reviewDate;
+		this.memberID = memberID;
+		this.reviewID = -1;
 		this.bookInfoID = bookInfoID;
 	}
 
@@ -31,12 +42,12 @@ public class review {
 		this.reviewContent = reviewContent;
 	}
 
-	public int getPrefernce() {
-		return prefernce;
+	public int getPreference() {
+		return preference;
 	}
 
-	public void setPrefernce(int prefernce) {
-		this.prefernce = prefernce;
+	public void setPreference(int preference) {
+		this.preference = preference;
 	}
 
 	public Date getReviewDate() {

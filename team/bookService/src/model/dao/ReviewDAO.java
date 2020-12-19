@@ -2,6 +2,7 @@ package model.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,10 +18,15 @@ public class ReviewDAO {
 	   }
 	   
 	   public int addReview(review review) throws SQLException{
-	      String query = "Insert into review(reviewContent, reviewDate, memberID, reviewID, bookInfoID) values(?,?,?,?,?)";
-	      Object[] param = new Object[] {review.getReviewContent(),  review.getReviewDate(), review.getMemberID(), review.getReviewID(), review.getBookInfoID()};
+	      String query = "Insert into review(reviewContent, preference, reviewDate, memberID, reviewID, bookInfoID) values(?,?,?,?,seq_reviewID.nextval,?)";
+	      String sql2 = "Update member set point = point + 50 where memberid = ?";
+	      
+	      SimpleDateFormat format = new SimpleDateFormat("yy/MM/dd");
+	      String reviewDate = format.format(review.getReviewDate());
+	      
+	      Object[] param = new Object[] {review.getReviewContent(),  review.getPreference(), reviewDate, review.getMemberID(), review.getBookInfoID()};
+	      jdbcUtil.setSqlAndParameters(sql2, new Object[] {review.getMemberID()});
 	      jdbcUtil.setSqlAndParameters(query, param);
-	      System.out.println(query + param);
 	      
 	      try {
 	         int result = jdbcUtil.executeUpdate();
@@ -37,7 +43,7 @@ public class ReviewDAO {
 	   
 	   //bookInfoID로 검색하기!
 	   public List<review> getReviewList(String bookInfoID) throws SQLException {
-		   String query = "select reviewContent, reviewDate, memberID, reviewID, bookInfoID "
+		   String query = "select reviewContent, preference, reviewDate, memberID, reviewID, bookInfoID "
 	               + "from review "
 				   + "where bookInfoID = ? ";
 		   jdbcUtil.setSqlAndParameters(query, new Object[] {bookInfoID});
@@ -49,8 +55,8 @@ public class ReviewDAO {
 			   while(rs.next()) {
 				   review review = new review();
 				   
-				   System.out.println(rs.getString("memberID"));
 				   review.setReviewContent(rs.getString("reviewContent"));
+				   review.setPreference(rs.getInt("preference"));
 				   review.setReviewDate(rs.getDate("reviewDate"));
 				   review.setMemberID(rs.getString("memberID"));
 				   review.setReviewID(rs.getInt("reviewID"));

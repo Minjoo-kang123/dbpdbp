@@ -233,11 +233,24 @@ function cancel(targetUri) {
 						장르 : 
 						<select id="stype_g" name="stype_g" title="장르검색" style="width:76px">
 							<option value="all" selected >전체</option>
-							<option value="action"  > 액션</option>
-							<option value="fantasy"  > 판타지 </option>
-							<option value="romance"  > 로맨스 </option>
-							<option  value="comic" > 코믹 </option>
-							<option value="etc" > 기타 등등 </option>
+							<option value="00"  > 총류</option>
+							<option value="10"  > 철학 </option>
+							<option value="20"  > 종교 </option>
+							<option  value="30" > 사회과학 </option>
+							<option value="40" > 순수과학 </option>
+							<option value="50"  > 기술과학</option>
+							<option value="60"  > 예술 </option>
+							<option value="70"  > 어학 </option>
+							<option  value="81" > 에세이 </option>
+							<option value="82" > 로맨스 </option>
+							<option value="83"  > 판타지</option>
+							<option value="84"  > 무협/액션 </option>
+							<option value="85"  > SF </option>
+							<option  value="86" > 추리 </option>
+							<option value="87" > 공포 </option>
+							<option value="88"  > 만화</option>
+							<option value="90"  > 역사 </option>
+							<option value="89"  > 기타 </option>
 						</select>
 						<input type="text" id="search_text" name="search_kw" title = "검색어 입력"
 						size="20" class="inputText" value=${text}>

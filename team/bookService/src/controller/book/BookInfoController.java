@@ -21,7 +21,10 @@ public class BookInfoController implements Controller{
     	String bookInfoID = request.getParameter("bookID");
     	
     	//검색으로 들어온게 아니라 rentalController에서 호출된 경우
-    	if(bookInfoID == null) {
+    	if (request.getAttribute("review") != null) {
+    		bookInfoID = (String) request.getAttribute("bookInfoID");
+    	}
+    	else if(bookInfoID == null) {
     		bookInfoID = (String) request.getAttribute("bookID"); 
     		
     		request.setAttribute("rentalOK", request.getAttribute("rentalOK"));
@@ -41,7 +44,6 @@ public class BookInfoController implements Controller{
 			bookManager bManager = bookManager.getInstance();
 			rbList = bManager.findRentBookList(bookInfoID);
 			
-			System.out.println("아아아아아아");
 			ReviewManager reviewManager = ReviewManager.getInstance();
 			rwList = reviewManager.getReviewList(bookInfoID);
     		

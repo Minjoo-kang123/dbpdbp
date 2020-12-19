@@ -394,10 +394,26 @@
 						<div id="InsertReview">
 							<!-- to. 다솔님 / reviewIForm에서는 리뷰를 추가(insert)하는 작업을 진행합니다. 
 								form에 부분에 action 추가해주시고. 버튼 등의 요소에 onClick()등을 이용하여 기능 추가해 이용해주세요. . -->
-							<form class = "reviewIForm" name = "reviewForm" method="POST" action="reviewInsert" >
+							<form class = "reviewIForm" name = "reviewForm" method="POST" action="<c:url value='/book/review'/>" >
 								<input type = "hidden" name = "bookinfoID" value="${book.bookinfoID}">
+								
+								<% if( UserSessionUtils.getLoginUserId(request.getSession()) != null) { %>
+							    	<input type = "hidden" name = "memberID" value="${userId}">
+								<% } %>
+								
 								<textarea name = "reviewContent" cols="30" rows="4" placeholder = "해당책을 재밌게 보셨나요??&#13;&#10;리뷰를 입력해주세요."></textarea>
-								<input type="button" value = "입력" onclick="this.form.action='${book.getBookname()} _도서페이지'">
+								<br>
+								<label><input type="radio" name="preference" value=0 checked >1점</label>
+								<label><input type="radio" name="preference" value=1 >2점</label>
+								<label><input type="radio" name="preference" value=2 >3점</label>
+								<label><input type="radio" name="preference" value=3 >4점</label>
+								<label><input type="radio" name="preference" value=4 >5점</label>
+								
+								<% if( UserSessionUtils.getLoginUserId(request.getSession()) != null) { %>
+							    	<input type="submit" value = "입력">
+								<% }  else {%>
+									<br>로그인 이후 리뷰 작성할 수 있습니다.
+								<% } %>
 							</form>
 						</div>
 						<div id="bookReviewList">
@@ -406,7 +422,7 @@
 								<tr>
 									<td> 
 										<div style="border:1px solid gold; width : 137%;">  <!-- 리뷰 아이템 경계선 표시&확인할려고 테두리 줬어요. 디자인시 참고하여 삭제, 바꿔주세요. -->
-											 <h5> ${review.getMemberID()}님 /  별점 : ${review.getPrefernce()}점 </h5>
+											 <h5> ${review.getMemberID()}님 /  별점 : ${review.getPreference() + 1}점 </h5>
 											 <h4> ${review.getReviewContent()}</h4>
 										</div>
 									</td>
