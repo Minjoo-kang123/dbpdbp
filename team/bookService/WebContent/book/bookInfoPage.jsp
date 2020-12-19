@@ -397,7 +397,11 @@
 							<form class = "reviewIForm" name = "reviewForm" method="POST" action="reviewInsert" >
 								<input type = "hidden" name = "bookinfoID" value="${book.bookinfoID}">
 								<textarea name = "reviewContent" cols="30" rows="4" placeholder = "해당책을 재밌게 보셨나요??&#13;&#10;리뷰를 입력해주세요."></textarea>
-								<input type="button" value = "입력" onclick="this.form.action='${book.getBookname()} _도서페이지'">
+								<% if( UserSessionUtils.getLoginUserId(request.getSession()) != null) { %>
+									<input type="button" value = "입력" onclick="this.form.action='${book.getBookname()} _도서페이지'">
+								<%} else { %>
+									<input type="button" value = "입력" onclick="this.form.action='${book.getBookname()} _도서페이지'" disalbed>
+								<% } %>
 							</form>
 						</div>
 						<div id="bookReviewList">
