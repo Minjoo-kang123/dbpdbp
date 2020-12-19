@@ -16,7 +16,7 @@
 	@import url('https://fonts.googleapis.com/css2?family=Gaegu&family=Noto+Sans+KR&family=Yeon+Sung&display=swap');
 	@import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap');
 	
-	body, div, span, p, a, font, ul, li, fieldset, form, legend, table {
+	body, div, span, p, a, font, ul, li, fieldset, form, legend{
 		margin : 0;
 		padding : 0;
 		border : 0;
@@ -24,6 +24,11 @@
 		
 		border-radius: 10px 10px 10px 10px ;
 	}
+	table{
+		width : 1170px;
+		margin : 0 auto;
+	}
+	
 	div { display : block; }
 	
 	ul {
