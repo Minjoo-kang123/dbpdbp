@@ -56,9 +56,6 @@
 		font-size : 11px;
 		display : inline-block;
 	}
-	
-
-	
 	.header_wrap {
 		width : 1170px;
 		margin : 0 auto;
@@ -67,8 +64,11 @@
 		border-radius: 10px 10px 10px 10px ;
 		margin-bottom : 10px;
 		margin-top : 10px;
+		padding : 5px;
 		background-color : #d5e3d5;
+		font-weight : bolder;
 	}
+
 	.main_searchForm {
 		float: left;
 	    margin-top: 25px;
@@ -210,8 +210,8 @@
 			</div>
 			<!--  로고랑 search 바 있는 곳. -->
 			<div class="header_wrap">
-				<div class="logo" style="margin-top : 25px; float : left; width : 300px">
-					<h3><a href="<c:url value='/home'/>">로고자리</a></h3>
+				<div class="logo" style=" float : left; width : 300px">
+					<a href="<c:url value='/home'/>"><img src = "https://pbs.twimg.com/media/EplKy2FUYAEDjYq?format=png&name=360x360" width = "75px"></a>
 				</div>
 				<form name="main_search" class="main_searchForm" method="Get" action = "<c:url value='/book/search'/>">
 				<!-- form에 action이랑 method 나중에 넣기 -->
