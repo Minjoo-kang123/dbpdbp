@@ -83,7 +83,7 @@
 		margin: 0 auto 0;
 		padding-top : 25px;
 		padding-bottom: 50px;
-		min-height : 600px;
+		min-height : 1000px;
 		background-color:#bbd4b8
 	}
 	.main {
@@ -121,7 +121,7 @@
 	    margin-top : 5px;
 	    margin-bottom : 5px;
 	    margin-left : 10px;
-	    background-color:#FFFFE0;
+	    background-color:#FFFFFF;
 	    min-height : 240px;
 	    min-width : 200px;
 	}
@@ -168,7 +168,7 @@
 	    margin-top : 5px;
 	    margin-bottom : 5px;
 	    margin-left : 10px;
-	    background-color:#FFFFE0;
+	    background-color:#FFFFFF;
 	    min-height : 120px;
 	    min-width : 100px;
 	}
@@ -200,19 +200,24 @@
 		float : right;
 		width : 336px;
 		margin-top : 20px;
-		margin-left : 10px;
-		background-color:#FFFFFF;
+		margin-left : 10px;		
+		background-color:#d5e3d5;
 	}
 	#InsertReview{
-		margin-top : 10px;
-		margin-left : 5px;
+		padding-top : 10px;
+		padding-left : 10px;
+		margin-left : 20px;
 		margin-right : 3px;
-		background-color:#FFFFE0;
+		background-color:#FFFFFF;
+		position: relative;
+	    margin: 0 auto;
 	}
 	#bookReviewList{
 		margin-top : 10px;
 		margin-left : 5px;
 		margin-right : 3px;
+		padding : 5px;
+		width : 230px;
 	}
 	.list ul {
 		list-style:none;
@@ -423,7 +428,7 @@
 								<c:forEach var="review" items="${rwList}">							
 								<tr>
 									<td> 
-										<div style="border:1px solid gold; width : 137%;">  <!-- 리뷰 아이템 경계선 표시&확인할려고 테두리 줬어요. 디자인시 참고하여 삭제, 바꿔주세요. -->
+										<div style="border:1px solid white; width : 137%;	margin-bottom : 5px;">  <!-- 리뷰 아이템 경계선 표시&확인할려고 테두리 줬어요. 디자인시 참고하여 삭제, 바꿔주세요. -->
 											 <h5> ${review.getMemberID()}님 /  별점 : ${review.getPreference() + 1}점 </h5>
 											 <h4> ${review.getReviewContent()}</h4>
 										</div>
