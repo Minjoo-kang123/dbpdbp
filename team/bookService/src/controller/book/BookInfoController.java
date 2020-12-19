@@ -9,9 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 import controller.Controller;
 import model.bookInfo;
 import model.rentalBook;
+import model.review;
 import model.service.BookInfoManager;
 import model.service.BookNotFoundException;
 import model.service.bookManager;
+import model.service.ReviewManager;
 
 public class BookInfoController implements Controller{
 	@Override
@@ -30,12 +32,18 @@ public class BookInfoController implements Controller{
 		bookInfo book = new bookInfo();
 		List<rentalBook> rbList = null;
 		
+		List<review> rwList = null;
+		
 		try {
 			BookInfoManager bookInfoManager = BookInfoManager.getInstance();
 			book = bookInfoManager.findBookInfo(bookInfoID);
 			
 			bookManager bManager = bookManager.getInstance();
-			rbList = bManager.findRentBookList(bookInfoID);   		
+			rbList = bManager.findRentBookList(bookInfoID);
+			
+			System.out.println("아아아아아아");
+			ReviewManager reviewManager = ReviewManager.getInstance();
+			rwList = reviewManager.getReviewList(bookInfoID);
     		
 		} catch (Exception e) {
 			return "redirect:/home";
@@ -46,6 +54,7 @@ public class BookInfoController implements Controller{
 		request.setAttribute("text", request.getParameter("text"));
 		request.setAttribute("stype", request.getParameter("stype"));
 		request.setAttribute("stype_g", request.getParameter("stype_g"));
+		request.setAttribute("rwList", rwList);
 		
 		
     	return "/book/info/form";	

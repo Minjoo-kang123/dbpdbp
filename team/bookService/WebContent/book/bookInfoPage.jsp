@@ -403,20 +403,16 @@
 						</div>
 						<div id="bookReviewList">
 							<table class = "reviewList">
-								<!-- to.다솔님 / 해당 페이지 bookinfoid를 기준으로 검색한 리뷰를 item를 가져와   c:forEach 이용해서  tr-td 부분 반복해 보여주면 될 듯합니다.
-									검색한 리뷰 리스트는 bookinfoController에서 미리 setAttribute해주세요. 
-								-->
-							
+								<c:forEach var="review" items="${rwList}">							
 								<tr>
 									<td> 
 										<div style="border:1px solid gold; width : 137%;">  <!-- 리뷰 아이템 경계선 표시&확인할려고 테두리 줬어요. 디자인시 참고하여 삭제, 바꿔주세요. -->
-											 <h5>어쩌구님 (memberid값) /  별점 : 몇점 </h5>
-											 <h4> 리뷰 내용 출력 </h4>
+											 <h5> ${review.getMemberID()}님 /  별점 : ${review.getPrefernce()}점 </h5>
+											 <h4> ${review.getReviewContent()}</h4>
 										</div>
 									</td>
 								</tr>
-								
-								<!-- 여기까지를 반복문으로,,,, ( 임의로 table 형식으로 보여주게 하였는데. 이부분이나 그 외 변수명 등 편하신데로 표시해주시면 될 듯합니다. -->
+								</c:forEach>
 							</table>
 						</div>
 					</div>
